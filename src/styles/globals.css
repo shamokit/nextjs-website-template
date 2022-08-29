@@ -1,0 +1,59 @@
+@import 'tailwindcss/base';
+
+@import '../styles/mixins/_mediaQuery.css';
+@import '../styles/vars/_font.css';
+@import '../styles/vars/_layout.css';
+@import '../styles/vars/_color.css';
+@import '../styles/vars/_space.css';
+
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+	html {
+		font-size: 62.5%;
+	}
+
+	body {
+		font-size: var(--font-size--md);
+		line-height: var(--line-height--md);
+		color: var(--color--primary-500);
+	}
+
+	* {
+		letter-spacing: var(--letter-spacing--md);
+	}
+
+	img {
+		image-rendering: optimize-contrast;
+		object-fit: cover;
+	}
+}
+
+/* Hover */
+@layer utilities {
+	.animation-zoom {
+		.animation-zoom__img {
+			display: inline-block;
+			transition: transform 0.3s ease;
+			transform: scale(1);
+			will-change: transform;
+		}
+
+		&:hover {
+			.animation-zoom__img {
+				transform: scale(1.2);
+			}
+		}
+	}
+
+	.animation-alpha {
+		opacity: 1;
+		transition: opacity 0.3s ease;
+		will-change: opacity;
+
+		&:hover {
+			opacity: 0.7;
+		}
+	}
+}

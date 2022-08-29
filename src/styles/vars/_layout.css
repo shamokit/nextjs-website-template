@@ -1,0 +1,20 @@
+@import '../../styles/mixins/_mediaQuery.css';
+
+:root {
+	/* Header */
+	--header--height: 70px;
+	@mixin mq-up lg {
+		--header--height: 120px;
+	}
+
+	/* Sidebar */
+	--sidebar--width: 240px;
+
+	/* Contents Width */
+	--contents--width: 1100px;
+	--contents--width--large: 1240px;
+	--contents--padding--side: 20px;
+	--contents--width-with-padding: calc(
+		var(--contents--width) + var(--contents--padding--side) * 2
+	);
+}

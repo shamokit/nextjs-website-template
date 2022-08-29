@@ -1,0 +1,138 @@
+@import '../mixins/_mediaQuery.css';
+
+:root {
+	/* Gap */
+	--gap--11xs: 2px;
+	--gap--10xs: 4px;
+	--gap--9xs: 6px;
+	--gap--8xs: 8px;
+	--gap--7xs: 10px;
+	--gap--6xs: 12px;
+	--gap--5xs: 14px;
+	--gap--4xs: 16px;
+	--gap--3xs: 18px;
+	--gap--2xs: 20px;
+	--gap--xs: 22px;
+	--gap--sm: 24px;
+	--gap--md: 26px;
+	--gap--lg: 28px;
+	--gap--xl: 30px;
+	--gap--2xl: 32px;
+	--gap--3xl: 34px;
+	--gap--4xl: 36px;
+	--gap--5xl: 38px;
+	--gap--6xl: 40px;
+	--gap--7xl: 48px;
+	--gap--8xl: 56px;
+	--gap--9xl: 64px;
+	--gap--10xl: 72px;
+	--gap--11xl: 80px;
+
+	/* Space Height */
+	--space--6xs: 2px;
+	--space--5xs: 4px;
+	--space--4xs: 6px;
+	--space--3xs: 8px;
+	--space--2xs: 10px;
+	--space--xs: 12px;
+	--space--sm: 14px;
+	--space--md: 16px;
+	--space--lg: 20px;
+	--space--xl: 24px;
+	--space--2xl: 28px;
+	--space--3xl: 32px;
+	--space--4xl: 36px;
+	--space--5xl: 40px;
+	@mixin mq-up md {
+		--space--6xs: 3px;
+		--space--5xs: 6px;
+		--space--4xs: 9px;
+		--space--3xs: 12px;
+		--space--2xs: 15px;
+		--space--xs: 18px;
+		--space--sm: 21px;
+		--space--md: 24px;
+		--space--lg: 30px;
+		--space--xl: 36px;
+		--space--2xl: 42px;
+		--space--3xl: 48px;
+		--space--4xl: 54px;
+		--space--5xl: 60px;
+	}
+	@mixin mq-up lg {
+		--space--6xs: 4px;
+		--space--5xs: 8px;
+		--space--4xs: 12px;
+		--space--3xs: 16px;
+		--space--2xs: 20px;
+		--space--xs: 24px;
+		--space--sm: 28px;
+		--space--md: 32px;
+		--space--lg: 40px;
+		--space--xl: 48px;
+		--space--2xl: 56px;
+		--space--3xl: 64px;
+		--space--4xl: 72px;
+		--space--5xl: 80px;
+	}
+
+	/* Padding */
+	--padding--3xs: 20px;
+	--padding--2xs: 20px;
+	--padding--xs: 24px;
+	--padding--sm: 24px;
+	--padding--md: 24px;
+	--padding--lg: 24px;
+	--padding--xl: 24px;
+	--padding--2xl: 24px;
+	--padding--3xl: 24px;
+	@mixin mq-up md {
+		--padding--3xs: 24px;
+		--padding--2xs: 24px;
+		--padding--xs: 32px;
+		--padding--sm: 32px;
+		--padding--md: 32px;
+		--padding--lg: 32px;
+		--padding--xl: 32px;
+		--padding--2xl: 32px;
+		--padding--3xl: 32px;
+	}
+	@mixin mq-up lg {
+		--padding--3xs: 20px;
+		--padding--2xs: 32px;
+		--padding--xs: 40px;
+		--padding--sm: 52px;
+		--padding--md: 60px;
+		--padding--lg: 72px;
+		--padding--xl: 80px;
+		--padding--2xl: 92px;
+		--padding--3xl: 100px;
+	}
+
+	/* Space Section */
+	--section--space--2xs: 40px;
+	--section--space--xs: 50px;
+	--section--space--sm: 60px;
+	--section--space--md: 70px;
+	--section--space--lg: 80px;
+	--section--space--xl: 90px;
+	--section--space--2xl: 100px;
+	@mixin mq-up md {
+		--section--space--2xs: 60px;
+		--section--space--xs: 75px;
+		--section--space--sm: 90px;
+		--section--space--md: 105px;
+		--section--space--lg: 120px;
+		--section--space--xl: 135px;
+		--section--space--2xl: 150px;
+	}
+	@mixin mq-up lg {
+		--section--space--2xs: 80px;
+		--section--space--xs: 100px;
+		--section--space--sm: 120px;
+		--section--space--md: 140px;
+		--section--space--lg: 160px;
+		--section--space--xl: 180px;
+		--section--space--2xl: 200px;
+	}
+}

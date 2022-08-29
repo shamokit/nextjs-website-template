@@ -1,0 +1,53 @@
+@import '../../styles/mixins/_mediaQuery.css';
+
+:root {
+	/* letter-spacing */
+	--letter-spacing--sm: 0;
+	--letter-spacing--md: 0.06em;
+	--letter-spacing--lg: 0.08em;
+
+	/* font-size scale */
+	--step--sm: 1.07;
+	--step--md: 1.075;
+	--step--lg: 1.125;
+	--step: var(--step--sm);
+	@mixin mq-up md {
+		--step: var(--step--md);
+	}
+	@mixin mq-up lg {
+		--step: var(--step--lg);
+	}
+
+	/* font-size */
+	--base--font-size--sm: 1.4rem;
+	--base--font-size--md: 1.4rem;
+	--base--font-size--lg: 1.6rem;
+	--base--font-size: var(--base--font-size--sm);
+	@mixin mq-up md {
+		--base--font-size: var(--base--font-size--md);
+	}
+	@mixin mq-up lg {
+		--base--font-size: var(--base--font-size--lg);
+	}
+
+	--font-size--2xs: calc(var(--font-size--xs) / var(--step));
+	--font-size--xs: calc(var(--font-size--sm) / var(--step));
+	--font-size--sm: calc(var(--font-size--md) / var(--step));
+	--font-size--md: var(--base--font-size);
+	--font-size--lg: calc(var(--font-size--md) * var(--step));
+	--font-size--xl: calc(var(--font-size--lg) * var(--step));
+	--font-size--2lx: calc(var(--font-size--xl) * var(--step));
+	--font-size--3lx: calc(var(--font-size--2lx) * var(--step));
+	--font-size--4lx: calc(var(--font-size--3lx) * var(--step));
+	--font-size--5lx: calc(var(--font-size--4lx) * var(--step));
+	--font-size--6lx: calc(var(--font-size--5lx) * var(--step));
+	--font-size--7lx: calc(var(--font-size--6lx) * var(--step));
+	--font-size--8lx: calc(var(--font-size--7lx) * var(--step));
+	--font-size--9lx: calc(var(--font-size--8lx) * var(--step));
+	--font-size--10xl: calc(var(--font-size--9lx) * var(--step));
+	--font-size--11xl: calc(var(--font-size--10xl) * var(--step));
+	--font-size--12xl: calc(var(--font-size--11xl) * var(--step));
+	--font-size--13xl: calc(var(--font-size--12xl) * var(--step));
+	--font-size--14xl: calc(var(--font-size--13xl) * var(--step));
+	--font-size--15xl: calc(var(--font-size--14xl) * var(--step));
+}
