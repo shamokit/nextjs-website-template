@@ -1,0 +1,25 @@
+import { Head, Html, Main, NextScript } from 'next/document'
+const MyDocument: React.FC = () => {
+	return (
+		<Html prefix="og: http://ogp.me/ns#" lang="ja">
+			<Head>
+				<link rel="preconnect" href="https://fonts.googleapis.com" />
+				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+				<link
+					rel="stylesheet"
+					href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;display=swap"
+				/>
+			</Head>
+			<body
+				className="font-noto bg-white scroll-smooth"
+				itemScope
+				itemType="http://schema.org/WebPage"
+			>
+				<Main />
+				<NextScript />
+			</body>
+		</Html>
+	)
+}
+
+export default MyDocument
