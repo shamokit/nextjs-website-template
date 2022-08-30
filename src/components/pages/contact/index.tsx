@@ -11,7 +11,7 @@ export const PageContact = () => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<FormData>()
-	const onSubmit = (data: FormData) => axios.post("/submit", data).then((res) => {
+	const onSubmit = (data: FormData) => axios.post("/api/submit", data).then((res) => {
 		console.log(res)
 	}).catch((err) => {
 		console.log(err)
