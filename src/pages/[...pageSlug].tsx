@@ -4,7 +4,6 @@ import { apiClient } from '@/lib/apiClient'
 import type { PageContent } from '@/components/model/staticPage/type'
 import { ParsedUrlQuery } from 'node:querystring'
 import { Breadcrumb, type BreadcrumbItem } from '@/components/ui/breadcrumb'
-import { Text } from '@/components/ui/text/Text'
 const fetchPages = async () => {
 	const data = await apiClient.staticPage.pageData.$get()
 

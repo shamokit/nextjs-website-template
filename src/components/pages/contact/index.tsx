@@ -1,14 +1,17 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
+type FormData = {
+  name: string;
+  email: string;
+};
 export const PageContact = () => {
 	const {
 		register,
 		handleSubmit,
-		watch,
 		formState: { errors },
-	} = useForm()
-	const onSubmit = (data) => axios.post("/submit", data).then((res) => {
+	} = useForm<FormData>()
+	const onSubmit = (data: FormData) => axios.post("/submit", data).then((res) => {
 		console.log(res)
 	}).catch((err) => {
 		console.log(err)
