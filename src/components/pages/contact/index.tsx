@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
-type FormData = {
+type FormDataProps = {
   name: string;
   email: string;
 };
@@ -10,9 +10,9 @@ export const PageContact = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<FormData>()
-	const onSubmit = (data: FormData) => {
-		var formData = new FormData();
+	} = useForm<FormDataProps>()
+	const onSubmit = (data: FormDataProps) => {
+		const formData = new FormData();
 		for ( const [key, value] of Object.entries(data) ) {
 			formData.append(key, value);
 		}
