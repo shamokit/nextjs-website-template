@@ -1,6 +1,5 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
 import { previewApiClient } from '@/lib/apiClient'
-const fetchPreviewPage = async (pageSlug: string) => {
+const fetchPreviewPage = async (pageSlug) => {
 	const data = await previewApiClient.staticPage.pageData.$get({
 		query: {
 			limit: 1,
@@ -11,7 +10,7 @@ const fetchPreviewPage = async (pageSlug: string) => {
 
 	return { data }
 }
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async (req, res) => {
   // シークレットトークンと次のパラメーターを確認してください。
   // このシークレットトークンはAPIルートとCMSだけが知っている必要があります。
   if (req.query.secret !== process.env.PREVIEW_SECRET_KEY || !req.query.slug) {
@@ -34,7 +33,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 	const slugs = data.items.map((page) => page.slug)
 	const reverseSlugs = [...slugs].reverse()
 
-	const stringPaths: string[] = []
+	const stringPaths = []
 	reverseSlugs.forEach((path, index) => {
 		const prev = stringPaths[index - 1]
 		stringPaths[index] = prev ? `${stringPaths[index - 1]}/${path}` : path
