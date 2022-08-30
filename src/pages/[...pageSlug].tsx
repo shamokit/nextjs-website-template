@@ -1,6 +1,6 @@
 import type { NextPage, GetStaticProps, GetStaticPaths } from 'next'
 import { NextSeo } from 'next-seo'
-import { apiClient } from '@/lib/apiClient'
+import { apiClient, previewApiClient } from '@/lib/apiClient'
 import type { PageContent } from '@/components/model/staticPage/type'
 import { ParsedUrlQuery } from 'node:querystring'
 import { Breadcrumb, type BreadcrumbItem } from '@/components/ui/breadcrumb'
@@ -11,6 +11,17 @@ const fetchPages = async () => {
 }
 const fetchPage = async (pageSlug: string) => {
 	const data = await apiClient.staticPage.pageData.$get({
+		query: {
+			limit: 1,
+			slug: pageSlug,
+			depth: 2,
+		},
+	})
+
+	return { data }
+}
+const fetchPreviewPage = async (pageSlug: string) => {
+	const data = await previewApiClient.staticPage.pageData.$get({
 		query: {
 			limit: 1,
 			slug: pageSlug,
@@ -43,7 +54,7 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (context)
 		if (!context.params) return { props: { status: 'no param' } }
 		const { pageSlug } = context.params
 		const slug = pageSlug[pageSlug.length - 1]
-		const { data } = await fetchPage(slug)
+		const { data } = context.preview ? await fetchPreviewPage(slug) : await fetchPage(slug)
 		const pageData = data.items[0]
 
 		if (!pageData) {
@@ -95,9 +106,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 			},
 		}
 	})
-	console.log(paths[0].params.pageSlug)
-	console.log(paths[1].params.pageSlug)
-	console.log(paths[2].params.pageSlug)
 
 	return {
 		paths,
@@ -113,12 +121,6 @@ const StaticPage: NextPage<PageProps> = ({ pageData, breadcrumb }) => (
 		/>
 		<main>
 			<>
-				<p>test</p>
-				<p>test</p>
-				<p>test</p>
-				<p>test</p>
-				<p>test</p>
-				<p>test</p>
 				{pageData && (
 					<>
 						<p>{pageData?.pageName}</p>
