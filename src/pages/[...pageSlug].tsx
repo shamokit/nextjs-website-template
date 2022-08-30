@@ -91,14 +91,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	const paths = stringPaths.map((slug) => {
 		return {
 			params: {
-				pageSlug: [slug],
+				pageSlug: [`${slug}`],
 			},
 		}
 	})
 
 	return {
 		paths,
-		fallback: true,
+		fallback: "blocking",
 	}
 }
 const StaticPage: NextPage<PageProps> = ({ pageData, breadcrumb }) => (
