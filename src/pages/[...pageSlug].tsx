@@ -86,7 +86,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	const stringPaths: string[] = []
 	reverseSlugs.forEach((path, index) => {
 		const prev = stringPaths[index - 1]
-		stringPaths[index] = prev ? `${stringPaths[index - 1]}/${path}` : path
+		stringPaths[index] = prev ? [stringPaths[index - 1], path].join('/') : path
 	})
 	const paths = stringPaths.map((slug) => {
 		return {
