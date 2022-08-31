@@ -12,7 +12,7 @@ export async function onRequestGet({ env, request }) {
 		const fetchPreviewPage = async (pageSlug) => {
 			const data = await fetch(
 				`https://${env.NEWT_SPACE_U_KU ? env.NEWT_SPACE_U_KU : ''
-				}.api.newt.so/v1/staticPage/pageData/${pageSlug}`,
+				}.api.newt.so/v1/staticPage/pageData`,
 				{
 					method: 'GET',
 					headers: {
@@ -30,7 +30,6 @@ export async function onRequestGet({ env, request }) {
 			return { data: await data.json() }
 		}
 		const { data } = await fetchPreviewPage(slug)
-		return new Response(JSON.stringify(data), { status: 400 })
 
 		const pageData = data.items[0]
 		// slugが存在しない場合、プレビューモードを有効にしないようにしましょう。
