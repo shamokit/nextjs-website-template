@@ -12,7 +12,6 @@ export async function onRequestGet({ env, params }) {
 				}.api.newt.so/v1/staticPage/pageData`,
 				{
 					method: 'GET',
-					mode: 'cors',
 					headers: {
 						Authorization: `Bearer ${env.NEXT_PREVIEW_TOKEN ? env.NEXT_PREVIEW_TOKEN : ''
 							}`,
