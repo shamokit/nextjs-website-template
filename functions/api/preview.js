@@ -30,7 +30,8 @@ export async function onRequestGet({ env, request }) {
 			return { data: await data.json() }
 		}
 		const { data } = await fetchPreviewPage(slug)
-		return new Response(JSON.stringify(data), { status: 400 })
+		return new Response(`https://${env.NEWT_SPACE_U_KU ? env.NEWT_SPACE_U_KU : ''
+	}.api.newt.so/v1/staticPage/${slug}`, { status: 400 })
 		// return new Response(data.items[0].pageName, { status: 400 })
 
 		const pageData = data.items[0]
