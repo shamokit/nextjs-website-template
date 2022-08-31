@@ -8,6 +8,7 @@ export const Footer: React.FC = () => {
 	return (
 		<footer className="bg-primary-500 text-white py-10">
 			<Container size="full">
+				<h2 className="sr-only">フッターメニュー</h2>
 				<p className="text-center">
 					<small>
 						@ {releaseYear === year ? year : `${releaseYear}-${year}`} {COMPANY_NAME} Inc.
