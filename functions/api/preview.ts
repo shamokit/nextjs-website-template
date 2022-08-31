@@ -1,13 +1,13 @@
 import axios from 'axios'
 import aspida from '@aspida/axios'
 import api from '../../src/api/$api'
-export async function onRequestGet({request, env, params}) {
+export async function onRequestGet({env, params}) {
   try {
 		let secret = params.secret
 		let slug = params.slug
 
 		if (secret !== env.PREVIEW_SECRET_KEY || !slug) {
-			return Response.redirect(`https://nextjs-website-template.pages.dev`, 401)
+			new Response("error", { status: 400 });
 		}
 		const fetchPreviewPage = async (pageSlug) => {
 			const previewFetchConfig = {
@@ -34,7 +34,7 @@ export async function onRequestGet({request, env, params}) {
 
 		// slugが存在しない場合、プレビューモードを有効にしないようにしましょう。
 		if (!pageData) {
-			return Response.redirect(`https://nextjs-website-template.pages.dev`, 401)
+			return new Response("error", { status: 400 });
 		}
 
 		// Cookiesを設定し、プレビューモードを有効にします。
@@ -48,7 +48,7 @@ export async function onRequestGet({request, env, params}) {
 			const prev = stringPaths[index - 1]
 			stringPaths[index] = prev ? `${stringPaths[index - 1]}/${path}` : path
 		})
-		return Response.redirect(`https://nextjs-website-template.pages.dev/${stringPaths[-1]}`, 200)
+		return Response.redirect(`https://nextjs-website-template.pages.dev/${stringPaths[-1]}`, 301)
   } catch (err) {
     return new Response(err, { status: 400 });
   }
