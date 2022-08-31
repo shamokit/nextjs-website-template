@@ -1,15 +1,7 @@
-import { previewApiClient } from '@/lib/apiClient'
-const fetchPreviewPage = async (pageSlug) => {
-	const data = await previewApiClient.staticPage.pageData.$get({
-		query: {
-			limit: 1,
-			slug: pageSlug,
-			depth: 2,
-		},
-	})
+import axios from 'axios'
+import aspida from '@aspida/axios'
+import api from '../../src/api/$api'
 
-	return { data }
-}
 export async function onRequestGet(context) {
   try {
     let request = await context.request
@@ -21,7 +13,26 @@ export async function onRequestGet(context) {
 		if (secret !== context.env.PREVIEW_SECRET_KEY || !slug) {
 			return Response.redirect(`https://nextjs-website-template.pages.dev`, 401)
 		}
+		const fetchPreviewPage = async (pageSlug) => {
+			const previewFetchConfig = {
+				headers: {
+					Authorization: `Bearer ${context.env.NEXT_PREVIEW_TOKEN ? context.env.NEXT_PREVIEW_TOKEN : ''}`,
+				},
+				baseURL: `https://${
+					context.env.NEWT_SPACE_U_KU ? context.env.NEWT_SPACE_U_KU : ''
+				}.api.newt.so/v1`,
+			}
+			const previewApiClient = api(aspida(axios, previewFetchConfig))
+			const data = await previewApiClient.staticPage.pageData.$get({
+				query: {
+					limit: 1,
+					slug: pageSlug,
+					depth: 2,
+				},
+			})
 
+			return { data }
+		}
 		const { data } = await fetchPreviewPage(slug)
 		const pageData = data.items[0]
 
