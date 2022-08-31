@@ -30,9 +30,9 @@ export async function onRequestGet({ env, request }) {
 			return { data: await data.json() }
 		}
 		const { data } = await fetchPreviewPage(slug)
-		return new Response(JSON.stringify(data), { status: 400 })
+		// return new Response(JSON.stringify(data), { status: 400 })
 
-		const pageData = data.items[0]
+		const pageData = JSON.parse(JSON.stringify(data)).items[0]
 		// slugが存在しない場合、プレビューモードを有効にしないようにしましょう。
 		if (!pageData) {
 			return new Response('error', { status: 400 })
@@ -47,10 +47,10 @@ export async function onRequestGet({ env, request }) {
 			stringPaths[index] = prev ? `${stringPaths[index - 1]}/${path}` : path
 		})
 
-		// return Response.redirect(
-		// 	`https://nextjs-website-template.pages.dev/${stringPaths[-1]}`,
-		// 	301
-		// )
+		return Response.redirect(
+			`https://nextjs-website-template.pages.dev/${stringPaths[-1]}`,
+			301
+		)
 	} catch (err) {
 		return new Response(err, { status: 400 })
 	}
