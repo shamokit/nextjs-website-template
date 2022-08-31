@@ -9,7 +9,7 @@ export async function onRequestGet({ env, params }) {
 		const fetchPreviewPage = async (pageSlug) => {
 			const data = await fetch(
 				`https://${env.NEWT_SPACE_U_KU ? env.NEWT_SPACE_U_KU : ''
-				}.api.newt.so/v1/staticPage/pageData`,
+				}.api.newt.so/v1/staticPage/${pageSlug}`,
 				{
 					method: 'GET',
 					headers: {
