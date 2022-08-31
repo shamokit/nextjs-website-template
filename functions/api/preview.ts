@@ -1,6 +1,4 @@
-import axios from 'axios'
-import aspida from '@aspida/axios'
-import api from '../../src/api/$api'
+import axios, {type AxiosResponse} from 'axios'
 export async function onRequestGet({env, params}) {
   try {
 		let secret = params.secret
@@ -17,21 +15,21 @@ export async function onRequestGet({env, params}) {
 				baseURL: `https://${
 					env.NEWT_SPACE_U_KU ? env.NEWT_SPACE_U_KU : ''
 				}.api.newt.so/v1`,
-			}
-			const previewApiClient = api(aspida(axios, previewFetchConfig))
-			const data = await previewApiClient.staticPage.pageData.$get({
-				query: {
+				params: {
+					query: {
 					limit: 1,
 					slug: pageSlug,
 					depth: 2,
 				},
-			})
+				}
+			}
+			const data: AxiosResponse<{items: {slug: string}[]}> = await axios.get("/staticPage/pageData",previewFetchConfig)
 
-			return { data }
+			return { data: data.data }
 		}
 		const { data } = await fetchPreviewPage(slug)
 		const pageData = data.items[0]
-
+		console.log(pageData)
 		// slugが存在しない場合、プレビューモードを有効にしないようにしましょう。
 		if (!pageData) {
 			return new Response("error", { status: 400 });
