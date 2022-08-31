@@ -30,7 +30,7 @@ export async function onRequestGet({ env, request }) {
 			return { data: await data.json() }
 		}
 		const { data } = await fetchPreviewPage(slug)
-		new Response(data, { status: 400 })
+		return new Response(data, { status: 400 })
 		// return new Response(data.items[0].pageName, { status: 400 })
 
 		const pageData = data.items[0]
