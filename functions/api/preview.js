@@ -1,5 +1,7 @@
-export async function onRequestGet({ env, params }) {
+export async function onRequestGet({ env, request }) {
 	try {
+		const url = new URL(request.url);
+		const params = new URLSearchParams(url.search);
 		let secret = params.secret
 		let slug = params.slug
 
