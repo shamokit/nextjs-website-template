@@ -50,6 +50,6 @@ export async function onRequestGet({request, env, params}) {
 		})
 		return Response.redirect(`https://nextjs-website-template.pages.dev/${stringPaths[-1]}`, 200)
   } catch (err) {
-    return new Response('Error parsing JSON content', { status: 400 });
+    return new Response(err, { status: 400 });
   }
 }
