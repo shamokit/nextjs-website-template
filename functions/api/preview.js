@@ -3,8 +3,8 @@ export async function onRequestGet({ env, request }) {
 		const url = new URL(request.url);
 
 		const params = new URLSearchParams(url.search);
-		let secret = params.get(secret)
-		let slug = params.get(slug)
+		let secret = params.get("secret")
+		let slug = params.get("slug")
 
 		if (secret !== env.PREVIEW_SECRET_KEY || !slug) {
 			new Response('error', { status: 400 })
