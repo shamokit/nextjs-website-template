@@ -16,13 +16,11 @@ export async function onRequestGet({ env, params }) {
 						Authorization: `Bearer ${env.NEXT_PREVIEW_TOKEN ? env.NEXT_PREVIEW_TOKEN : ''
 							}`,
 					},
-					body: JSON.stringify({
-						query: {
-							limit: 1,
-							slug: pageSlug,
-							depth: 2,
-						},
-					}),
+					query: {
+						limit: 1,
+						slug: pageSlug,
+						depth: 2,
+					}
 				}
 			)
 
