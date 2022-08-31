@@ -1,25 +1,21 @@
 import axios from 'axios'
 import aspida from '@aspida/axios'
 import api from '../../src/api/$api'
-
-export async function onRequestGet(context) {
+export async function onRequestGet({request, env, params}) {
   try {
-    let request = await context.request
+		let secret = params.secret
+		let slug = params.slug
 
-		const { searchParams } = new URL(request.url)
-		let secret = searchParams.get('secret')
-		let slug = searchParams.get('slug')
-
-		if (secret !== context.env.PREVIEW_SECRET_KEY || !slug) {
+		if (secret !== env.PREVIEW_SECRET_KEY || !slug) {
 			return Response.redirect(`https://nextjs-website-template.pages.dev`, 401)
 		}
 		const fetchPreviewPage = async (pageSlug) => {
 			const previewFetchConfig = {
 				headers: {
-					Authorization: `Bearer ${context.env.NEXT_PREVIEW_TOKEN ? context.env.NEXT_PREVIEW_TOKEN : ''}`,
+					Authorization: `Bearer ${env.NEXT_PREVIEW_TOKEN ? env.NEXT_PREVIEW_TOKEN : ''}`,
 				},
 				baseURL: `https://${
-					context.env.NEWT_SPACE_U_KU ? context.env.NEWT_SPACE_U_KU : ''
+					env.NEWT_SPACE_U_KU ? env.NEWT_SPACE_U_KU : ''
 				}.api.newt.so/v1`,
 			}
 			const previewApiClient = api(aspida(axios, previewFetchConfig))
@@ -42,12 +38,12 @@ export async function onRequestGet(context) {
 		}
 
 		// Cookiesを設定し、プレビューモードを有効にします。
-		Response.setPreviewData({})
+		// Response..setPreviewData({})
 
 		const slugs = data.items.map((page) => page.slug)
 		const reverseSlugs = [...slugs].reverse()
 
-		const stringPaths = []
+		const stringPaths: string[] = []
 		reverseSlugs.forEach((path, index) => {
 			const prev = stringPaths[index - 1]
 			stringPaths[index] = prev ? `${stringPaths[index - 1]}/${path}` : path
