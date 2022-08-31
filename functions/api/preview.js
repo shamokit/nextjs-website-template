@@ -1,11 +1,10 @@
 export async function onRequestGet({ env, request }) {
 	try {
 		const url = new URL(request.url);
-		return new Response(url, { status: 400 })
 
 		const params = new URLSearchParams(url.search);
-		let secret = params.secret
-		let slug = params.slug
+		let secret = params.get(secret)
+		let slug = params.get(slug)
 
 		if (secret !== env.PREVIEW_SECRET_KEY || !slug) {
 			new Response('error', { status: 400 })
@@ -31,17 +30,13 @@ export async function onRequestGet({ env, request }) {
 			return { data: await data.json() }
 		}
 		const { data } = await fetchPreviewPage(slug)
-		return new Response(data.items[0].pageName, { status: 400 })
+		// return new Response(data.items[0].pageName, { status: 400 })
 
-		console.log(data)
 		const pageData = data.items[0]
 		// slugが存在しない場合、プレビューモードを有効にしないようにしましょう。
 		if (!pageData) {
 			return new Response('error', { status: 400 })
 		}
-
-		// Cookiesを設定し、プレビューモードを有効にします。
-		// Response..setPreviewData({})
 
 		const slugs = data.items.map((page) => page.slug)
 		const reverseSlugs = [...slugs].reverse()
