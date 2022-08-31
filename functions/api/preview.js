@@ -27,6 +27,8 @@ export async function onRequestGet({ env, params }) {
 			return { data: data.json() }
 		}
 		const { data } = await fetchPreviewPage(slug)
+		return new Response(data, { status: 400 })
+
 		console.log(data)
 		const pageData = data.items[0]
 		// slugが存在しない場合、プレビューモードを有効にしないようにしましょう。
