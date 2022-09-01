@@ -39,19 +39,31 @@ export const getStaticProps = async () => {
 	}
 }
 export const getStaticPaths: GetStaticPaths = async () => {
-	const { data } = await fetchPages()
-	const slugs = data.items.map((page) => page.slug)
-	const reverseSlugs = [...slugs].reverse()
+	const pages: string[] = []
+	const getParentData = (data: PageContent) => {
+		if (data.parent) {
+			pages.push(data.slug)
+			getParentData(data.parent)
+		} else {
+			pages.push(data.slug)
+		}
+	}
+	const { data } = await fetchPreviewPage('testpage')
+	const pageData = data.items[0]
+	getParentData(pageData)
 
-	const stringPaths: string[] = []
-	reverseSlugs.forEach((path, index) => {
-		const prev = stringPaths[index - 1]
-		stringPaths[index] = prev ? `${stringPaths[index - 1]}/${path}` : path
+	const reversePages = [...pages].reverse()
+	const slugs: string[] = []
+	reversePages.forEach((slug, index) => {
+		const prev = slugs[index - 1]
+		const slugsData = prev ? `${prev}/${slug}` : slug
+		slugs[index] = slugsData
 	})
-	const paths = stringPaths.map((slug) => {
+
+	const paths = reversePages.map((slug) => {
 		return {
 			params: {
-				pageSlug: slug.split('/'),
+				pageSlug: ['preview', ...slug.split('/')],
 			},
 		}
 	})
@@ -62,21 +74,22 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 const useQuery = () => {
-  const router = useRouter();
-  return router;
+	const router = useRouter()
+	return router
 }
 
 const StaticPage: NextPage<PageProps> = () => {
 	const router = useRouter()
 	const [data, setData] = useState(null)
 	const [isLoading, setLoading] = useState(false)
-	const {query} = useQuery()
+	const { query } = useQuery()
 
 	useEffect(() => {
-		const {secret, pageSlug} = query
+		const { secret, pageSlug } = query
 		setLoading(true)
-		if(secret) {
-			axios.get(`/api/preview?secret=${secret}&slug=${pageSlug}`)
+		if (secret) {
+			axios
+				.get(`/api/preview?secret=${secret}&slug=${pageSlug}`)
 				.then((res) => res)
 				.then((data) => {
 					// setData(data)
@@ -87,12 +100,8 @@ const StaticPage: NextPage<PageProps> = () => {
 	}, [query])
 	return (
 		<>
-			<NextSeo
-				noindex
-			/>
-			<main>
-				test
-			</main>
+			<NextSeo noindex />
+			<main>test</main>
 		</>
 	)
 }
