@@ -4,7 +4,6 @@ import { previewApiClient } from '@/lib/apiClient'
 import type { PageContent } from '@/components/model/staticPage/type'
 import { ParsedUrlQuery } from 'node:querystring'
 import { Breadcrumb, type BreadcrumbItem } from '@/components/ui/breadcrumb'
-import { useRouter } from "next/router";
 
 const fetchPreviewPage = async (pageSlug: string) => {
 	const data = await previewApiClient.staticPage.pageData.$get({
@@ -40,8 +39,7 @@ export const getServerSideProps: GetServerSideProps<PageProps, Params> = async (
 		if (!context.params) return { props: { status: 'no param' } }
 		const { pageSlug } = context.params
 
-		const router = useRouter();
-		const { secret } = router.query;
+		const { secret } = context.query;
 		if (secret !== process.env.PREVIEW_SECRET_KEY) {
 			new Response('error', { status: 400 })
 		}
