@@ -28,7 +28,7 @@ export async function onRequestGet({ env, request }) {
 				}
 			)
 
-			return { data }
+			return { data: JSON.parse(data) }
 		}
 		const { data } = await fetchPreviewPage(slug)
 		const pageData = data.items[0]
