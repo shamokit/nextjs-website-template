@@ -47,7 +47,7 @@ export async function onRequestGet({ env, request }) {
 			const prev = stringPaths[index - 1]
 			stringPaths[index] = prev ? `${stringPaths[index - 1]}/${path}` : path
 		})
-		return new Response(JSON.stringify(pageData), { status: 400 })
+		return new Response(pageData, { status: 400 })
 
 		// return Response.redirect(
 		// 	`https://nextjs-website-template.pages.dev/${stringPaths[-1]}`,
