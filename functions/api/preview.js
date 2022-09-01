@@ -31,7 +31,6 @@ export async function onRequestGet({ env, request }) {
 			return { data: await data.json() }
 		}
 		const {data} = await fetchPreviewPage(slug)
-		// return new Response(JSON.stringify(data), { status: 400 })
 		const pageData = data.items[0]
 
 
@@ -48,12 +47,12 @@ export async function onRequestGet({ env, request }) {
 			const prev = stringPaths[index - 1]
 			stringPaths[index] = prev ? `${stringPaths[index - 1]}/${path}` : path
 		})
-		return new Response(JSON.stringify(pageData), { status: 400 })
+		// return new Response(JSON.stringify(pageData), { status: 400 })
 
-		// return Response.redirect(
-		// 	`https://nextjs-website-template.pages.dev/${stringPaths[-1]}`,
-		// 	301
-		// )
+		return Response.redirect(
+			`https://nextjs-website-template.pages.dev/${stringPaths[-1]}`,
+			301
+		)
 	} catch (err) {
 		return new Response(err, { status: 400 })
 	}
