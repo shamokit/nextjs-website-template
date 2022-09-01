@@ -63,7 +63,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	const paths = reversePages.map((slug) => {
 		return {
 			params: {
-				pageSlug: ['preview', ...slug.split('/')],
+				pageSlug: slug.split('/'),
 			},
 		}
 	})
