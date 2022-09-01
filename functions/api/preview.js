@@ -7,7 +7,7 @@ export async function onRequestGet({ env, request }) {
 		let slug = params.get("slug")
 
 		if (secret !== env.PREVIEW_SECRET_KEY || !slug) {
-			new Response('error', { status: 400 })
+			return new Response('error', { status: 400 })
 		}
 
 		const fetchPreviewPage = async (pageSlug) => {
