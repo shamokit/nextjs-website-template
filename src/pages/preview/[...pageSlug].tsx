@@ -1,10 +1,18 @@
-import type { NextPage, GetServerSideProps } from 'next'
+import { useState, useEffect } from 'react'
+import type { NextPage, GetStaticProps, GetStaticPaths } from 'next'
 import { NextSeo } from 'next-seo'
-import { previewApiClient } from '@/lib/apiClient'
+import axios from 'axios'
+import { apiClient, previewApiClient } from '@/lib/apiClient'
 import type { PageContent } from '@/components/model/staticPage/type'
 import { ParsedUrlQuery } from 'node:querystring'
 import { Breadcrumb, type BreadcrumbItem } from '@/components/ui/breadcrumb'
+import { useRouter } from 'next/router'
 
+const fetchPages = async () => {
+	const data = await apiClient.staticPage.pageData.$get()
+
+	return { data }
+}
 const fetchPreviewPage = async (pageSlug: string) => {
 	const data = await previewApiClient.staticPage.pageData.$get({
 		query: {
@@ -25,79 +33,68 @@ type Params = ParsedUrlQuery & {
 	pageSlug: string[]
 }
 
-export const getServerSideProps: GetServerSideProps<PageProps, Params> = async (context) => {
-	const pages: { pageName: string; slug: string }[] = []
-	const getParentData = (data: PageContent) => {
-		if (data.parent) {
-			pages.push({ pageName: data.pageName, slug: data.slug })
-			getParentData(data.parent)
-		} else {
-			pages.push({ pageName: data.pageName, slug: data.slug })
-		}
-	}
-	try {
-		if (!context.params) return { props: { status: 'no param' } }
-		const { pageSlug } = context.params
-
-		const { secret } = context.query;
-		if (secret !== process.env.PREVIEW_SECRET_KEY) {
-			new Response('error', { status: 400 })
-		}
-		const slug = pageSlug[pageSlug.length - 1]
-		const { data } = await fetchPreviewPage(slug)
-		const pageData = data.items[0]
-
-		if (!pageData) {
-			return { props: { status: 'nodata' } }
-		}
-		getParentData(pageData)
-
-		const reversePages = [...pages].reverse()
-
-		const breadcrumb: BreadcrumbItem[] = []
-		reversePages.forEach((page, index) => {
-			const prev = breadcrumb[index - 1]
-			const breadcrumbData = prev
-				? {
-						name: page.pageName,
-						url: `${prev.url}/${page.slug}`,
-				  }
-				: {
-						name: page.pageName,
-						url: page.slug,
-				  }
-			breadcrumb[index] = breadcrumbData
-		})
-
-		return {
-			props: { pageData, breadcrumb },
-		}
-	} catch (error) {
-		if (error instanceof Error) {
-			return { props: { status: error.message } }
-		}
-		throw error
+export const getStaticProps = async () => {
+	return {
+		props: {},
 	}
 }
-const StaticPage: NextPage<PageProps> = ({ pageData, breadcrumb }) => (
-	<>
-		<NextSeo
-			titleTemplate={pageData?.meta?.title}
-			title={pageData?.meta?.title ? pageData?.meta?.title : pageData?.pageName}
-			description="Page Description"
-			noindex={true}
-		/>
-		<main>
-			<>
-				{pageData && (
-					<>
-						<p>{pageData?.pageName}</p>
-					</>
-				)}
-				{breadcrumb && <Breadcrumb list={breadcrumb} />}
-			</>
-		</main>
-	</>
-)
+export const getStaticPaths: GetStaticPaths = async () => {
+	const { data } = await fetchPages()
+	const slugs = data.items.map((page) => page.slug)
+	const reverseSlugs = [...slugs].reverse()
+
+	const stringPaths: string[] = []
+	reverseSlugs.forEach((path, index) => {
+		const prev = stringPaths[index - 1]
+		stringPaths[index] = prev ? `${stringPaths[index - 1]}/${path}` : path
+	})
+	const paths = stringPaths.map((slug) => {
+		return {
+			params: {
+				pageSlug: slug.split('/'),
+			},
+		}
+	})
+	return {
+		paths,
+		fallback: 'blocking',
+	}
+}
+
+const useQuery = () => {
+  const router = useRouter();
+  return router;
+}
+
+const StaticPage: NextPage<PageProps> = () => {
+	const router = useRouter()
+	const [data, setData] = useState(null)
+	const [isLoading, setLoading] = useState(false)
+	const {query} = useQuery()
+
+	useEffect(() => {
+		const {secret, pageSlug} = query
+		setLoading(true)
+		if(secret) {
+			axios.get(`/api/preview?secret=${secret}&slug=${pageSlug}`)
+				.then((res) => res)
+				.then((data) => {
+					// setData(data)
+					console.log(data)
+					// setLoading(false)
+				})
+		}
+	}, [query])
+	return (
+		<>
+			<NextSeo
+				noindex
+			/>
+			<main>
+				test
+			</main>
+		</>
+	)
+}
 
 export default StaticPage
