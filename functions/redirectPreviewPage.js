@@ -47,12 +47,11 @@ export async function onRequestGet({ env, request }) {
 			const prev = stringPaths[index - 1]
 			stringPaths[index] = prev ? `${stringPaths[index - 1]}/${path}` : path
 		})
-		return new Response([reverseSlugs, stringPaths], { status: 200 })
-
-		// return Response.redirect(
-		// 	`https://nextjs-website-template.pages.dev/preview/${stringPaths[-1]}?secret=${secret}`,
-		// 	301
-		// )
+		const last = stringPaths.slice(-1)[0]
+		return Response.redirect(
+			`https://nextjs-website-template.pages.dev/preview/${last}?secret=${secret}`,
+			301
+		)
 	} catch (err) {
 		return new Response(err, { status: 400 })
 	}
