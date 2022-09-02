@@ -11,19 +11,19 @@ export async function onRequestGet({ env, request }) {
 		}
 
 		const fetchPreviewPage = async (pageSlug) => {
+			const queryParam = new URLSearchParams({
+				limit: 1,
+				slug: pageSlug,
+				depth: 2,
+			})
 			const data = await fetch(
 				`https://${env.NEWT_SPACE_U_KU ? env.NEWT_SPACE_U_KU : ''
-				}.api.newt.so/v1/staticPage/pageData`,
+				}.api.newt.so/v1/staticPage/pageData?${queryParam}`,
 				{
 					method: 'GET',
 					headers: {
 						Authorization: `Bearer ${env.NEXT_PREVIEW_TOKEN ? env.NEXT_PREVIEW_TOKEN : ''
 							}`,
-					},
-					query: {
-						limit: 1,
-						slug: pageSlug,
-						depth: 2,
 					}
 				}
 			)
