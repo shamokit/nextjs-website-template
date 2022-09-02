@@ -87,9 +87,10 @@ const StaticPage: NextPage<PageProps> = () => {
 	useEffect(() => {
 		const { secret, pageSlug } = query
 		setLoading(true)
-		if (secret) {
+		if (secret && pageSlug) {
+			const last = pageSlug.slice(-1)[0]
 			axios
-				.get(`/api/preview?secret=${secret}&slug=${pageSlug}`)
+				.get(`/api/preview?secret=${secret}&slug=${last}`)
 				.then((res) => res)
 				.then((data) => {
 					// setData(data)
