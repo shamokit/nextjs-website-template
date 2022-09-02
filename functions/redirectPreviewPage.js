@@ -39,8 +39,18 @@ export async function onRequestGet({ env, request }) {
 			return new Response('error', { status: 400 })
 		}
 
-		return new Response(JSON.stringify(pageData), { status: 200 })
+		const slugs = data.items.map((page) => page.slug)
+		const reverseSlugs = [...slugs].reverse()
 
+		const stringPaths = []
+		reverseSlugs.forEach((path, index) => {
+			const prev = stringPaths[index - 1]
+			stringPaths[index] = prev ? `${stringPaths[index - 1]}/${path}` : path
+		})
+		return Response.redirect(
+			`https://nextjs-website-template.pages.dev/preview/${stringPaths[-1]}?secret=${secret}`,
+			301
+		)
 	} catch (err) {
 		return new Response(err, { status: 400 })
 	}
