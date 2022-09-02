@@ -38,16 +38,25 @@ export async function onRequestGet({ env, request }) {
 		if (!pageData) {
 			return new Response('error', { status: 400 })
 		}
-
-		const slugs = data.items.map((page) => page.slug)
-		const reverseSlugs = [...slugs].reverse()
-
-		const stringPaths = []
-		reverseSlugs.forEach((path, index) => {
-			const prev = stringPaths[index - 1]
-			stringPaths[index] = prev ? `${stringPaths[index - 1]}/${path}` : path
+		const pages = []
+		const getParentData = (data) => {
+			if (data.parent) {
+				pages.push(data.slug)
+				getParentData(data.parent)
+			} else {
+				pages.push(data.slug)
+			}
+		}
+		getParentData(pageData)
+		const reversePages = [...pages].reverse()
+		const slugs = []
+		reversePages.forEach((slug, index) => {
+			const prev = slugs[index - 1]
+			const slugsData = prev ? `${prev}/${slug}` : slug
+			slugs[index] = slugsData
 		})
-		const last = stringPaths.slice(-1)[0]
+
+		const last = slugs.slice(-1)[0]
 		return Response.redirect(
 			`https://nextjs-website-template.pages.dev/preview/${last}?secret=${secret}`,
 			301
