@@ -1,6 +1,7 @@
 import type { NextPage, GetStaticProps, GetStaticPaths } from 'next'
 import { NextSeo } from 'next-seo'
 import { apiClient, previewApiClient } from '@/lib/apiClient'
+import { SITE_URL } from '@/lib/const'
 import type { PageContent } from '@/components/model/staticPage/type'
 import { ParsedUrlQuery } from 'node:querystring'
 import { Breadcrumb, type BreadcrumbItem } from '@/components/ui/breadcrumb'
@@ -112,24 +113,28 @@ export const getStaticPaths: GetStaticPaths = async () => {
 		fallback: "blocking",
 	}
 }
-const StaticPage: NextPage<PageProps> = ({ pageData, breadcrumb }) => (
-	<>
-		<NextSeo
-			titleTemplate={pageData?.meta?.title}
-			title={pageData?.meta?.title ? pageData?.meta?.title : pageData?.pageName}
-			description="Page Description"
-		/>
-		<main>
-			<>
-				{pageData && (
-					<>
-						<p>{pageData?.pageName}</p>
-					</>
-				)}
-				{breadcrumb && <Breadcrumb list={breadcrumb} />}
-			</>
-		</main>
-	</>
-)
+const StaticPage: NextPage<PageProps> = ({ pageData, breadcrumb }) => {
+	const pageSlug = breadcrumb?.slice(-1)[0].url
+	return (
+		<>
+			<NextSeo
+				titleTemplate={pageData?.meta?.title}
+				title={pageData?.meta?.title ? pageData?.meta?.title : pageData?.pageName}
+				description="Page Description"
+				canonical={`${SITE_URL}/${pageSlug}`}
+			/>
+			<main>
+				<>
+					{pageData && (
+						<>
+							<p>{pageData?.pageName}</p>
+						</>
+					)}
+					{breadcrumb && <Breadcrumb list={breadcrumb} />}
+				</>
+			</main>
+		</>
+	)
+}
 
 export default StaticPage

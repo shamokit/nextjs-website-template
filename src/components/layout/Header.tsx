@@ -5,7 +5,7 @@ import { Navigation } from './navigation/Navigation'
 import { NavigationLayer } from './navigation/BackgroundLayer'
 const menu = [
 	{
-		href: 'about',
+		href: '/about',
 		name: 'About',
 	},
 ]

@@ -39,7 +39,7 @@ export const Navigation: React.FC<NavigationProps> = ({ menu, className }) => (
 									key={item.href}
 									className="mr-10"
 								>
-									<InnerLink href={item.href}>{item.name}</InnerLink>
+									<InnerLink href={`${item.href}`}>{item.name}</InnerLink>
 								</li>
 							)
 						})}
