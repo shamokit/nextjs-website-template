@@ -16,12 +16,10 @@ export async function onRequestGet({ env, request }) {
 			const NEXT_PREVIEW_TOKEN = env.NEXT_PREVIEW_TOKEN ?? ''
 			if (!NEWT_SPACE_U_KU) return new Response('error', { status: 400 })
 			const queryParam = new URLSearchParams({
-				limit: 1,
-				contentId: contentId,
 				depth: 2,
 			})
 			const data = await fetch(
-				`https://${NEWT_SPACE_U_KU}.api.newt.so/v1/staticPage/pageData?${queryParam}`,
+				`https://${NEWT_SPACE_U_KU}.api.newt.so/v1/staticPage/pageData/${contentId}/?${queryParam}`,
 				{
 					method: 'GET',
 					headers: {
