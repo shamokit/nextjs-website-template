@@ -72,6 +72,7 @@ const StaticPage: NextPage<PageProps> = () => {
 			.then((res) => res)
 			.then((data) => {
 				setData(data.data)
+				console.log(data)
 				setLoading(false)
 				const pages: { pageName: string; slug: string }[] = []
 				const getParentData = (data: PageContent) => {
