@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { jsonLdScriptProps } from 'react-schemaorg'
 import { BreadcrumbList } from 'schema-dts'
 import { InnerLink } from '@/components/ui/link/InnerLink/index'
-const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN ? process.env.NEXT_PUBLIC_DOMAIN : ''
+import { SITE_URL } from '@/lib/const'
 export type BreadcrumbProps = {
 	list: BreadcrumbItem[]
 	separator?: React.ReactNode
@@ -28,14 +28,14 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
 			'@type': 'ListItem',
 			position: 1,
 			name: 'Home',
-			item: `${DOMAIN}/`,
+			item: `${SITE_URL}/`,
 		},
 		...list.map((item, index) => {
 			return {
 				'@type': 'ListItem',
 				position: index + 2,
 				name: item.name,
-				item: `${DOMAIN}/${item.url}`,
+				item: `${SITE_URL}/${item.url}`,
 			} as BreadcrumbJson
 		}),
 	]

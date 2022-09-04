@@ -101,7 +101,6 @@ const StaticPage: NextPage<PageProps> = () => {
 							}
 					breadcrumb[index] = breadcrumbData
 				})
-				console.log(breadcrumb)
 				setBreadcrumb(breadcrumb)
 			})
 		}
@@ -115,6 +114,7 @@ const StaticPage: NextPage<PageProps> = () => {
 				canonical={`${SITE_URL}/${pageSlug}`}
 				noindex
 			/>
+			{console.log(SITE_URL)}
 			<main>
 				{data && (
 					<>
