@@ -1,23 +1,17 @@
 import { useState, useEffect } from 'react'
-import type { NextPage, GetStaticProps, GetStaticPaths } from 'next'
+import type { NextPage, GetStaticPaths } from 'next'
 import { NextSeo } from 'next-seo'
 import axios from 'axios'
-import { apiClient, previewApiClient } from '@/lib/apiClient'
+import { previewApiClient } from '@/lib/apiClient'
 import type { PageContent } from '@/components/model/staticPage/type'
 import { ParsedUrlQuery } from 'node:querystring'
 import { Breadcrumb, type BreadcrumbItem } from '@/components/ui/breadcrumb'
 import { useRouter } from 'next/router'
 
-const fetchPages = async () => {
-	const data = await apiClient.staticPage.pageData.$get()
-
-	return { data }
-}
-const fetchPreviewPage = async (pageSlug: string) => {
+const fetchPreviewPages = async () => {
 	const data = await previewApiClient.staticPage.pageData.$get({
 		query: {
-			limit: 1,
-			slug: pageSlug,
+			limit: 1000,
 			depth: 2,
 		},
 	})
@@ -30,7 +24,7 @@ type PageProps = {
 	status?: string
 }
 type Params = ParsedUrlQuery & {
-	pageSlug: string[]
+	contentId: string[]
 }
 
 export const getStaticProps = async () => {
@@ -39,31 +33,13 @@ export const getStaticProps = async () => {
 	}
 }
 export const getStaticPaths: GetStaticPaths = async () => {
-	const pages: string[] = []
-	const getParentData = (data: PageContent) => {
-		if (data.parent) {
-			pages.push(data.slug)
-			getParentData(data.parent)
-		} else {
-			pages.push(data.slug)
-		}
-	}
-	const { data } = await fetchPreviewPage('testpage')
-	const pageData = data.items[0]
-	getParentData(pageData)
-
-	const reversePages = [...pages].reverse()
-	const slugs: string[] = []
-	reversePages.forEach((slug, index) => {
-		const prev = slugs[index - 1]
-		const slugsData = prev ? `${prev}/${slug}` : slug
-		slugs[index] = slugsData
-	})
-
-	const paths = slugs.map((slug) => {
+	const { data } = await fetchPreviewPages()
+	const pages = data.items
+	const pageContentIds = pages.map((page) => page._id)
+	const paths = pageContentIds.map((contentId) => {
 		return {
 			params: {
-				pageSlug: slug.split('/'),
+				contentId: contentId,
 			},
 		}
 	})
@@ -77,32 +53,31 @@ const useQuery = () => {
 	const router = useRouter()
 	return router
 }
-
 const StaticPage: NextPage<PageProps> = () => {
-	const router = useRouter()
 	const [data, setData] = useState(null)
 	const [isLoading, setLoading] = useState(false)
 	const { query } = useQuery()
 
 	useEffect(() => {
-		const { secret, pageSlug } = query
+		const { secret, contentId } = query
 		setLoading(true)
-		if (secret && pageSlug) {
-			const last = pageSlug.slice(-1)[0]
+		if (secret && contentId) {
+			const last = Array.isArray(contentId) ? contentId.slice(-1)[0] : contentId
+			console.log(last)
 			axios
-				.get(`/api/preview?secret=${secret}&slug=${last}`)
+				.get(`/api/preview?secret=${secret}&contentId=${last}`)
 				.then((res) => res)
 				.then((data) => {
-					// setData(data)
 					console.log(data)
-					// setLoading(false)
+					// setData(data)
+					setLoading(false)
 				})
 		}
 	}, [query])
 	return (
 		<>
 			<NextSeo noindex />
-			<main>test</main>
+			<main>{`${isLoading}`}</main>
 		</>
 	)
 }
