@@ -8,7 +8,8 @@ import type { PageContent } from '@/components/model/staticPage/type'
 import { ParsedUrlQuery } from 'node:querystring'
 import { Breadcrumb, type BreadcrumbItem } from '@/components/ui/breadcrumb'
 import { useRouter } from 'next/router'
-
+import type { Page } from '@/components/model/staticPage/type'
+import type { Content } from 'newt-client-js'
 const fetchPreviewPages = async () => {
 	const data = await previewApiClient.staticPage.pageData.$get({
 		query: {
@@ -55,8 +56,8 @@ const useQuery = () => {
 	return router
 }
 const StaticPage: NextPage<PageProps> = () => {
-	const [breadcrumb, setBreadcrumb] = useState(null)
-	const [data, setData] = useState(null)
+	const [breadcrumb, setBreadcrumb] = useState<BreadcrumbItem[] | null>(null)
+	const [data, setData] = useState<Page & Content | null>(null)
 	const [isLoading, setLoading] = useState(false)
 	const { query } = useQuery()
 	const pageSlug = breadcrumb?.slice(-1)[0].url
@@ -67,11 +68,10 @@ const StaticPage: NextPage<PageProps> = () => {
 		if (secret && contentId) {
 			const last = Array.isArray(contentId) ? contentId.slice(-1)[0] : contentId
 			axios
-			.get(`/api/preview?secret=${secret}&contentId=${last}`)
+			.get<Page & Content>(`/api/preview?secret=${secret}&contentId=${last}`)
 			.then((res) => res)
 			.then((data) => {
-				console.log(data)
-				setData(data)
+				setData(data.data)
 				setLoading(false)
 				const pages: { pageName: string; slug: string }[] = []
 				const getParentData = (data: PageContent) => {
@@ -82,7 +82,7 @@ const StaticPage: NextPage<PageProps> = () => {
 						pages.push({ pageName: data.pageName, slug: data.slug })
 					}
 				}
-				getParentData(data)
+				getParentData(data.data)
 
 				const reversePages = [...pages].reverse()
 
