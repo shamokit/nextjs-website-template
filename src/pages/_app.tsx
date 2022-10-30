@@ -7,9 +7,9 @@ import '@/styles/globals.css'
 import { WebPage, Organization } from 'schema-dts'
 import { jsonLdScriptProps } from 'react-schemaorg'
 
+import { SITE_URL, COMPANY_NAME } from '@/libs/const'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { MediaQuery } from '@/components/ui/mediaQuery'
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 	return (
@@ -26,32 +26,17 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 									{
 										'@type': 'WebPage',
 										name: 'Home',
-										url: 'https://example.com',
+										url: `${SITE_URL}`,
 									},
 									{
 										'@type': 'AboutPage',
 										name: 'About',
-										url: 'https://example.com/about/',
-									},
-									{
-										'@type': 'FAQPage',
-										name: 'Faq',
-										url: 'https://example.com/faq/',
-										mainEntity: [
-											{
-												'@type': 'Question',
-												name: 'よくある質問1',
-												acceptedAnswer: {
-													'@type': 'Answer',
-													text: '<p>回答が入ります。</p>',
-												},
-											},
-										],
+										url: `${SITE_URL}/about/`,
 									},
 									{
 										'@type': 'ContactPage',
 										name: 'Contact',
-										url: 'https://example.com/contact/',
+										url: `${SITE_URL}/contact/`,
 									},
 								],
 							},
@@ -62,15 +47,14 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 					{...jsonLdScriptProps<Organization>({
 						'@context': 'https://schema.org',
 						'@type': 'Organization',
-						name: '会社名',
-						url: '/vercel.svg',
-						logo: 'https://example.com',
+						name: `${COMPANY_NAME}`,
+						url: `${SITE_URL}`,
+						logo: '/logo.svg',
 					})}
 				/>
 			</Head>
+			<DefaultSeo {...SEO} />
 			<div className="flex flex-col min-h-screen pt-[var(--header--height)]">
-				<DefaultSeo {...SEO} />
-				<MediaQuery />
 				<Header />
 				<div className="flex-grow">
 					<Component {...pageProps} />

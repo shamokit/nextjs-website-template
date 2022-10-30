@@ -9,11 +9,13 @@ module.exports =
 		"prettier"
 	],
 	"rules": {
+		"@next/next/no-img-element": "off",
 		"react/react-in-jsx-scope": "off",
 	},
+	"es6": true,
 	"overrides": [
 		{
-			"files": ["*.stories.@(ts|tsx|js|jsx|mjs|cjs)"],
+			"files": ["*.stories.@(ts|tsx)"],
 			"rules": {
 				"storybook/hierarchy-separator": "error",
 				"storybook/default-exports": "off"

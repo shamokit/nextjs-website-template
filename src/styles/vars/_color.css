@@ -1,9 +1,9 @@
 :root {
 	--color--white: 255, 255, 255;
 	--color--primary-500: 3, 3, 3;
-	--color--surface-100: eee;
-	--color--surface-500: ddd;
-	--color--surface-600: ccc;
-	--color--gray-500: ddd;
-	--color--gray-600: ccc;
+	--color--accent-500: 12, 34, 56;
+	--color--surface-100: 238, 238, 238;
+	--color--surface-500: 221, 221, 221;
+	--color--surface-600: 204, 204, 204;
+	--color--focus: var(--color--accent-500);
 }

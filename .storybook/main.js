@@ -3,7 +3,7 @@ module.exports = {
 	"staticDirs": ['../public'],
 	"stories": [
 		"../src/**/*.stories.mdx",
-		"../src/**/*.stories.@(js|jsx|ts|tsx)"
+		"../src/**/*.stories.@(ts|tsx)"
 	],
 	"addons": [
 		"@storybook/addon-viewport",
@@ -24,11 +24,12 @@ module.exports = {
 				alias: {
 					...config.resolve.alias,
 					"@/public": path.resolve(__dirname, "../public"),
+					"@/api": path.resolve(__dirname, "../src/api"),
 					"@/components": path.resolve(__dirname, "../src/components"),
-					"@/lib": path.resolve(__dirname, "../src/lib"),
-					"@/utils": path.resolve(__dirname, "../src/utils"),
+					"@/libs": path.resolve(__dirname, "../src/libs"),
 					"@/pages": path.resolve(__dirname, "../src/pages"),
 					"@/styles": path.resolve(__dirname, "../src/styles"),
+					"@/utils": path.resolve(__dirname, "../src/utils"),
 				},
 			},
 		};

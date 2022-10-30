@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react'
 import type { NextPage, GetStaticPaths } from 'next'
+import { useRouter } from 'next/router'
 import { NextSeo } from 'next-seo'
 import axios from 'axios'
-import { SITE_URL } from '@/lib/const'
-import { previewApiClient } from '@/lib/apiClient'
-import type { PageContent } from '@/components/model/staticPage/type'
-import { ParsedUrlQuery } from 'node:querystring'
-import { Breadcrumb, type BreadcrumbItem } from '@/components/ui/breadcrumb'
-import { useRouter } from 'next/router'
-import type { Page } from '@/components/model/staticPage/type'
-import type { Content } from 'newt-client-js'
+import { SITE_URL } from 'src/libs/const'
+import { previewApiClient } from 'src/libs/apiClient'
+import type { PageContent } from '@/schemas/staticPage/type'
+import { Breadcrumb } from '@/components/ui/breadcrumb/Breadcrumb'
+import type { BreadcrumbItemProps } from '@/components/ui/breadcrumb/BreadcrumbItem/type'
+import { generateBreadcrumbObjectArray } from '@/components/ui/breadcrumb/functions/generateBreadcrumbObjectArray'
+
 const fetchPreviewPages = async () => {
 	const data = await previewApiClient.staticPage.pageData.$get({
 		query: {
@@ -21,12 +21,9 @@ const fetchPreviewPages = async () => {
 	return { data }
 }
 type PageProps = {
-	pageData?: PageContent | undefined
-	breadcrumb?: BreadcrumbItem[]
+	pageData?: PageContent
+	breadcrumb?: BreadcrumbItemProps[]
 	status?: string
-}
-type Params = ParsedUrlQuery & {
-	contentId: string[]
 }
 
 export const getStaticProps = async () => {
@@ -56,73 +53,49 @@ const useQuery = () => {
 	return router
 }
 const StaticPage: NextPage<PageProps> = () => {
-	const [breadcrumb, setBreadcrumb] = useState<BreadcrumbItem[] | null>(null)
-	const [data, setData] = useState<Page & Content | null>(null)
+	const [breadcrumb, setBreadcrumb] = useState<BreadcrumbItemProps[] | null>(null)
+	const [data, setData] = useState<PageContent | null>(null)
 	const [isLoading, setLoading] = useState(false)
 	const { query } = useQuery()
-	const pageSlug = breadcrumb?.slice(-1)[0].url
+	const pageSlug = breadcrumb?.slice(-1)[0].path
 
 	useEffect(() => {
 		const { secret, contentId } = query
-		setLoading(true)
 		if (secret && contentId) {
+			setLoading(true)
 			const last = Array.isArray(contentId) ? contentId.slice(-1)[0] : contentId
 			axios
-			.get<Page & Content>(`/api/preview?secret=${secret}&contentId=${last}`)
-			.then((res) => res)
-			.then((data) => {
-				setData(data.data)
-				console.log(data)
-				setLoading(false)
-				const pages: { pageName: string; slug: string }[] = []
-				const getParentData = (data: PageContent) => {
-					if (data.parent) {
-						pages.push({ pageName: data.pageName, slug: data.slug })
-						getParentData(data.parent)
-					} else {
-						pages.push({ pageName: data.pageName, slug: data.slug })
-					}
-				}
-				getParentData(data.data)
-
-				const reversePages = [...pages].reverse()
-
-				const breadcrumb: BreadcrumbItem[] = []
-				reversePages.forEach((page, index) => {
-					const prev = breadcrumb[index - 1]
-					const breadcrumbData = prev
-						? {
-								name: page.pageName,
-								url: `${prev.url}/${page.slug}`,
-							}
-						: {
-								name: page.pageName,
-								url: page.slug,
-							}
-					breadcrumb[index] = breadcrumbData
+				.get<PageContent>(`/api/preview?secret=${secret}&contentId=${last}`)
+				.then((data) => {
+					setData(data.data)
+					const { pageObjects: breadcrumbList } = generateBreadcrumbObjectArray(data.data)
+					setBreadcrumb(breadcrumbList)
 				})
-				setBreadcrumb(breadcrumb)
-			})
+				.finally(() => {
+					setLoading(false)
+				})
 		}
 	}, [query])
 	return (
 		<>
-			<NextSeo
-				titleTemplate={data?.meta?.title}
-				title={data?.meta?.title ? data?.meta?.title : data?.pageName}
-				description="Page Description"
-				canonical={`${SITE_URL}/${pageSlug}`}
-				noindex
-			/>
-			{console.log(SITE_URL)}
-			<main>
-				{data && (
-					<>
-						<p>{data?.pageName}</p>
-					</>
-				)}
-				{breadcrumb && <Breadcrumb list={breadcrumb} />}
-			</main>
+			{isLoading && <p>Loading...</p>}
+			{data && (
+				<>
+					<NextSeo
+						titleTemplate={data.meta?.title}
+						title={data.meta?.title ? data.meta?.title : data.title}
+						description={data.meta?.description ? data.meta?.description : data.title}
+						canonical={`${SITE_URL}/${pageSlug}`}
+						noindex
+					/>
+					<main>
+						<article>
+							<h1>{data.title}</h1>
+						</article>
+					</main>
+					{breadcrumb && <Breadcrumb list={breadcrumb} />}
+				</>
+			)}
 		</>
 	)
 }

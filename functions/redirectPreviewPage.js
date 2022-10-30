@@ -5,10 +5,12 @@ export async function onRequestGet({ env, request }) {
 		// パラメータからsecretとcontentIdを取得
 		const params = new URLSearchParams(url.search);
 		let secret = params.get("secret")
+		let appUID = params.get("appUID")
+		let modelUID = params.get("modelUID")
 		let contentId = params.get("contentId")
 
 		// secretがenvの値と違う場合とcontentIdがない場合は400
-		if (secret !== env.PREVIEW_SECRET_KEY || !contentId) {
+		if (secret !== env.PREVIEW_SECRET_KEY || !appUID || !modelUID || !contentId) {
 			return new Response('error', { status: 400 })
 		}
 
@@ -21,7 +23,7 @@ export async function onRequestGet({ env, request }) {
 				depth: 2,
 			})
 			const data = await fetch(
-				`https://${NEWT_SPACE_U_KU}.api.newt.so/v1/staticPage/pageData/${contentId}/?${queryParam}`,
+				`https://${NEWT_SPACE_U_KU}.api.newt.so/v1/${appUID}/${modelUID}/${contentId}/?${queryParam}`,
 				{
 					method: 'GET',
 					headers: {
@@ -38,7 +40,7 @@ export async function onRequestGet({ env, request }) {
 			return new Response('error', { status: 400 })
 		}
 		return Response.redirect(
-			`https://nextjs-website-template.pages.dev/preview/${contentId}/?secret=${secret}`,
+			`/preview/${contentId}/?secret=${secret}`,
 			301
 		)
 	} catch (err) {

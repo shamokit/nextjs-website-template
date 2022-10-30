@@ -1,4 +1,4 @@
-import { COMPANY_NAME } from '@/lib/const'
+import { COMPANY_NAME } from 'src/libs/const'
 import { Container } from '@/components/layout/Container'
 export const Footer: React.FC = () => {
 	const currentTime = new Date()

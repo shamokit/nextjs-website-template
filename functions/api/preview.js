@@ -4,6 +4,8 @@ export async function onRequestGet({ env, request }) {
 
 		const params = new URLSearchParams(url.search);
 		let secret = params.get("secret")
+		let appUID = params.get("appUID")
+		let modelUID = params.get("modelUID")
 		let contentId = params.get("contentId")
 
 		// secretがenvの値と違う場合とcontentIdがない場合は400
@@ -19,7 +21,7 @@ export async function onRequestGet({ env, request }) {
 				depth: 2,
 			})
 			const data = await fetch(
-				`https://${NEWT_SPACE_U_KU}.api.newt.so/v1/staticPage/pageData/${contentId}/?${queryParam}`,
+				`https://${NEWT_SPACE_U_KU}.api.newt.so/v1/${appUID}/${modelUID}/${contentId}/?${queryParam}`,
 				{
 					method: 'GET',
 					headers: {

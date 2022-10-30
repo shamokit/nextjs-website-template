@@ -1,7 +1,6 @@
-import type { Contents } from 'newt-client-js'
-import type { News } from '@/components/model/news/type'
+import type { NewsContents } from '@/schemas/news/type'
 type PageNewsProps = {
-	postsData: Contents<News>
+	postsData: NewsContents
 }
 export const PageNews: React.FC<PageNewsProps> = ({ postsData }) => {
 	return (

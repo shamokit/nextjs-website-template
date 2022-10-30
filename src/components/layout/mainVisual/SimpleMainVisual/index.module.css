@@ -1,8 +1,0 @@
-.SimpleMainVisual {
-	grid-template-rows: 1fr;
-	grid-template-columns: 1fr;
-
-	&__cell {
-		grid-area: 1/1;
-	}
-}

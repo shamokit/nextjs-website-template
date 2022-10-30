@@ -1,9 +1,8 @@
-import type { News } from '@/components/model/news/type'
-import type { Contents, GetContentsQuery } from 'newt-client-js'
-
+import type { NewsContents } from '@/schemas/news/type'
+import type { GetContentsQuery } from '@/libs/apiClient'
 export type Methods = {
   get: {
     query?: GetContentsQuery
-    resBody: Contents<News>
+    resBody: NewsContents
   }
 }

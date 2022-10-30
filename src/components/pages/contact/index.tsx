@@ -2,9 +2,9 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 type FormDataProps = {
-  name: string;
-  email: string;
-};
+	name: string
+	email: string
+}
 export const PageContact = () => {
 	const {
 		register,
@@ -12,15 +12,18 @@ export const PageContact = () => {
 		formState: { errors },
 	} = useForm<FormDataProps>()
 	const onSubmit = (data: FormDataProps) => {
-		const formData = new FormData();
-		for ( const [key, value] of Object.entries(data) ) {
-			formData.append(key, value);
+		const formData = new FormData()
+		for (const [key, value] of Object.entries(data)) {
+			formData.append(key, value)
 		}
-		axios.post("/api/submit", formData).then((res) => {
-			console.log(res)
-		}).catch((err) => {
-			console.log(err)
-		})
+		axios
+			.post('/api/submit', formData)
+			.then((res) => {
+				console.log(res)
+			})
+			.catch((err) => {
+				console.log(err)
+			})
 	}
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>

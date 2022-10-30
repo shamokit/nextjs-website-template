@@ -1,18 +1,17 @@
 import type { NextPage } from 'next'
 import { NextSeo } from 'next-seo'
-import type { Contents } from 'newt-client-js'
-import { apiClient } from '@/lib/apiClient'
-import type { News } from '@/components/model/news/type'
-import { Breadcrumb, type BreadcrumbItem } from '@/components/ui/breadcrumb'
+import { apiClient } from 'src/libs/apiClient'
+import type { NewsContents } from '@/schemas/news/type'
+import { Breadcrumb } from '@/components/ui/breadcrumb/Breadcrumb'
+import { generateBreadcrumbObjectArray } from '@/components/ui/breadcrumb/functions/generateBreadcrumbObjectArray'
 import { PageNews } from '@/components/pages/news/index'
 import { Container } from '@/components/layout/Container'
 
-const list: BreadcrumbItem[] = [
-	{
-		name: 'News',
-		url: '/news/',
-	},
-]
+const { pageObjects: breadcrumbList } = generateBreadcrumbObjectArray({
+	title: 'News',
+	slug: 'news',
+	parent: null,
+})
 
 const fetchPosts = async () => {
 	const data = await apiClient.news.article.$get()
@@ -29,16 +28,16 @@ export const getStaticProps = async () => {
 }
 
 type Props = {
-	postsData: Contents<News>
+	postsData: NewsContents
 }
 const News: NextPage<Props> = ({ postsData }) => {
 	return (
 		<>
 			<NextSeo title="News" description="News" />
 			<Container>
-				<Breadcrumb list={list} />
+				<Breadcrumb list={breadcrumbList} />
 				<PageNews postsData={postsData} />
-				<Breadcrumb list={list} withJsonLd={false} />
+				<Breadcrumb list={breadcrumbList} withJsonLd={false} />
 			</Container>
 		</>
 	)

@@ -1,35 +1,17 @@
-import styles from './index.module.css'
 import { Container } from '@/components/layout/Container'
-import { Image, type ImageProps } from '@/components/ui/image/Image'
 import { Text } from '@/components/ui/text/Text'
-type SimpleMainVisualProps = {
-	image: ImageProps
-	title: string
-	copy: string
-	useHeadingTag?: boolean
-}
+import type {SimpleMainVisualProps} from './type'
 export const SimpleMainVisual: React.FC<SimpleMainVisualProps> = ({
 	title,
 	copy,
-	image,
-	useHeadingTag = true,
+	headingTag = true,
+	children,
 }) => {
-	const HeadingTag = useHeadingTag ? 'h1' : 'p'
+	const HeadingTag = headingTag ? 'h1' : 'p'
 	return (
-		<div className={`grid ${styles.SimpleMainVisual}`}>
-			<Image
-				className={{
-					picture: `${styles.SimpleMainVisual__cell}`,
-					img: "w-full"
-				}}
-				md={image.md}
-				sm={image.sm}
-				alt={image.alt ?? ''}
-				width={image.width}
-				height={image.height}
-				loading={image.loading}
-			/>
-			<Container className={`grid items-center ${styles.SimpleMainVisual__cell}`}>
+		<div className="grid grid-cols-1 grid-rows-1">
+			{children}
+			<Container className="grid items-center col-start-1 col-end-1 row-start-1 row-end-1">
 				<div className="text-white">
 					<Text as={HeadingTag} text={title} />
 					<Text as="p" text={copy} />

@@ -1,9 +1,8 @@
-import type { Page } from '@/components/model/staticPage/type'
-import type { Content, GetContentQuery } from 'newt-client-js'
-
+import type { PageContent } from '@/schemas/staticPage/type'
+import type { GetContentQuery } from '@/libs/apiClient'
 export type Methods = {
   get: {
     query?: GetContentQuery
-    resBody: Page & Content
+    resBody: PageContent
   }
 }

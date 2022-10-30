@@ -18,7 +18,7 @@ export const Header: React.FC = () => {
 		<header className="fixed top-0 left-0 w-full bg-white">
 			<Container size="full" className="flex items-center h-[var(--header--height)]">
 				<p className="flex-grow-0 font-bold text-xl">
-					<InnerLink href={'/'} className="animation-alpha">
+					<InnerLink href={'/'}>
 						Logo
 					</InnerLink>
 				</p>

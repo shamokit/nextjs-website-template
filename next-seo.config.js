@@ -13,7 +13,7 @@ export default {
 		site_name: 'SiteName',
 		images: [
 			{
-				url: SITE_URL + '/img_ogp.png',
+				url: SITE_URL + '/img-ogp.png',
 				width: 800,
 				height: 600,
 				alt: SITE_TITLE_DEFAULT,

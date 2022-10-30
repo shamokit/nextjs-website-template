@@ -10,26 +10,31 @@
 @import 'tailwindcss/utilities';
 
 @layer base {
-	html {
-		font-size: 62.5%;
-	}
-
+	/* Typograpy */
 	body {
 		font-size: var(--font-size--md);
 		line-height: var(--line-height--md);
 		color: var(--color--primary-500);
 	}
-
 	* {
 		letter-spacing: var(--letter-spacing--md);
 	}
 
+	/* Image */
 	img {
-		image-rendering: optimize-contrast;
 		object-fit: cover;
 	}
-	input, select, textarea {
+
+	/* a11y */
+	input,
+	select,
+	textarea {
 		border: 1px solid rgb(var(--color--primary-500));
+	}
+	a,input,select,textarea,button,details,[tabindex] {
+		&:focus-visible {
+			outline: 2px solid rgb(var(--color--focus));
+		}
 	}
 }
 
@@ -49,14 +54,24 @@
 			}
 		}
 	}
-
-	.animation-alpha {
-		opacity: 1;
-		transition: opacity 0.3s ease;
-		will-change: opacity;
-
-		&:hover {
-			opacity: 0.7;
-		}
-	}
 }
+a,input,button {
+	outline: none;
+	outline-offset: 2px;
+}
+input {
+	border: 1px solid gray;
+}
+input:focus,
+button:focus {
+	border-color: red;
+}
+a:focus-visible,
+input:focus-visible,
+button:focus-visible {
+	outline: 2px solid red;
+}
+/* input:focus:focus-visible,
+button:focus:focus-visible {
+	outline: none;
+} */

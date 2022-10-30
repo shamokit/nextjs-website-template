@@ -1,12 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: [
-		"src/**/*.{js,ts,jsx,tsx}",
+		"src/**/*.{ts,tsx}",
 	],
 	theme: {
+    screens: {
+      'md': '768px',
+      // => @media (min-width: 768px) { ... }
+      'lg': '1280px',
+      // => @media (min-width: 1280px) { ... }
+      'xl': '1536px',
+      // => @media (min-width: 1536px) { ... }
+    },
 		container: {
 			center: true,
-			padding: '2rem',
+			padding: 'var(--contents--padding--side)',
 		},
 		fontFamily: {
 			'noto': ["Noto Sans JP", "ヒラギノ角ゴ ProN W3", "Meiryo", "sans-serif"]
@@ -24,12 +32,11 @@ module.exports = {
 			'lg': '2',
 		},
 		colors: {
+			'current': 'currentColor',
 			'transparent': 'transparent',
 			'white': 'rgb(var(--color--white), <alpha-value>)',
 			'primary-500': 'rgb(var(--color--primary-500), <alpha-value>)',
-			'gray-500': 'rgb(var(--color--gray-500), <alpha-value>)',
-			'gray-600': 'rgb(var(--color--gray-600), <alpha-value>)',
-			'tertiary-500': 'rgb(var(--color--tertiary-500), <alpha-value>)',
+			'accent-500': 'rgb(var(--color--accent-500), <alpha-value>)',
 			'surface-100': 'rgb(var(--color--surface-100), <alpha-value>)',
 			'surface-500': 'rgb(var(--color--surface-500), <alpha-value>)',
 			'surface-600': 'rgb(var(--color--surface-600), <alpha-value>)',
