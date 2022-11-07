@@ -1,5 +1,5 @@
 import type { Meta } from '@/schemas/meta/type'
-import type { Content, Contents } from '@/libs/apiClient'
+import type { Content, Contents } from '@/libs/newt-api-client'
 export type News = {
 	title: string
 	slug: string

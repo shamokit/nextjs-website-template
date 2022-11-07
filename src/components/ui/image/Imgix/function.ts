@@ -3,7 +3,7 @@ import type {
 	GetAdjustedSize,
 	GenerateSrcsetByExtensionsProps,
 } from './type'
-import { BROWSER_SIZES } from '@/components/ui/image/const'
+import { BROWSER_SIZES } from '@/utils/const'
 
 /**
  * getAdjustedSizeで計算した実際返ってくる画像のwidth,heightを使って、
@@ -207,7 +207,6 @@ export const getAdjustedSize: GetAdjustedSize = ({ width, height, imgixParam }) 
 	}
 	return [Math.round(adjustedWidth), Math.round(adjustedHeight)]
 }
-
 
 /**
  * imgixに渡すパラメータの文字列の配列を作って、拡張子のパラメータを添えて返す

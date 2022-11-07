@@ -1,12 +1,12 @@
 import type { NextPage, GetStaticProps, GetStaticPaths } from 'next'
-import { NextSeo } from 'next-seo'
-import { apiClient } from 'src/libs/apiClient'
-import { SITE_URL } from 'src/libs/const'
-import type { PageContent } from '@/schemas/staticPage/type'
 import { ParsedUrlQuery } from 'node:querystring'
-import { Breadcrumb } from '@/components/ui/breadcrumb/Breadcrumb'
-import type { BreadcrumbProps } from '@/components/ui/breadcrumb/Breadcrumb/type'
-import { generateBreadcrumbObjectArray } from '@/components/ui/breadcrumb/functions/generateBreadcrumbObjectArray'
+import { NextSeo } from '@/libs/next-seo'
+import { apiClient } from '@/libs/newt-api-client'
+import { SITE_URL } from '@/utils/const'
+import type { PageContent } from '@/schemas/staticPage/type'
+import { Breadcrumb } from '@/components/layout/breadcrumb/Breadcrumb'
+import type { BreadcrumbProps } from '@/components/layout/breadcrumb/Breadcrumb/type'
+import { generateBreadcrumbObjectArray } from '@/components/layout/breadcrumb/functions/generateBreadcrumbObjectArray'
 const fetchPages = async () => {
 	const data = await apiClient.staticPage.pageData.$get()
 

@@ -1,4 +1,4 @@
-import { Container } from '@/components/layout/Container'
+import { Container } from '@/components/layout/container/Container'
 import { Text } from '@/components/ui/text/Text'
 import type {SimpleMainVisualProps} from './type'
 export const SimpleMainVisual: React.FC<SimpleMainVisualProps> = ({

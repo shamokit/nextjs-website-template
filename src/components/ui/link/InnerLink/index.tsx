@@ -1,7 +1,5 @@
-import NextLink, { LinkProps as NextLinkProps } from 'next/link'
-export type InnerLinkProps = React.PropsWithChildren<NextLinkProps> & {
-	className?: string
-}
+import NextLink from 'next/link'
+import type { InnerLinkProps } from './type'
 export const InnerLink: React.FC<InnerLinkProps> = ({
 	href,
 	className,

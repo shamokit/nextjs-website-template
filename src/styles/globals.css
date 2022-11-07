@@ -14,7 +14,7 @@
 	body {
 		font-size: var(--font-size--md);
 		line-height: var(--line-height--md);
-		color: var(--color--primary-500);
+		color: rgb(var(--color--primary-500));
 	}
 	* {
 		letter-spacing: var(--letter-spacing--md);
@@ -35,6 +35,9 @@
 		&:focus-visible {
 			outline: 2px solid rgb(var(--color--focus));
 		}
+	}
+	[aria-current] {
+		font-weight: bold;
 	}
 }
 

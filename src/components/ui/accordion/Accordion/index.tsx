@@ -8,7 +8,7 @@ export const Accordion: React.FC<AccordionProps> = ({
 }) => {
 	const accordionRef = useRef<HTMLDetailsElement>(null)
 	const accordionContentRef = useRef<HTMLDivElement>(null)
-	const [, , doAccordion] = useToggle(
+	const [_, doAccordion] = useToggle(
 		accordionRef,
 		accordionContentRef,
 		toggleProps.openDefault,

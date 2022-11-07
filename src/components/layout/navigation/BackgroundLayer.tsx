@@ -15,18 +15,14 @@ const fadeOut = [
 ]
 const animationOption: KeyframeAnimationOptions = {
 	duration: 600,
-	fill: 'both',
 	easing: 'ease-out',
 }
 export const NavigationLayer: React.FC<NavigationLayerProps> = ({ open, close }) => {
 	const renderFlgRef = useRef(true)
 	const layer = useRef<HTMLDivElement>(null)
-	const handleOnClick = () => {
+	const handleClick = () => {
 		close()
 	}
-	useEffect(() => {
-		renderFlgRef.current = true
-	}, [])
 	useEffect(() => {
 		if (renderFlgRef.current) {
 			renderFlgRef.current = false
@@ -48,7 +44,7 @@ export const NavigationLayer: React.FC<NavigationLayerProps> = ({ open, close })
 				className={`fixed inset-0 z-10 bg-black text-white${
 					open ? ' visible' : ' invisible'
 				}`}
-				onClick={() => handleOnClick()}
+				onClick={() => handleClick()}
 				ref={layer}
 			/>
 		</>

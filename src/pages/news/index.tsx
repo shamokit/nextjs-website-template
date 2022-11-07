@@ -1,11 +1,11 @@
 import type { NextPage } from 'next'
-import { NextSeo } from 'next-seo'
-import { apiClient } from 'src/libs/apiClient'
+import { NextSeo } from '@/libs/next-seo'
+import { apiClient } from '@/libs/newt-api-client'
 import type { NewsContents } from '@/schemas/news/type'
-import { Breadcrumb } from '@/components/ui/breadcrumb/Breadcrumb'
-import { generateBreadcrumbObjectArray } from '@/components/ui/breadcrumb/functions/generateBreadcrumbObjectArray'
+import { Breadcrumb } from '@/components/layout/breadcrumb/Breadcrumb'
+import { generateBreadcrumbObjectArray } from '@/components/layout/breadcrumb/functions/generateBreadcrumbObjectArray'
 import { PageNews } from '@/components/pages/news/index'
-import { Container } from '@/components/layout/Container'
+import { Container } from '@/components/layout/container/Container'
 
 const { pageObjects: breadcrumbList } = generateBreadcrumbObjectArray({
 	title: 'News',

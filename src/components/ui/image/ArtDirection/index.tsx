@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import type { StaticImageProps } from '@/components/ui/image/StaticImage/type'
+import type { ImageProps } from '@/components/ui/image/Image/type'
 import type { ArtDirectionProps } from '@/components/ui/image/ArtDirection/type'
 import { SourceWithMediaProps } from '@/components/ui/image/Source/type'
 /**
@@ -13,7 +13,7 @@ export const ArtDirection: React.FC<
 		children: [
 			ReactElement<SourceWithMediaProps>,
 			...ReactElement<SourceWithMediaProps>[],
-			ReactElement<StaticImageProps>
+			ReactElement<ImageProps>
 		]
 	}
 > = ({ children, ...props }) => {

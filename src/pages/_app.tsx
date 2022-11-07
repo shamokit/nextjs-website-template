@@ -1,15 +1,16 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import { DefaultSeo } from 'next-seo'
+import { DefaultSeo } from '@/libs/next-seo'
 import SEO from '../../next-seo.config'
 import '@/styles/globals.css'
 
-import { WebPage, Organization } from 'schema-dts'
-import { jsonLdScriptProps } from 'react-schemaorg'
+import { WebPage, Organization } from '@/libs/schema-dts'
+import { jsonLdScriptProps } from '@/libs/react-schemaorg'
 
-import { SITE_URL, COMPANY_NAME } from '@/libs/const'
-import { Header } from '@/components/layout/Header'
-import { Footer } from '@/components/layout/Footer'
+import { SITE_URL, COMPANY_NAME, COMPANY_TEL } from '@/utils/const'
+import { Header } from '@/components/layout/header/Header/index'
+import { Footer } from '@/components/layout/footer/Footer/index'
+import { SVG } from '@/components/ui/svg/index'
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 	return (
@@ -47,12 +48,14 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 					{...jsonLdScriptProps<Organization>({
 						'@context': 'https://schema.org',
 						'@type': 'Organization',
-						name: `${COMPANY_NAME}`,
-						url: `${SITE_URL}`,
+						name: COMPANY_NAME,
+						url: SITE_URL,
 						logo: '/logo.svg',
+						telephone: COMPANY_TEL,
 					})}
 				/>
 			</Head>
+			<SVG />
 			<DefaultSeo {...SEO} />
 			<div className="flex flex-col min-h-screen pt-[var(--header--height)]">
 				<Header />

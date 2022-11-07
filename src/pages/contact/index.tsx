@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { NextSeo } from 'next-seo'
+import { NextSeo } from '@/libs/next-seo'
 import { PageContact } from '@/components/pages/contact'
 const Contact: NextPage = () => (
 	<>

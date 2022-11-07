@@ -1,5 +1,5 @@
 import React from 'react'
-import { SITE_URL } from '@/libs/const'
+import { SITE_URL } from '@/utils/const'
 import { PaginationProps } from './type'
 import { PaginationLink } from '@/components/ui/pagination/PaginationLink/index'
 import { PaginationFirst } from '@/components/ui/pagination/PaginationFirst/index'

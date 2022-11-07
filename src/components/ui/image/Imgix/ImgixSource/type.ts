@@ -1,5 +1,5 @@
 import React from 'react'
-import { BREAK_POINTS } from '@/libs/const'
+import { BREAK_POINTS } from '@/utils/const'
 import type { ImgixParam } from '@/components/ui/image/Imgix/type'
 
 type SourceProps = Omit<

@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react'
 import type { NextPage, GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
-import { NextSeo } from 'next-seo'
+import { NextSeo } from '@/libs/next-seo'
 import axios from 'axios'
-import { SITE_URL } from 'src/libs/const'
-import { previewApiClient } from 'src/libs/apiClient'
+import { SITE_URL } from '@/utils/const'
+import { previewApiClient } from '@/libs/newt-api-client'
 import type { PageContent } from '@/schemas/staticPage/type'
-import { Breadcrumb } from '@/components/ui/breadcrumb/Breadcrumb'
-import type { BreadcrumbItemProps } from '@/components/ui/breadcrumb/BreadcrumbItem/type'
-import { generateBreadcrumbObjectArray } from '@/components/ui/breadcrumb/functions/generateBreadcrumbObjectArray'
+import { Breadcrumb } from '@/components/layout/breadcrumb/Breadcrumb'
+import type { BreadcrumbItemProps } from '@/components/layout/breadcrumb/BreadcrumbItem/type'
+import { generateBreadcrumbObjectArray } from '@/components/layout/breadcrumb/functions/generateBreadcrumbObjectArray'
 
 const fetchPreviewPages = async () => {
 	const data = await previewApiClient.staticPage.pageData.$get({

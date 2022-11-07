@@ -1,11 +1,8 @@
 import { InnerLink } from '@/components/ui/link/InnerLink'
-
-type ContactBtnProps = {
-	children: React.ReactNode
-}
-export const ContactBtn: React.FC<ContactBtnProps> = ({ children }) => {
+import { ContactBtnProps } from './type'
+export const ContactBtn: React.FC<ContactBtnProps> = ({ className, children }) => {
 	return (
-		<p>
+		<p className={className}>
 			<InnerLink
 				href="/contact"
 				className="grid place-items-center px-4 py-3 bg-accent-500 text-white rounded"

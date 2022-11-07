@@ -1,9 +1,7 @@
-import { loadDefaultJapaneseParser } from 'budoux'
-const parser = loadDefaultJapaneseParser()
-
+import { budouxParser } from '@/libs/budoux'
 export const useBudouX = () => {
 	const parse = (text: string) => {
-		return parser.translateHTMLString(text)
+		return budouxParser.translateHTMLString(text)
 	}
 	return {
 		parse,
