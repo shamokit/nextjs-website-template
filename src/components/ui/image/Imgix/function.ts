@@ -24,10 +24,10 @@ export const getImgixImageUrlParam = ({
 		return undefined
 	}
 	const imgixParamRemoveNoValue = Object.fromEntries(
-		Object.entries(imgixParam).filter(([_, v]) => v)
+		Object.entries(imgixParam).filter(([, v]) => v)
 	)
 
-	let paramArray = []
+	const paramArray = []
 	// paramArray.push(`w=${browser_size}&amp;h=${adjustedHeight * scale}`)
 	for (const [key, value] of Object.entries(imgixParamRemoveNoValue)) {
 		// wパラメータを各ブレイクポイントに置き換えて、どれくらいの割合で変化したのか縮尺を出してhパラメータを計算する
@@ -89,6 +89,7 @@ export const getAdjustedSize: GetAdjustedSize = ({ width, height, imgixParam }) 
 						adjustedWidth = imgixParamWidth
 					}
 				} else if (!(imgixParamWidth && imgixParamHeight)) {
+					//
 				} else {
 					adjustedWidth = arrowLow
 						? imgixParamWidth

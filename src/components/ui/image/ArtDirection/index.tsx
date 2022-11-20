@@ -17,7 +17,5 @@ export const ArtDirection: React.FC<
 		]
 	}
 > = ({ children, ...props }) => {
-	return <picture {...props}>
-		{children}
-	</picture>
+	return <picture {...props}>{children}</picture>
 }

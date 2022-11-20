@@ -5,7 +5,7 @@ import type { ImgixParam } from '@/components/ui/image/Imgix/type'
 type SourceProps = Omit<
 	React.ComponentPropsWithoutRef<'source'>,
 	'srcSet' | 'width' | 'height'
-> & { srcSet: string; width: number; height: number }
+> & { srcSet: string; width: number; height: number; preload?: boolean }
 export type ImgixSourceProps = SourceProps & ImgixParam
 export type ImgixSourcePropsWithMedia = Omit<ImgixSourceProps, 'media'> & {
 	mediaSize: keyof typeof BREAK_POINTS

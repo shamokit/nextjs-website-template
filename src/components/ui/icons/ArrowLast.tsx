@@ -8,7 +8,7 @@ export const ArrowLast: React.FC<ArrowLastProps> = ({ className }) => {
 			viewBox="0 0 24 24"
 			className={['fill-current', className].join(' ')}
 		>
-			<use xlinkHref="#icoArrowLast"></use>
+			<use href="#icoArrowLast"></use>
 		</svg>
 	)
 }

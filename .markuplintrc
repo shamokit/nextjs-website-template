@@ -36,10 +36,30 @@
 	},
 	"nodeRules": [
 		{
+			"selector": "ImgixArtDirection",
+			"rules": {
+				"permitted-contents": true,
+				"required-element": ["ImgixImage", "ImgixSourceWithMedia"]
+			}
+		},
+		{
+			"selector": "ArtDirection",
+			"rules": {
+				"permitted-contents": true,
+				"required-element": ["Image", "SourceWithMedia"]
+			}
+		},
+		{
 			"selector": "picture",
 			"rules": {
 				"permitted-contents": false,
 				"required-element": ["Source", "StaticImage"]
+			}
+		},
+		{
+			"selector": "link",
+			"rules": {
+				"invalid-attr": false
 			}
 		}
 	]

@@ -1,10 +1,11 @@
-import { memo } from 'react'
-import { useBudouX } from '@/components/lib/useBudouX'
+import { useBudouX } from '@/utils/useBudouX'
 import type { TextProps } from './type'
-export const Text = memo(
-	<E extends React.ElementType = 'span'>({ as, text }: TextProps<E>) => {
-		const { parse } = useBudouX()
-		const Tag = as || 'span'
-		return <Tag dangerouslySetInnerHTML={{ __html: parse(text) }} />
-	}
-)
+export const Text = <E extends React.ElementType = 'span'>({
+	as,
+	text,
+	className,
+}: TextProps<E>) => {
+	const { parse } = useBudouX()
+	const Tag = as || 'span'
+	return <Tag dangerouslySetInnerHTML={{ __html: parse(text) }} className={className} />
+}

@@ -1,5 +1,5 @@
 import { ArrowLast } from '@/components/ui/icons/ArrowLast'
-import { PaginationLink } from '@/components/ui/pagination/PaginationLink/index'
+import { PaginationLink } from '@/components/ui/pagination/PaginationLink'
 import type { PaginationLastProps } from './type'
 export const PaginationLast: React.FC<PaginationLastProps> = ({
 	current,

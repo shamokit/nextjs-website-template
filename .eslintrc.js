@@ -1,5 +1,8 @@
 module.exports =
 {
+	"env": {
+		"es6": true,
+	},
 	"extends": [
 		"eslint:recommended",
 		"plugin:storybook/recommended",
@@ -12,7 +15,6 @@ module.exports =
 		"@next/next/no-img-element": "off",
 		"react/react-in-jsx-scope": "off",
 	},
-	"es6": true,
 	"overrides": [
 		{
 			"files": ["*.stories.@(ts|tsx)"],

@@ -29,7 +29,11 @@ export const getLimitedCurrent = (current: number, totalPages: number) => {
 /**
  * ページネーションに使用する数字の配列を返します。
  */
-export const getPaginationLinks = (limitedCurrent: number, totalPages: number, itemsInViewMax: number) => {
+export const getPaginationLinks = (
+	limitedCurrent: number,
+	totalPages: number,
+	itemsInViewMax: number
+) => {
 	const halfItemsInViewMax = Math.trunc(itemsInViewMax / 2)
 	const totalPagesArrayStartZero = [...Array(totalPages + 1)].map((_, num) => num)
 	const currentIndex = totalPagesArrayStartZero.indexOf(limitedCurrent)
@@ -77,7 +81,11 @@ export const getPreviousUrl = (limitedCurrent: number, fullArchiveUrl: string) =
  * 次のページへのURLを返します。
  * 次のページが存在しない場合はundefinedを返します。
  */
-export const getNextUrl = (limitedCurrent: number, fullArchiveUrl: string, totalPages: number) => {
+export const getNextUrl = (
+	limitedCurrent: number,
+	fullArchiveUrl: string,
+	totalPages: number
+) => {
 	return limitedCurrent === totalPages
 		? undefined
 		: `${fullArchiveUrl}pages/${Math.min(limitedCurrent + 1, totalPages)}/`

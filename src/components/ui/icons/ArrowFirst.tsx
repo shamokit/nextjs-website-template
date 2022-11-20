@@ -8,7 +8,7 @@ export const ArrowFirst: React.FC<ArrowFirstProps> = ({ className }) => {
 			viewBox="0 0 24 24"
 			className={['fill-current', className].join(' ')}
 		>
-			<use xlinkHref="#icoArrowFirst"></use>
+			<use href="#icoArrowFirst"></use>
 		</svg>
 	)
 }

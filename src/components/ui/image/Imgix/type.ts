@@ -39,14 +39,14 @@ type ImgixParamClamp = {
  * https://docs.imgix.com/apis/rendering/size/fit#crop
  * https://docs.imgix.com/apis/rendering/size/crop
  */
+type Crop = `${Position},${Position}`
 type ImgixParamCrop = {
 	fit: 'crop'
+	crop?: Crop
 	arrowLow: boolean
 	w: number
 	h: number
-	crop?: `${Position},${Position}`
 }
-
 /**
  * 【Fill】
  * 指定したサイズに画像が収まるように配置します。（元サイズより大きいサイズを指定すると荒れます）
@@ -57,11 +57,11 @@ type ImgixParamCrop = {
  */
 type ImgixParamFill = {
 	fit: 'fill'
+	fillColor: string
+	fill?: 'solid' | 'blur'
 	arrowLow: boolean
 	w?: number
 	h?: number
-	fillColor: string
-	fill?: 'solid' | 'blur'
 }
 /**
  * 【Fillmax】
@@ -74,11 +74,11 @@ type ImgixParamFill = {
  */
 type ImgixParamFillMax = {
 	fit: 'fillmax'
+	fillColor: string
+	fill?: 'solid' | 'blur'
 	arrowLow: boolean
 	w?: number
 	h?: number
-	fillColor: string
-	fill?: 'solid' | 'blur'
 }
 /**
  * 【Max】

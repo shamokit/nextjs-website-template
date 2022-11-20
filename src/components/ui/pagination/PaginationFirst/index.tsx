@@ -1,9 +1,9 @@
 import { ArrowFirst } from '@/components/ui/icons/ArrowFirst'
-import { PaginationLink } from '@/components/ui/pagination/PaginationLink/index'
+import { PaginationLink } from '@/components/ui/pagination/PaginationLink'
 import type { PaginationFirstProps } from './type'
 export const PaginationFirst: React.FC<PaginationFirstProps> = ({
 	fullArchiveUrl,
-	current
+	current,
 }) => {
 	return (
 		<PaginationLink

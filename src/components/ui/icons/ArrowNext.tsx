@@ -8,7 +8,7 @@ export const ArrowNext: React.FC<ArrowNextProps> = ({ className }) => {
 			viewBox="0 0 24 24"
 			className={['fill-current', className].join(' ')}
 		>
-			<use xlinkHref="#icoArrowNext"></use>
+			<use href="#icoArrowNext"></use>
 		</svg>
 	)
 }

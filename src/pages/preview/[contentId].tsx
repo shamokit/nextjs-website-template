@@ -7,7 +7,7 @@ import { SITE_URL } from '@/utils/const'
 import { previewApiClient } from '@/libs/newt-api-client'
 import type { PageContent } from '@/schemas/staticPage/type'
 import { Breadcrumb } from '@/components/layout/breadcrumb/Breadcrumb'
-import type { BreadcrumbItemProps } from '@/components/layout/breadcrumb/BreadcrumbItem/type'
+import type { BreadcrumbItemProps } from '@/components/layout/breadcrumb/Breadcrumb/BreadcrumbItem/type'
 import { generateBreadcrumbObjectArray } from '@/components/layout/breadcrumb/functions/generateBreadcrumbObjectArray'
 
 const fetchPreviewPages = async () => {

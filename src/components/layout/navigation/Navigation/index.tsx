@@ -1,31 +1,41 @@
-import { InnerLink } from '@/components/ui/link/InnerLink'
-import { ContactBtn } from '@/components/layout/navigation/ContactBtn/index'
-import type { NavigationProps } from './type'
-export const Navigation: React.FC<NavigationProps> = ({ menu, className }) => (
-	<>
-		<nav id="navigation" className={className}>
-			<div className="lg:flex lg:items-center">
-				<ul
-					className="lg:flex lg:-mr-10 font-bold"
-					role="navigation"
-					aria-label="メインナビゲーション"
+import { useState, useEffect } from 'react'
+import { NavigationMenu } from '@/components/layout/navigation/Navigation/NavigationMenu'
+import { NavigationButton } from '@/components/layout/navigation/Navigation/NavigationButton'
+import { ContactBtn } from '@/components/layout/navigation/ContactBtn'
+import { useWindowSize } from '@/utils/useWindowSize'
+import { BREAK_POINTS, menu } from '@/utils/const'
+export const Navigation: React.FC = () => {
+	const [open, setOpen] = useState(false)
+	const windowSize = useWindowSize()
+	const idForAria = 'nav'
+	useEffect(() => {
+		if (windowSize >= BREAK_POINTS.md) {
+			setOpen(true)
+		}
+	}, [windowSize])
+	const animateClass = open
+		? 'opacity-100 translate-x-0'
+		: 'opacity-0 md:opacity-100 translate-x-full md:translate-x-0 pointer-events-none md:pointer-events-auto'
+	return (
+		<>
+			<div
+				id={idForAria}
+				className={`absolute md:static top-0 left-0 w-full h-screen md:h-auto md:ml-auto bg-primary-500 md:bg-transparent transition-all ${animateClass}`}
+				aria-hidden={!open}
+			>
+				<nav
+					className="flex md:justify-end gap-xl md:gap-sm flex-col md:flex-row md:items-center py-8 px-5"
+					aria-label="グローバルメニュー"
 				>
-					<li className="mr-10">
-						<InnerLink href={'/'}>TOP</InnerLink>
-					</li>
-					{menu &&
-						menu.map((item) => {
-							return (
-								<li key={item.href} className="mr-10">
-									<InnerLink href={`${item.href}`}>{item.name}</InnerLink>
-								</li>
-							)
-						})}
-				</ul>
-				<div className="ml-10">
-					<ContactBtn>Contact</ContactBtn>
-				</div>
+					<NavigationMenu menu={menu} />
+					<ContactBtn />
+				</nav>
 			</div>
-		</nav>
-	</>
-)
+			<NavigationButton
+				idForAria={idForAria}
+				open={open}
+				onClick={() => setOpen((prevState) => !prevState)}
+			/>
+		</>
+	)
+}

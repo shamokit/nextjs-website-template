@@ -4,7 +4,7 @@ import { apiClient } from '@/libs/newt-api-client'
 import type { NewsContents } from '@/schemas/news/type'
 import { Breadcrumb } from '@/components/layout/breadcrumb/Breadcrumb'
 import { generateBreadcrumbObjectArray } from '@/components/layout/breadcrumb/functions/generateBreadcrumbObjectArray'
-import { PageNews } from '@/components/pages/news/index'
+import { PageNews } from '@/components/pages/news'
 import { Container } from '@/components/layout/container/Container'
 
 const { pageObjects: breadcrumbList } = generateBreadcrumbObjectArray({

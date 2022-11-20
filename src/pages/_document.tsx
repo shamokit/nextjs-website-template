@@ -1,5 +1,5 @@
 import { Head, Html, Main, NextScript } from 'next/document'
-const MyDocument: React.FC = () => {
+const Document: React.FC = () => {
 	return (
 		<Html prefix="og: http://ogp.me/ns#" lang="ja">
 			<Head>
@@ -13,7 +13,7 @@ const MyDocument: React.FC = () => {
 			<body
 				className="font-noto bg-white scroll-smooth"
 				itemScope
-				itemType="http://schema.org/WebPage"
+				itemType="https://schema.org/WebPage"
 			>
 				<Main />
 				<NextScript />
@@ -22,4 +22,4 @@ const MyDocument: React.FC = () => {
 	)
 }
 
-export default MyDocument
+export default Document

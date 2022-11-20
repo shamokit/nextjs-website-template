@@ -1,13 +1,13 @@
 import React from 'react'
 import { SITE_URL } from '@/utils/const'
 import { PaginationProps } from './type'
-import { PaginationLink } from '@/components/ui/pagination/PaginationLink/index'
-import { PaginationFirst } from '@/components/ui/pagination/PaginationFirst/index'
-import { PaginationPrevious } from '@/components/ui/pagination/PaginationPrevious/index'
-import { PaginationNext } from '@/components/ui/pagination/PaginationNext/index'
-import { PaginationLast } from '@/components/ui/pagination/PaginationLast/index'
-import { PaginationDot } from '@/components/ui/pagination/PaginationDot/index'
-import { PaginationItems } from '@/components/ui/pagination/PaginationItems/index'
+import { PaginationLink } from '@/components/ui/pagination/PaginationLink'
+import { PaginationFirst } from '@/components/ui/pagination/PaginationFirst'
+import { PaginationPrevious } from '@/components/ui/pagination/PaginationPrevious'
+import { PaginationNext } from '@/components/ui/pagination/PaginationNext'
+import { PaginationLast } from '@/components/ui/pagination/PaginationLast'
+import { PaginationDot } from '@/components/ui/pagination/PaginationDot'
+import { PaginationItems } from '@/components/ui/pagination/PaginationItems'
 import {
 	getTotalPages,
 	getLimitedCurrent,
@@ -68,15 +68,9 @@ export const Pagination: React.FC<PaginationProps> = ({
 		<nav aria-label="ページナビゲーション">
 			<ul className="flex flex-wrap items-end gap-3xs">
 				<PaginationItems>
-					<PaginationFirst
-						fullArchiveUrl={fullArchiveUrl}
-						current={limitedCurrent}
-					/>
+					<PaginationFirst fullArchiveUrl={fullArchiveUrl} current={limitedCurrent} />
 					{previousUrl && (
-						<PaginationPrevious
-							current={limitedCurrent}
-							previousUrl={previousUrl}
-						/>
+						<PaginationPrevious current={limitedCurrent} previousUrl={previousUrl} />
 					)}
 					{itemsInView.at(0) !== 1 && <PaginationDot />}
 					{paginationItems}

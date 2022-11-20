@@ -1,8 +1,11 @@
 import Head from 'next/head'
 import { ArrowPrev } from '@/components/ui/icons/ArrowPrev'
-import { PaginationLink } from '@/components/ui/pagination/PaginationLink/index'
+import { PaginationLink } from '@/components/ui/pagination/PaginationLink'
 import { PaginationPreviousProps } from './type'
-export const PaginationPrevious: React.FC<PaginationPreviousProps> = ({current, previousUrl}) => {
+export const PaginationPrevious: React.FC<PaginationPreviousProps> = ({
+	current,
+	previousUrl,
+}) => {
 	return (
 		<>
 			<Head>

@@ -8,7 +8,7 @@ export const ArrowPrev: React.FC<ArrowPrevProps> = ({ className }) => {
 			viewBox="0 0 24 24"
 			className={['fill-current', className].join(' ')}
 		>
-			<use xlinkHref="#icoArrowPrev"></use>
+			<use href="#icoArrowPrev"></use>
 		</svg>
 	)
 }

@@ -3,6 +3,7 @@ import type { Timing } from '@/utils/useToggle'
 export type AccordionProps = {
 	title: ReactNode
 	children: ReactNode
+	className?: string
 	openDefault?: boolean
 	animation?: boolean
 	animationTimingOpen?: Timing

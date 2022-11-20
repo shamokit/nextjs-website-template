@@ -1,4 +1,4 @@
-import React, { ReactElement, memo } from 'react'
+import React, { ReactElement } from 'react'
 import type { ImgixArtDirectionProps } from './type'
 import type { ImgixImgPropsWithoutMedia } from '@/components/ui/image/Imgix/ImgixImage/type'
 import { ImgixSourcePropsWithMedia } from '@/components/ui/image/Imgix/ImgixSource/type'
@@ -16,6 +16,6 @@ export const ImgixArtDirection: React.FC<
 			ReactElement<ImgixImgPropsWithoutMedia>
 		]
 	}
-> = memo(({ children, ...props }) => {
+> = ({ children, ...props }) => {
 	return <picture {...props}>{children}</picture>
-})
+}
