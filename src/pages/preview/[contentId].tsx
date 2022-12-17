@@ -3,12 +3,12 @@ import type { NextPage, GetStaticPaths } from 'next'
 import { useRouter } from 'next/router'
 import { NextSeo } from '@/libs/next-seo'
 import axios from 'axios'
-import { SITE_URL } from '@/utils/const'
+import { SITE_URL } from '@/utils/meta'
 import { previewApiClient } from '@/libs/newt-api-client'
 import type { PageContent } from '@/schemas/staticPage/type'
 import { Breadcrumb } from '@/components/layout/breadcrumb/Breadcrumb'
 import type { BreadcrumbItemProps } from '@/components/layout/breadcrumb/Breadcrumb/BreadcrumbItem/type'
-import { generateBreadcrumbObjectArray } from '@/components/layout/breadcrumb/functions/generateBreadcrumbObjectArray'
+import { generateBreadcrumbObjects } from '@/components/layout/breadcrumb/functions/generateBreadcrumbObjects'
 
 const fetchPreviewPages = async () => {
 	const data = await previewApiClient.staticPage.pageData.$get({
@@ -68,7 +68,7 @@ const StaticPage: NextPage<PageProps> = () => {
 				.get<PageContent>(`/api/preview?secret=${secret}&contentId=${last}`)
 				.then((data) => {
 					setData(data.data)
-					const { pageObjects: breadcrumbList } = generateBreadcrumbObjectArray(data.data)
+					const { pageObjects: breadcrumbList } = generateBreadcrumbObjects(data.data)
 					setBreadcrumb(breadcrumbList)
 				})
 				.finally(() => {
@@ -76,6 +76,7 @@ const StaticPage: NextPage<PageProps> = () => {
 				})
 		}
 	}, [query])
+	const canonical = new URL(pageSlug ?? '', SITE_URL).toString()
 	return (
 		<>
 			{isLoading && <p>Loading...</p>}
@@ -83,9 +84,9 @@ const StaticPage: NextPage<PageProps> = () => {
 				<>
 					<NextSeo
 						titleTemplate={data.meta?.title}
-						title={data.meta?.title ? data.meta?.title : data.title}
-						description={data.meta?.description ? data.meta?.description : data.title}
-						canonical={`${SITE_URL}/${pageSlug}`}
+						title={data.meta?.title ?? data.title}
+						description={data.meta?.description ?? data.title}
+						canonical={canonical}
 						noindex
 					/>
 					<main>

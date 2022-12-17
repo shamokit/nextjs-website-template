@@ -3,7 +3,27 @@ import { NavigationMenu } from '@/components/layout/navigation/Navigation/Naviga
 import { NavigationButton } from '@/components/layout/navigation/Navigation/NavigationButton'
 import { ContactBtn } from '@/components/layout/navigation/ContactBtn'
 import { useWindowSize } from '@/utils/useWindowSize'
-import { BREAK_POINTS, menu } from '@/utils/const'
+import { BREAK_POINTS } from '@/utils/const'
+const menu = [
+	{
+		href: '/',
+		name: 'Home',
+	},
+	{
+		href: '/company',
+		name: 'Company',
+		children: [
+			{
+				href: '/company/about',
+				name: 'About',
+			},
+			{
+				href: '/company/history',
+				name: 'History',
+			},
+		],
+	},
+]
 export const Navigation: React.FC = () => {
 	const [open, setOpen] = useState(false)
 	const windowSize = useWindowSize()

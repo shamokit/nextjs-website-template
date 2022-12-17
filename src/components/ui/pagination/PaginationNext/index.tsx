@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { ArrowNext } from '@/components/ui/icons/ArrowNext'
+import { SvgIco } from '@/components/ui/svg/SvgIco'
 import { PaginationLink } from '@/components/ui/pagination/PaginationLink'
 import type { PaginationNextProps } from './type'
 export const PaginationNext: React.FC<PaginationNextProps> = ({
@@ -18,7 +18,7 @@ export const PaginationNext: React.FC<PaginationNextProps> = ({
 				isDisabled={current === totalPages ? true : undefined}
 				tabIndex={current === totalPages ? -1 : undefined}
 			>
-				<ArrowNext />
+				<SvgIco name="arrowNext" />
 			</PaginationLink>
 		</>
 	)

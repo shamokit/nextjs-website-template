@@ -1,5 +1,6 @@
 import type { Meta } from '@/schemas/meta/type'
 import type { Content, Contents } from '@/libs/newt-api-client'
+// TODO:apiディレクトリに書いたほうが自然かも
 export type Page = {
 	title: string
 	slug: string

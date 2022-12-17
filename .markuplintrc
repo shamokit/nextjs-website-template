@@ -15,16 +15,6 @@
 		"doctype": true,
 		"id-duplication": true,
 		"ineffective-attr": true,
-		"invalid-attr": {
-			"value": true,
-			"option": {
-				"attrs": {
-					"class": {
-						"type": "Any"
-					}
-				}
-			}
-		},
 		"landmark-roles": true,
 		"no-refer-to-non-existent-id": true,
 		"permitted-contents": true,
@@ -54,12 +44,6 @@
 			"rules": {
 				"permitted-contents": false,
 				"required-element": ["Source", "StaticImage"]
-			}
-		},
-		{
-			"selector": "link",
-			"rules": {
-				"invalid-attr": false
 			}
 		}
 	]

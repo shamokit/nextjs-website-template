@@ -3,8 +3,7 @@ import type {
 	GetAdjustedSize,
 	GenerateSrcsetByExtensionsProps,
 } from './type'
-import { BROWSER_SIZES } from '@/utils/const'
-
+import { BROWSER_SIZES } from '../const'
 /**
  * getAdjustedSizeで計算した実際返ってくる画像のwidth,heightを使って、
  * 調整後のwidthとheightに置きなおしたURLを返します。
@@ -28,7 +27,7 @@ export const getImgixImageUrlParam = ({
 	)
 
 	const paramArray = []
-	// paramArray.push(`w=${browser_size}&amp;h=${adjustedHeight * scale}`)
+	// paramArray.push(`w=${browser_size}&h=${adjustedHeight * scale}`)
 	for (const [key, value] of Object.entries(imgixParamRemoveNoValue)) {
 		// wパラメータを各ブレイクポイントに置き換えて、どれくらいの割合で変化したのか縮尺を出してhパラメータを計算する
 		if (key === 'w') {
@@ -36,13 +35,13 @@ export const getImgixImageUrlParam = ({
 		}
 		if (key === 'h') {
 			const scale = browser_size / adjustedWidth
-			paramArray.push(`h=${adjustedHeight * scale}`)
+			paramArray.push(`h=${Math.round(adjustedHeight * scale)}`)
 		}
 		if (!(key === 'w' || key === 'h' || key === 'arrowLow')) {
 			paramArray.push(`${key}=${value}`)
 		}
 	}
-	const paramString = paramArray.join('&amp;')
+	const paramString = paramArray.join('&')
 	return `?${paramString}`
 }
 
@@ -237,7 +236,7 @@ export const generateSrcsetByExtensions = ({
 						browser_size,
 					})
 					return `${src}${params ?? ''}${
-						ext !== 'default' ? `&amp;format=${ext}&amp;lossless=1` : ''
+						ext !== 'default' ? `&format=${ext}&lossless=1` : ''
 					} ${browser_size}w`
 				})
 				.join(', '),

@@ -1,3 +1,4 @@
+// TODO:使ってない
 import { RefObject, useEffect } from 'react'
 import { clearAllBodyScrollLocks, disableBodyScroll } from '@/libs/body-scroll-lock'
 type UseDisableScrollProps = { ref: RefObject<HTMLElement>; isOpen: boolean }

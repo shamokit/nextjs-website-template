@@ -1,161 +1,130 @@
-import { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import type { NextPage } from 'next'
 import { NextSeo } from '@/libs/next-seo'
 import { Container } from '@/components/layout/container/Container'
 import { SimpleMainVisual } from '@/components/layout/mainVisual/SimpleMainVisual'
 import { Text } from '@/components/ui/text/Text'
 import { Image } from '@/components/ui/image/Image'
+import { Picture } from '@/components/ui/image/Picture'
 import { ImgixImage } from '@/components/ui/image/Imgix/ImgixImage'
+import { ImgixPicture } from '@/components/ui/image/Imgix/ImgixPicture'
 import { ImgixArtDirection } from '@/components/ui/image/Imgix/ImgixArtDirection'
 import { ImgixSourceWithMedia } from '@/components/ui/image/Imgix/ImgixSource'
 import { ArtDirection } from '@/components/ui/image/ArtDirection'
 import { SourceWithMedia } from '@/components/ui/image/Source'
 import { Accordion } from '@/components/ui/accordion/Accordion'
 import { FaqItems } from '@/components/ui/faq/FaqItems'
-import { TabButton } from '@/components/ui/tab/TabButton'
-import { TabContent } from '@/components/ui/tab/TabContent'
+import { TabList } from '@/components/ui/tab/TabList'
 import { useToggle } from '@/utils/useToggle'
 const Home: NextPage = () => {
 	const accordionRef = useRef<HTMLButtonElement>(null)
 	const accordionContentRef = useRef<HTMLDivElement>(null)
-	const [open, doAccordion] = useToggle(accordionRef, accordionContentRef, true)
+	const [open, doAccordion] = useToggle({accordionRef, accordionContentRef, initialValue: true})
 	const [activeTab, toggleActiveTab] = useState('A')
 	useEffect(() => {
 		document.querySelectorAll('[aria-label="テストタブ"] details').forEach((item) => {
-			item.addEventListener("toggle", (e) => {
-				const details = document.querySelector(`[id="${e.target.id}"]`)
-				if(details?.getAttribute("open") === "") {
-					toggleActiveTab(details?.getAttribute("id"))
+			item.addEventListener('toggle', (e: Event) => {
+				const el = e.target
+				if (!(el instanceof HTMLDetailsElement)) return
+				const details = document.querySelector(`[id="${el.id}"]`)
+				if (!details) return
+				const id = details.getAttribute('id')
+				if (!id) return
+				if (details.getAttribute('open') === '') {
+					toggleActiveTab(id)
 				}
 			})
-		});
-	},[])
+		})
+	}, [])
 	useEffect(() => {
 		document.querySelectorAll('[aria-label="テストタブ"] details').forEach((item) => {
 			item.removeAttribute('open')
 			item.removeAttribute('style')
-			if(item.getAttribute('id') === activeTab) {
+			if (item.getAttribute('id') === activeTab) {
 				const details = document.getElementById(activeTab)
-				if(!details) return
+				if (!details) return
 				details?.setAttribute('open', '')
-				const summaryHeight = document.querySelector(`[aria-label="テストタブ"] details[id="${activeTab}"] summary`)?.getBoundingClientRect().height ?? 0
-				const contentHeight = document.querySelector(`[aria-label="テストタブ"] details[id="${activeTab}"] summary + *`)?.getBoundingClientRect().height ?? 0
+				const summaryHeight =
+					document
+						.querySelector(`[aria-label="テストタブ"] details[id="${activeTab}"] summary`)
+						?.getBoundingClientRect().height ?? 0
+				const contentHeight =
+					document
+						.querySelector(
+							`[aria-label="テストタブ"] details[id="${activeTab}"] summary + *`
+						)
+						?.getBoundingClientRect().height ?? 0
 				details.style.height = `${summaryHeight + contentHeight}px`
 			}
-		});
-	},[activeTab])
-	const tags = ["A", "B"]
+		})
+	}, [activeTab])
+	const tags = ['A', 'B']
 	return (
 		<>
 			<NextSeo />
-			<ul aria-label="テストタブ" className='relative flex gap-2'>
-				<li>
-					<details id="A" className="group">
-						<summary
-							onClick={(e) => {
-								e.preventDefault()
-								toggleActiveTab('A')
-							}}
-							onKeyUp={(e) => {
-								if(e.key=== "ArrowRight") {
-									document.querySelector<HTMLDetailsElement>(`[aria-label="テストタブ"] details[id="B"] summary`)?.focus()
-									toggleActiveTab('B')
-								}
-							}}
-							className="block group-open:bg-primary-500 group-open:text-white"
-						>
-							A_Title
-						</summary>
-						<div className='absolute left-0 right-0'>contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA</div>
-					</details>
-				</li>
-				<li>
-					<details id="B" className="group">
-						<summary
-							onClick={(e) => {
-								e.preventDefault()
-								toggleActiveTab('B')
-							}}
-							onKeyUp={(e) => {
-								if(e.key=== "ArrowLeft") {
-									document.querySelector<HTMLDetailsElement>(`[aria-label="テストタブ"] details[id="A"] summary`)?.focus()
-									toggleActiveTab('A')
-								}
-							}}
-							className="block group-open:bg-primary-500 group-open:text-white"
-						>
-							B_Title
-						</summary>
-						<div className='absolute left-0 right-0'>contentB<br />contentB<br />contentB<br />contentB<br />contentB</div>
-					</details>
-				</li>
-			</ul>
-			<ImgixImage
-				src="https://images.microcms-assets.io/assets/ea2e00f4ba464694b03f8817bee4605d/51e82c8af3bf4e9a8b50f31067b7530a/Group%201.png"
-				width={800}
-				height={600}
-				alt=""
-				imgixParam={{ fit: 'crop', w: 1600, h: 800, arrowLow: true }}
-				preload={true}
-			/>
-			<ImgixArtDirection>
-				<ImgixSourceWithMedia
-					mediaSize="lg"
-					srcSet="https://images.microcms-assets.io/assets/ea2e00f4ba464694b03f8817bee4605d/2bedd8d6b0804ceebc0d869420fa7421/Group%202.png"
-					width={600}
-					height={800}
-					imgixParam={{ fit: 'clamp', w: 1600, arrowLow: true }}
-					preload={true}
-				/>
-				<ImgixSourceWithMedia
-					mediaSize="md"
-					srcSet="https://images.microcms-assets.io/assets/ea2e00f4ba464694b03f8817bee4605d/51e82c8af3bf4e9a8b50f31067b7530a/Group%201.png"
-					width={800}
-					height={600}
-					imgixParam={{ fit: 'crop', w: 1600, h: 800, arrowLow: true }}
-					preload={true}
-				/>
-				<ImgixImage
-					src="https://images.microcms-assets.io/assets/ea2e00f4ba464694b03f8817bee4605d/5b10d44c214143e2886052d7f3c2a797/icon_fill.png"
-					width={800}
-					height={800}
-					alt=""
-					imgixParam={{ fit: 'crop', w: 1600, h: 800, arrowLow: true }}
-					preload={true}
-					inArtDirection={true}
-				/>
-			</ImgixArtDirection>
-
 			<SimpleMainVisual
 				title={'TOP'}
 				copy={
 					'キャッチコピーが入ります。<br>キャッチコピーが入ります。キャッチコピーが入ります。キャッチコピーが入ります。キャッチコピーが入ります。'
 				}
 			>
-				<ArtDirection className="col-start-1 col-end-1 row-start-1 row-end-1">
-					<SourceWithMedia
+				<ImgixArtDirection className="col-start-1 col-end-1 row-start-1 row-end-1">
+					<ImgixSourceWithMedia
 						mediaSize="lg"
-						srcSet="/images/2560x2560.png"
-						width={2560}
-						height={2560}
-					/>
-					<SourceWithMedia
-						mediaSize="md"
-						srcSet="/images/600x400.png"
+						srcSet="https://images.microcms-assets.io/assets/ea2e00f4ba464694b03f8817bee4605d/2bedd8d6b0804ceebc0d869420fa7421/Group%202.png"
 						width={600}
-						height={400}
+						height={800}
+						imgixParam={{ fit: 'clamp', w: 1600, arrowLow: true }}
+						preload={true}
 					/>
-					<Image
-						src="/images/150x150.png"
-						width={150}
-						height={150}
-						inArtDirection={true}
+					<ImgixSourceWithMedia
+						mediaSize="md"
+						srcSet="https://images.microcms-assets.io/assets/ea2e00f4ba464694b03f8817bee4605d/51e82c8af3bf4e9a8b50f31067b7530a/Group%201.png"
+						width={800}
+						height={600}
+						imgixParam={{ fit: 'crop', w: 1600, h: 800, arrowLow: true }}
+						preload={true}
+					/>
+					<ImgixImage
+						src="https://images.microcms-assets.io/assets/ea2e00f4ba464694b03f8817bee4605d/5b10d44c214143e2886052d7f3c2a797/icon_fill.png"
+						width={800}
+						height={800}
 						alt=""
+						imgixParam={{ fit: 'crop', w: 1600, h: 800, arrowLow: true }}
+						preload={true}
 					/>
-				</ArtDirection>
+				</ImgixArtDirection>
 			</SimpleMainVisual>
 			<Container>
 				<main>
+					<TabList tabClassName="group-open:bg-primary-500 group-open:text-white" titles={["A_Title", "B_Title"]} activeIndex={0} ariaLabel='テストタブ1'>
+						<div className="p-4">contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA</div>
+						<div className="p-4">contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB</div>
+					</TabList>
+					<ImgixPicture>
+						<ImgixImage
+							src="https://images.microcms-assets.io/assets/ea2e00f4ba464694b03f8817bee4605d/51e82c8af3bf4e9a8b50f31067b7530a/Group%201.png"
+							width={800}
+							height={600}
+							alt=""
+							imgixParam={{ fit: 'crop', w: 1600, h: 800, arrowLow: true }}
+						/>
+					</ImgixPicture>
+					<ArtDirection>
+						<SourceWithMedia
+							mediaSize="lg"
+							srcSet="/images/2560x2560.png"
+							width={2560}
+							height={2560}
+						/>
+						<SourceWithMedia
+							mediaSize="md"
+							srcSet="/images/600x400.png"
+							width={600}
+							height={400}
+						/>
+						<Image src="/images/150x150.png" width={150} height={150} alt="" />
+					</ArtDirection>
 					<FaqItems
 						faqs={[
 							{
@@ -168,7 +137,9 @@ const Home: NextPage = () => {
 							},
 						]}
 					/>
-					<Image src="/images/2560x2560.png" width={2560} height={2560} alt="" />
+					<Picture>
+						<Image src="/images/2560x2560.png" width={2560} height={2560} alt="" />
+					</Picture>
 					<section>
 						<h2 className="mb-md text-2xl font-bold">budouX</h2>
 						<Text

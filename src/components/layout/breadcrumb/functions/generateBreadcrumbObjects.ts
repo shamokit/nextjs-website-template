@@ -4,7 +4,7 @@ type PageData = {
 	slug: string
 }
 type PageDataWithParent = PageData & { parent: PageDataWithParent | null }
-export const generateBreadcrumbObjectArray = (pageData: PageDataWithParent) => {
+export const generateBreadcrumbObjects = (pageData: PageDataWithParent) => {
 	const pageObjectsParentToChild: PageData[] = []
 	/**
 	 * ページデータのオブジェクトを親から子に向けて再帰的にタイトルとスラッグを取得して配列を作成します。

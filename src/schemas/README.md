@@ -1,3 +1,2 @@
-## Write the type
-
-Schema types are summarized here.
+# Schemas
+CMSなどから取得するデータの型をここに入れます。

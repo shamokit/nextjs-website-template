@@ -1,9 +1,9 @@
-import React from 'react'
-import { useInView } from '@/libs/react-intersection-observer'
-import { TRANSPARENT_DUMMY_IMAGE } from '@/utils/const'
+import React, { useContext } from 'react'
 import { BREAK_POINTS } from '@/utils/const'
+import { TRANSPARENT_DUMMY_IMAGE } from '../const'
 import type { SourceWithMediaProps } from './type'
 import { generateSrcsetByExtensions } from '@/components/ui/image/function'
+import { RefContext } from '@/components/ui/image/Picture'
 
 export const SourceWithMedia: React.FC<SourceWithMediaProps> = ({
 	srcSet,
@@ -16,13 +16,10 @@ export const SourceWithMedia: React.FC<SourceWithMediaProps> = ({
 		src: srcSet,
 		width,
 	})
-	const { ref, inView } = useInView({
-		triggerOnce: true,
-	})
+	const inView = useContext(RefContext)
 	const el = srcsetByExtensions.map((srcsetByExtension, index) => {
 		return srcsetByExtension.ext !== 'default' ? (
 			<source
-				ref={ref}
 				srcSet={inView ? srcsetByExtension.url : TRANSPARENT_DUMMY_IMAGE}
 				width={width}
 				height={height}
@@ -32,7 +29,6 @@ export const SourceWithMedia: React.FC<SourceWithMediaProps> = ({
 			/>
 		) : (
 			<source
-				ref={ref}
 				srcSet={inView ? srcsetByExtension.url || undefined : TRANSPARENT_DUMMY_IMAGE}
 				width={width}
 				height={height}

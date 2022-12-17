@@ -8,14 +8,6 @@
 	"rules": {
 		"custom-property-pattern": "^([a-z][a-z0-9]*)((-|--)[a-z0-9]+)*$",
 		"selector-class-pattern": null,
-		"plugin/selector-bem-pattern": {
-			"componentName": "[a-z]+",
-			"componentSelectors": {
-				"initial": "^\\.{componentName}(?:-[a-z]+)?$",
-				"combined": "^\\.combined-{componentName}-[a-z]+$"
-			},
-			"utilitySelectors": "^\\.util-[a-z]+$"
-		},
 		"max-nesting-depth": [
 			2,
 			{

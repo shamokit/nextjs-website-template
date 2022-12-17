@@ -49,7 +49,7 @@
 		font-weight: 700;
 	}
 
-	summary {
+	summary, button {
 		cursor: pointer;
 	}
 }

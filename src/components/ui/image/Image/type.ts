@@ -6,5 +6,4 @@ export type ImageProps = Omit<
 	width: number
 	height: number
 	src: string
-	inArtDirection?: boolean
 }

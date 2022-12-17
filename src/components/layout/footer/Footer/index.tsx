@@ -1,13 +1,14 @@
 import { Container } from '@/components/layout/container/Container'
-import { COMPANY_NAME, SITE_RELEASE_YEAR } from '@/utils/const'
+import { COMPANY_NAME } from '@/utils/meta'
 export const Footer: React.FC = () => {
+	const SITE_RELEASE_YEAR = 2022
 	const currentTime = new Date()
 	const year = currentTime.getFullYear()
 	return (
 		<footer
-			className="bg-primary-500 text-white py-10"
 			itemScope
 			itemType="https://schema.org/WPFooter"
+			className="bg-primary-500 text-white py-10"
 		>
 			<Container size="full">
 				<h2 className="sr-only">フッターメニュー</h2>

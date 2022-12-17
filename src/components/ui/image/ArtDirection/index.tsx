@@ -1,7 +1,8 @@
 import React, { ReactElement } from 'react'
 import type { ImageProps } from '@/components/ui/image/Image/type'
 import type { ArtDirectionProps } from '@/components/ui/image/ArtDirection/type'
-import { SourceWithMediaProps } from '@/components/ui/image/Source/type'
+import type { SourceWithMediaProps } from '@/components/ui/image/Source/type'
+import { Picture } from '@/components/ui/image/Picture'
 /**
  * @param children - 各ブレイクポイントで読み込む画像をそれぞれのブレイクポイントごとにSourceWithMediaコンポーネントで指定します。
  * 一番小さいサイズの画像はStaticImageに指定します。
@@ -17,5 +18,5 @@ export const ArtDirection: React.FC<
 		]
 	}
 > = ({ children, ...props }) => {
-	return <picture {...props}>{children}</picture>
+	return <Picture {...props}>{children}</Picture>
 }

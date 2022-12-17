@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { ArrowPrev } from '@/components/ui/icons/ArrowPrev'
+import { SvgIco } from '@/components/ui/svg/SvgIco'
 import { PaginationLink } from '@/components/ui/pagination/PaginationLink'
 import { PaginationPreviousProps } from './type'
 export const PaginationPrevious: React.FC<PaginationPreviousProps> = ({
@@ -17,7 +17,7 @@ export const PaginationPrevious: React.FC<PaginationPreviousProps> = ({
 				isDisabled={current === 1 ? true : undefined}
 				tabIndex={current === 1 ? -1 : undefined}
 			>
-				<ArrowPrev />
+				<SvgIco name="arrowPrev" />
 			</PaginationLink>
 		</>
 	)

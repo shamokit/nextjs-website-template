@@ -7,7 +7,7 @@ const Document: React.FC = () => {
 				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
 				<link
 					rel="stylesheet"
-					href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;display=swap"
+					href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"
 				/>
 			</Head>
 			<body

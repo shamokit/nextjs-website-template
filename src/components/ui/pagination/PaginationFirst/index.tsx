@@ -1,5 +1,5 @@
-import { ArrowFirst } from '@/components/ui/icons/ArrowFirst'
 import { PaginationLink } from '@/components/ui/pagination/PaginationLink'
+import { SvgIco } from '@/components/ui/svg/SvgIco'
 import type { PaginationFirstProps } from './type'
 export const PaginationFirst: React.FC<PaginationFirstProps> = ({
 	fullArchiveUrl,
@@ -12,7 +12,7 @@ export const PaginationFirst: React.FC<PaginationFirstProps> = ({
 			isDisabled={current === 1 ? true : undefined}
 			tabIndex={current === 1 ? -1 : undefined}
 		>
-			<ArrowFirst />
+			<SvgIco name='arrowFirst' />
 		</PaginationLink>
 	)
 }

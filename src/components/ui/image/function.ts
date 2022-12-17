@@ -1,6 +1,7 @@
 import type { GenerateSrcsetByExtensionsProps } from './type'
-import { BROWSER_SIZES } from '@/utils/const'
+import { BROWSER_SIZES } from './const'
 
+// TODO:Optional Object Patternで書きなおす
 /**
  * ファイルのパスからファイル名と拡張子を取得し、オブジェクトで返します
  * @param fileNameStr - 拡張子を含むファイルパスを指定します

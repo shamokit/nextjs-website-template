@@ -2,14 +2,13 @@ import type { NextPage, GetStaticProps, GetStaticPaths } from 'next'
 import { ParsedUrlQuery } from 'node:querystring'
 import { NextSeo } from '@/libs/next-seo'
 import { apiClient } from '@/libs/newt-api-client'
-import { SITE_URL } from '@/utils/const'
+import { SITE_URL } from '@/utils/meta'
 import type { PageContent } from '@/schemas/staticPage/type'
 import { Breadcrumb } from '@/components/layout/breadcrumb/Breadcrumb'
 import type { BreadcrumbProps } from '@/components/layout/breadcrumb/Breadcrumb/type'
-import { generateBreadcrumbObjectArray } from '@/components/layout/breadcrumb/functions/generateBreadcrumbObjectArray'
+import { generateBreadcrumbObjects } from '@/components/layout/breadcrumb/functions/generateBreadcrumbObjects'
 const fetchPages = async () => {
 	const data = await apiClient.staticPage.pageData.$get()
-
 	return { data }
 }
 const fetchPage = async (pageSlug: string) => {
@@ -64,7 +63,7 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async ({ params
 		if (!data) {
 			return { props: { status: 'nodata' } }
 		}
-		const { pageObjects: breadcrumbList } = generateBreadcrumbObjectArray(data)
+		const { pageObjects: breadcrumbList } = generateBreadcrumbObjects(data)
 		return {
 			props: {
 				pageData: data,

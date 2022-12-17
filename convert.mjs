@@ -18,11 +18,11 @@ const webpEncodeOptions = {
 	},
 };
 // windows環境でエラーになるため対応していません。
-const avifEncodeOptions = {
-	avif: {
-		cqLevel: 0,
-	},
-};
+// const avifEncodeOptions = {
+// 	avif: {
+// 		cqLevel: 0,
+// 	},
+// };
 
 // 画像フォルダ内のJPGとPNGを抽出
 const convertImageFiles = glob.sync(`${IMAGE_SRC_DIR}/**/*.+(jpg|png)`);

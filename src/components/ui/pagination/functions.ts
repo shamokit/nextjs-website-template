@@ -1,7 +1,14 @@
+// TODO:Optional Object Patternで書きなおす
 /**
  * 記事数と一ページに表示する記事件数からページ数を計算します。
  */
-export const getTotalPages = (totalCounts: number, perPage: number) => {
+export const getTotalPages = ({
+	totalCounts,
+	perPage,
+}: {
+	totalCounts: number
+	perPage: number
+}) => {
 	const totalPagesInteger = Math.trunc(totalCounts / perPage)
 	const totalPagesRemainder = totalCounts % perPage
 	const totalPages =
@@ -16,7 +23,13 @@ export const getTotalPages = (totalCounts: number, perPage: number) => {
 /**
  * 最小値を1 最大値をページ数と制限してカレントを返します。
  */
-export const getLimitedCurrent = (current: number, totalPages: number) => {
+export const getLimitedCurrent = ({
+	current,
+	totalPages,
+}: {
+	current: number
+	totalPages: number
+}) => {
 	let limitedCurrent = current
 	if (current <= 0) {
 		limitedCurrent = 1
@@ -29,11 +42,15 @@ export const getLimitedCurrent = (current: number, totalPages: number) => {
 /**
  * ページネーションに使用する数字の配列を返します。
  */
-export const getPaginationLinks = (
-	limitedCurrent: number,
-	totalPages: number,
+export const getPaginationLinks = ({
+	limitedCurrent,
+	totalPages,
+	itemsInViewMax,
+}: {
+	limitedCurrent: number
+	totalPages: number
 	itemsInViewMax: number
-) => {
+}) => {
 	const halfItemsInViewMax = Math.trunc(itemsInViewMax / 2)
 	const totalPagesArrayStartZero = [...Array(totalPages + 1)].map((_, num) => num)
 	const currentIndex = totalPagesArrayStartZero.indexOf(limitedCurrent)
@@ -68,7 +85,13 @@ export const getPaginationLinks = (
  * 前のページへのURLを返します。
  * 前のページが存在しない場合はundefinedを返します。
  */
-export const getPreviousUrl = (limitedCurrent: number, fullArchiveUrl: string) => {
+export const getPreviousUrl = ({
+	limitedCurrent,
+	fullArchiveUrl,
+}: {
+	limitedCurrent: number
+	fullArchiveUrl: string
+}) => {
 	// /pages/1/のみ記事アーカイブページへのリンクで差し替える。
 	return limitedCurrent === 1
 		? undefined
@@ -81,11 +104,15 @@ export const getPreviousUrl = (limitedCurrent: number, fullArchiveUrl: string) =
  * 次のページへのURLを返します。
  * 次のページが存在しない場合はundefinedを返します。
  */
-export const getNextUrl = (
-	limitedCurrent: number,
-	fullArchiveUrl: string,
+export const getNextUrl = ({
+	limitedCurrent,
+	fullArchiveUrl,
+	totalPages,
+}: {
+	limitedCurrent: number
+	fullArchiveUrl: string
 	totalPages: number
-) => {
+}) => {
 	return limitedCurrent === totalPages
 		? undefined
 		: `${fullArchiveUrl}pages/${Math.min(limitedCurrent + 1, totalPages)}/`

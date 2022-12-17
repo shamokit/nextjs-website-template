@@ -1,5 +1,5 @@
-import { ArrowLast } from '@/components/ui/icons/ArrowLast'
 import { PaginationLink } from '@/components/ui/pagination/PaginationLink'
+import { SvgIco } from '@/components/ui/svg/SvgIco'
 import type { PaginationLastProps } from './type'
 export const PaginationLast: React.FC<PaginationLastProps> = ({
 	current,
@@ -13,7 +13,7 @@ export const PaginationLast: React.FC<PaginationLastProps> = ({
 			isDisabled={current === totalPages ? true : undefined}
 			tabIndex={current === totalPages ? -1 : undefined}
 		>
-			<ArrowLast />
+			<SvgIco name="arrowLast" />
 		</PaginationLink>
 	)
 }

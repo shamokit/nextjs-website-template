@@ -4,14 +4,11 @@ module.exports = {
 		"src/**/*.{ts,tsx}",
 	],
 	theme: {
-    screens: {
-      'md': '768px',
-      // => @media (min-width: 768px) { ... }
-      'lg': '1280px',
-      // => @media (min-width: 1280px) { ... }
-      'xl': '1536px',
-      // => @media (min-width: 1536px) { ... }
-    },
+		screens: {
+			'md': '768px',
+			'lg': '1280px',
+			'xl': '1536px',
+		},
 		container: {
 			center: true,
 			padding: 'var(--contents--padding--side)',

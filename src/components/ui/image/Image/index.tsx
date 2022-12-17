@@ -1,7 +1,7 @@
-import React from 'react'
-import { useInView } from '@/libs/react-intersection-observer'
+import React, { useContext } from 'react'
 import type { ImageProps } from '@/components/ui/image/Image/type'
-import { TRANSPARENT_DUMMY_IMAGE } from '@/utils/const'
+import { TRANSPARENT_DUMMY_IMAGE } from '../const'
+import { RefContext } from '@/components/ui/image/Picture'
 import { generateSrcsetByExtensions } from '@/components/ui/image/function'
 export const Image: React.FC<ImageProps> = ({
 	src,
@@ -9,12 +9,9 @@ export const Image: React.FC<ImageProps> = ({
 	height,
 	alt,
 	decoding = 'async',
-	inArtDirection = false,
 	...restProps
 }) => {
-	const { ref, inView } = useInView({
-		triggerOnce: true,
-	})
+	const inView = useContext(RefContext)
 	const srcsetByExtensions = generateSrcsetByExtensions({
 		src,
 		width,
@@ -22,7 +19,6 @@ export const Image: React.FC<ImageProps> = ({
 	const el = srcsetByExtensions.map((srcsetByExtension, index) => {
 		return srcsetByExtension.ext !== 'default' ? (
 			<source
-				ref={ref}
 				srcSet={inView ? srcsetByExtension.url : TRANSPARENT_DUMMY_IMAGE}
 				width={width}
 				height={height}
@@ -31,7 +27,6 @@ export const Image: React.FC<ImageProps> = ({
 			/>
 		) : (
 			<img
-				ref={ref}
 				srcSet={inView ? srcsetByExtension.url || undefined : TRANSPARENT_DUMMY_IMAGE}
 				src={src}
 				alt={alt ?? ''}
@@ -43,5 +38,5 @@ export const Image: React.FC<ImageProps> = ({
 			/>
 		)
 	})
-	return <>{inArtDirection ? <>{el}</> : <picture>{el}</picture>}</>
+	return <>{el}</>
 }

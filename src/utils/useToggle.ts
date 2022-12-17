@@ -1,72 +1,70 @@
 import { useState } from 'react'
 import type { RefObject } from 'react'
 import { useIsomorphicEffect } from '@/utils/useIsomorphicEffect'
-import { animationTimingDefault } from '@/utils/const'
-export type Timing = {
+import { animationTimingDefault } from '@/utils/animation'
+type Timing = {
 	duration: number
 	easing: 'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out' | string
 }
-type UseToggle = (
-	accordionRef: RefObject<HTMLButtonElement | HTMLDetailsElement> | null,
-	accordionContentRef: RefObject<HTMLDivElement> | null,
-	initialValue?: boolean,
-	animation?: boolean,
-	animationTimingOpen?: Timing,
-	animationTimingClose?: Timing,
-	animationAction?: {
+export type ToggleAnimation = {
+	timingOpen?: Timing
+	timingClose?: Timing
+	actions?: {
 		beforeOpen?: () => unknown
 		beforeClose?: () => unknown
 		afterOpen?: () => unknown
 		afterClose?: () => unknown
 	}
+}
+export type UseToggleProps = {
+	accordionRef: RefObject<HTMLButtonElement | HTMLDetailsElement> | null
+	accordionContentRef: RefObject<HTMLDivElement> | null
+	initialValue?: boolean
+	animation?: ToggleAnimation | false
+}
+type UseToggle = (
+	args: UseToggleProps
 ) => [boolean, (e: React.MouseEvent<HTMLElement, MouseEvent>) => void]
 
 /**
  * トグル
- * Accordionコンポーネントで使用しています。detailsタグで実装する場合はそちらを使用ください。
- * detailsタグの使用をお勧めしますが、使用しない場合はこのフックを以下のように使用します。
+ * 基本的にはトグルはdetailsタグで実装ください。Accordionコンポーネントで使用しています。
+ * detailsタグを使用しない場合はこのフックを以下のように使用します。
  * <button ref={accordionRef} aria-controls="targetId" aria-expanded={open} onClick={(e) => doAccordion(e)}>text</button>
  * <div ref={accordionContentRef} id="targetId" className="overflow-hidden">
  * 	{children}
  * </div>
- * @param accordionRef details or buttonのref
- * @param accordionContentRef トグルコンテンツ
- * @param initialValue 開閉初期値
- * @param animation アニメーションさせるかどうか
- * @param animationTimingOpen Openアニメーションの秒数とeasing
- * @param animationTimingClose Closeアニメーションの秒数とeasing
- * @param animationAction トグルの前後に処理する関数のオブジェクト
+ * @props accordionRef details or buttonのref
+ * @props accordionContentRef トグルコンテンツ
+ * @props initialValue 開閉初期値
+ * @props animation.timingOpen Openアニメーションの秒数とeasing
+ * @props animation.timingClose Closeアニメーションの秒数とeasing
+ * @props animation.actions トグルの前後に処理する関数のオブジェクト
  * @return [open, doAnimation]
  */
-export const useToggle: UseToggle = (
+export const useToggle: UseToggle = ({
 	accordionRef = null,
 	accordionContentRef = null,
 	initialValue = false,
-	animation = true,
-	animationTimingOpen = animationTimingDefault,
-	animationTimingClose = animationTimingDefault,
-	animationAction = {
-		beforeOpen: undefined,
-		beforeClose: undefined,
-		afterOpen: undefined,
-		afterClose: undefined,
-	}
-) => {
+	animation = {
+		timingOpen: animationTimingDefault,
+		timingClose: animationTimingDefault,
+		actions: undefined,
+	},
+}) => {
 	const isomorphicEffect = useIsomorphicEffect()
 	const [open, setOpen] = useState(initialValue)
-	const { beforeOpen, beforeClose, afterOpen, afterClose } = animationAction
-	/** アニメーションのため、高さを0に指定します。 */
-	const setZeroHeight = () =>
+	const setHeightZero = () =>
 		accordionContentRef?.current?.setAttribute('style', 'height: 0px')
-	/** open属性を付与します。 */
 	const setHTMLAttributeOpen = () => accordionRef?.current?.setAttribute('open', '')
-	/** open属性を取り除きます。 */
 	const removeHTMLAttributeOpen = () => accordionRef?.current?.removeAttribute('open')
-	/** style属性を取り除きます。 */
 	const removeHTMLAttributeStyle = () =>
 		accordionContentRef?.current?.removeAttribute('style')
-	/** ctrl + Fで検索した時detailsタグはopen属性がつくのでstateとずれるのを補正します。 */
-	const checkToggle = () => {
+	/**
+	 * ctrl + Fで検索した時detailsタグにopen属性が自動でつきます。
+	 * stateとずれるので補正します。
+	 */
+	const correctAttributeOpen = () => {
 		if (accordionRef?.current?.tagName !== 'DETAILS') return
 		const htmlAttributeOpen = accordionRef?.current?.getAttribute('open')
 		open.toString() !== htmlAttributeOpen &&
@@ -80,24 +78,31 @@ export const useToggle: UseToggle = (
 		} else {
 			accordionContentRef.current?.setAttribute('aria-hidden', `${!open}`)
 		}
-
-		// イベントリスナのsubscribeとunsubscribe
-		accordionRef?.current?.addEventListener('toggle', () => checkToggle())
-		return accordionRef?.current?.removeEventListener('toggle', () => checkToggle())
+		accordionRef?.current?.addEventListener('toggle', () => correctAttributeOpen())
+		return accordionRef?.current?.removeEventListener('toggle', () =>
+			correctAttributeOpen()
+		)
 	}, [])
 	isomorphicEffect(() => {
 		if (!accordionRef) return
 		if (!accordionContentRef) return
 		accordionRef.current?.tagName !== 'DETAILS' &&
 			!open &&
-			(setZeroHeight(),
+			(setHeightZero(),
 			accordionContentRef.current?.setAttribute('aria-hidden', `${!open}`))
 		!animation && open && removeHTMLAttributeStyle()
 	}, [open])
+
 	/** トグル前に処理を挟みます */
-	const actionBeforeToggle = () => (open ? beforeClose?.() : beforeOpen?.())
+	const actionBeforeToggle = () => {
+		if (!animation) return
+		open ? animation.actions?.beforeClose?.() : animation.actions?.beforeOpen?.()
+	}
 	/** トグルアニメーション後に処理を挟みます */
-	const actionAfterToggle = () => (open ? afterClose?.() : afterOpen?.())
+	const actionAfterToggle = () => {
+		if (!animation) return
+		open ? animation.actions?.afterClose?.() : animation.actions?.afterOpen?.()
+	}
 
 	/** アコーディオンを閉じるときのキーフレーム */
 	const closingAnimKeyframes = (content: RefObject<HTMLDivElement>) => [
@@ -125,13 +130,14 @@ export const useToggle: UseToggle = (
 
 	/** アコーディオンを閉じるアニメーション */
 	const closingAnimation = (content: RefObject<HTMLDivElement>) => {
+		if (!animation) return
 		if (!content.current) return
 		const anim = content.current.animate(
 			closingAnimKeyframes(content),
-			animationTimingClose
+			animation.timingClose
 		)
 		anim.onfinish = () => {
-			accordionRef?.current?.tagName !== 'DETAILS' && setZeroHeight()
+			accordionRef?.current?.tagName !== 'DETAILS' && setHeightZero()
 			// アニメーションをする場合open属性はアニメーション後に消す必要がある
 			setOpen(false)
 			actionAfterToggle()
@@ -142,6 +148,7 @@ export const useToggle: UseToggle = (
 
 	/** アコーディオンを開くアニメーション */
 	const openingAnimation = (content: RefObject<HTMLDivElement>) => {
+		if (!animation) return
 		if (!content.current) return
 		if (!accordionRef) return
 		accordionRef.current?.tagName === 'DETAILS' && setHTMLAttributeOpen()
@@ -152,7 +159,7 @@ export const useToggle: UseToggle = (
 		setOpen(true)
 		const anim = content.current.animate(
 			openingAnimKeyframes(content),
-			animationTimingOpen
+			animation.timingOpen
 		)
 		anim.onfinish = () => {
 			accordionRef.current?.tagName !== 'DETAILS' && removeHTMLAttributeStyle()

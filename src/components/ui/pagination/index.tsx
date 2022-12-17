@@ -1,5 +1,5 @@
 import React from 'react'
-import { SITE_URL } from '@/utils/const'
+import { SITE_URL } from '@/utils/meta'
 import { PaginationProps } from './type'
 import { PaginationLink } from '@/components/ui/pagination/PaginationLink'
 import { PaginationFirst } from '@/components/ui/pagination/PaginationFirst'
@@ -41,18 +41,18 @@ export const Pagination: React.FC<PaginationProps> = ({
 		throw Error('currentには正の整数を指定してください。')
 
 	// 何ページまであるか
-	const totalPages = getTotalPages(totalCounts, perPage)
+	const totalPages = getTotalPages({ totalCounts, perPage })
 
 	// 1~totalPagesまでに制限したカレント
-	const limitedCurrent = getLimitedCurrent(current, totalPages)
+	const limitedCurrent = getLimitedCurrent({ current, totalPages })
 
 	// 記事アーカイブページ/前のページ/次のページへのURL
 	const fullArchiveUrl = `${SITE_URL}/${archiveSlug}/`
-	const previousUrl = getPreviousUrl(limitedCurrent, fullArchiveUrl)
-	const nextUrl = getNextUrl(limitedCurrent, fullArchiveUrl, totalPages)
+	const previousUrl = getPreviousUrl({ limitedCurrent, fullArchiveUrl })
+	const nextUrl = getNextUrl({ limitedCurrent, fullArchiveUrl, totalPages })
 
 	// ページネーションに表示する数字の配列
-	const itemsInView = getPaginationLinks(limitedCurrent, totalPages, itemsInViewMax)
+	const itemsInView = getPaginationLinks({ limitedCurrent, totalPages, itemsInViewMax })
 	const paginationItems = itemsInView.map((pageNum) => {
 		return (
 			<PaginationLink

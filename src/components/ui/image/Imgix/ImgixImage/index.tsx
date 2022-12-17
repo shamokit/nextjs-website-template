@@ -1,8 +1,8 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Head from 'next/head'
-import { useInView } from '@/libs/react-intersection-observer'
-import { TRANSPARENT_DUMMY_IMAGE } from '@/utils/const'
+import { TRANSPARENT_DUMMY_IMAGE } from '../../const'
 import type { ImgixImgPropsWithoutMedia } from '@/components/ui/image/Imgix/ImgixImage/type'
+import { RefContext } from '@/components/ui/image/Imgix/ImgixPicture'
 import {
 	getAdjustedSize,
 	generateSrcsetByExtensions,
@@ -10,7 +10,6 @@ import {
 
 export const ImgixImage: React.FC<
 	ImgixImgPropsWithoutMedia & {
-		inArtDirection?: boolean
 		preload?: boolean
 	}
 > = ({
@@ -20,13 +19,10 @@ export const ImgixImage: React.FC<
 	alt,
 	imgixParam,
 	decoding = 'async',
-	inArtDirection = false,
 	preload = false,
 	...restProps
 }) => {
-	const { ref, inView } = useInView({
-		triggerOnce: true,
-	})
+	const inView = useContext(RefContext)
 	const [adjustedWidth, adjustedHeight] = getAdjustedSize({ width, height, imgixParam })
 	const srcsetByExtensions = generateSrcsetByExtensions({
 		src,
@@ -42,7 +38,6 @@ export const ImgixImage: React.FC<
 	const el = srcsetByExtensions.map((srcsetByExtension, index) => {
 		return srcsetByExtension.ext !== 'default' ? (
 			<source
-				ref={ref}
 				srcSet={inView ? srcsetByExtension.url : TRANSPARENT_DUMMY_IMAGE}
 				width={adjustedWidth}
 				height={adjustedHeight}
@@ -51,7 +46,6 @@ export const ImgixImage: React.FC<
 			/>
 		) : (
 			<img
-				ref={ref}
 				srcSet={inView ? srcsetByExtension.url || undefined : TRANSPARENT_DUMMY_IMAGE}
 				src={src}
 				alt={alt ?? ''}
@@ -65,23 +59,17 @@ export const ImgixImage: React.FC<
 	})
 	return (
 		<>
-			{inArtDirection ? (
-				<>{el}</>
-			) : (
-				<>
-					{preload && (
-						<Head>
-							<link
-								rel="preload"
-								imageSrcSet={avifExtensionSrcSet.url}
-								as="image"
-								imageSizes="100vw"
-							/>
-						</Head>
-					)}
-					<picture>{el}</picture>
-				</>
+			{preload && (
+				<Head>
+					<link
+						rel="preload"
+						imageSrcSet={avifExtensionSrcSet.url}
+						as="image"
+						imageSizes="100vw"
+					/>
+				</Head>
 			)}
+			<>{el}</>
 		</>
 	)
 }

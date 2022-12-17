@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Head from 'next/head'
-import { useInView } from '@/libs/react-intersection-observer'
-import { TRANSPARENT_DUMMY_IMAGE } from '@/utils/const'
+import { TRANSPARENT_DUMMY_IMAGE } from '../../const'
 import { BREAK_POINTS } from '@/utils/const'
 import type { ImgixSourcePropsWithMedia } from './type'
+import { RefContext } from '@/components/ui/image/Imgix/ImgixPicture'
 import {
 	getAdjustedSize,
 	generateSrcsetByExtensions,
@@ -15,7 +15,7 @@ export const ImgixSourceWithMedia: React.FC<ImgixSourcePropsWithMedia> = ({
 	height,
 	mediaSize,
 	imgixParam,
-	preload = false,
+	preload = false, //TODO:preloadがtrueの時はauto=formatにする
 	...restProps
 }) => {
 	const [adjustedWidth, adjustedHeight] = getAdjustedSize({ width, height, imgixParam })
@@ -25,9 +25,7 @@ export const ImgixSourceWithMedia: React.FC<ImgixSourcePropsWithMedia> = ({
 		adjustedHeight,
 		imgixParam,
 	})
-	const { ref, inView } = useInView({
-		triggerOnce: true,
-	})
+	const inView = useContext(RefContext)
 
 	// https://web.dev/i18n/ja/preload-responsive-images/
 	const avifExtensionSrcSet = srcsetByExtensions.filter((srcsetByExtension) => {
@@ -36,7 +34,6 @@ export const ImgixSourceWithMedia: React.FC<ImgixSourcePropsWithMedia> = ({
 	const el = srcsetByExtensions.map((srcsetByExtension, index) => {
 		return srcsetByExtension.ext !== 'default' ? (
 			<source
-				ref={ref}
 				srcSet={inView ? srcsetByExtension.url : TRANSPARENT_DUMMY_IMAGE}
 				width={adjustedWidth}
 				height={adjustedHeight}
@@ -46,7 +43,6 @@ export const ImgixSourceWithMedia: React.FC<ImgixSourcePropsWithMedia> = ({
 			/>
 		) : (
 			<source
-				ref={ref}
 				srcSet={inView ? srcsetByExtension.url || undefined : TRANSPARENT_DUMMY_IMAGE}
 				width={adjustedWidth}
 				height={adjustedHeight}

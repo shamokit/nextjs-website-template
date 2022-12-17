@@ -8,7 +8,7 @@ import '@/styles/globals.css'
 import { WebPage, Organization } from '@/libs/schema-dts'
 import { jsonLdScriptProps } from '@/libs/react-schemaorg'
 
-import { SITE_URL, COMPANY_NAME, COMPANY_TEL } from '@/utils/const'
+import { SITE_URL, COMPANY_NAME, COMPANY_TEL } from '@/utils/meta'
 import { Header } from '@/components/layout/header/Header'
 import { Footer } from '@/components/layout/footer/Footer'
 import { SVG } from '@/components/ui/svg'

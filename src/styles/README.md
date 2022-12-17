@@ -1,12 +1,9 @@
 ## Mixins
-
-Assemble mixins.
+mixinを入れます。
 
 ## Vars
-
-Collect CSS variables.  
-The CSS variables defined here will be used in tailwind.config.js.
+CSS変数を入れます。
 
 ## Vars_sass
-
-Collect SASS variables.
+SASSの変数を入れます。
+極力使わずCSS変数を使用します。
