@@ -6,7 +6,7 @@ export const Header: React.FC = () => {
 		<header
 			itemScope
 			itemType="https://schema.org/WPHeader"
-			className="fixed top-0 left-0 w-full bg-white"
+			className="fixed top-0 left-0 z-10 w-full bg-white"
 		>
 			<Container size="full" className="flex items-center h-[var(--header--height)]">
 				<h1 className="flex-grow-0 font-bold text-xl">

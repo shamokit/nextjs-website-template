@@ -66,7 +66,7 @@ export const Pagination: React.FC<PaginationProps> = ({
 	})
 	return (
 		<nav aria-label="ページナビゲーション">
-			<ul className="flex flex-wrap items-end gap-3xs">
+			<ul className="flex flex-wrap items-end gap-2">
 				<PaginationItems>
 					<PaginationFirst fullArchiveUrl={fullArchiveUrl} current={limitedCurrent} />
 					{previousUrl && (

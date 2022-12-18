@@ -4,9 +4,7 @@ import { clearAllBodyScrollLocks, disableBodyScroll } from '@/libs/body-scroll-l
 type UseDisableScrollProps = { ref: RefObject<HTMLElement>; isOpen: boolean }
 export const useDisableScroll = ({ ref, isOpen }: UseDisableScrollProps): void => {
 	useEffect(() => {
-		if (!isOpen || ref.current === null) {
-			return
-		}
+		if (!isOpen || ref.current === null) return
 		disableBodyScroll(ref.current)
 		return clearAllBodyScrollLocks
 	}, [ref, isOpen])

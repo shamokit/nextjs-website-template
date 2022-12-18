@@ -1,9 +1,0 @@
-@import '../vars_sass/_breakpoint.css';
-
-:root {
-	--breakpoint--min: $breakpoint-min;
-	--breakpoint--sm: $breakpoint-sm;
-	--breakpoint--md: $breakpoint-md;
-	--breakpoint--lg: $breakpoint-lg;
-	--breakpoint--xl: $breakpoint-xl;
-}

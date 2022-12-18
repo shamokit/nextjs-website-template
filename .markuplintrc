@@ -26,24 +26,84 @@
 	},
 	"nodeRules": [
 		{
+			"selector": "TabList",
+			"rules": {
+				"permitted-contents": [
+					{
+						"tag": "TabList",
+						"contents": [
+							{
+								"oneOrMore": "Tab"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
 			"selector": "ImgixArtDirection",
 			"rules": {
-				"permitted-contents": true,
-				"required-element": ["ImgixImage", "ImgixSourceWithMedia"]
+				"permitted-contents": [
+					{
+						"tag": "ImgixArtDirection",
+						"contents": [
+							{
+								"oneOrMore": "ImgixSourceWithMedia"
+							},
+							{
+								"require": "ImgixImage"
+							}
+						]
+					}
+				]
 			}
 		},
 		{
 			"selector": "ArtDirection",
 			"rules": {
-				"permitted-contents": true,
-				"required-element": ["Image", "SourceWithMedia"]
+				"permitted-contents": [
+					{
+						"tag": "ArtDirection",
+						"contents": [
+							{
+								"oneOrMore": "SourceWithMedia"
+							},
+							{
+								"require": "Image"
+							}
+						]
+					}
+				]
 			}
 		},
 		{
-			"selector": "picture",
+			"selector": "Picture",
 			"rules": {
-				"permitted-contents": false,
-				"required-element": ["Source", "StaticImage"]
+				"permitted-contents": [
+					{
+						"tag": "Picture",
+						"contents": [
+							{
+								"require": "Image"
+							}
+						]
+					}
+				]
+			}
+		},
+		{
+			"selector": "ImgixPicture",
+			"rules": {
+				"permitted-contents": [
+					{
+						"tag": "ImgixPicture",
+						"contents": [
+							{
+								"require": "ImgixImage"
+							}
+						]
+					}
+				]
 			}
 		}
 	]

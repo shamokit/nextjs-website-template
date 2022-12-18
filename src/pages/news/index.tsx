@@ -33,9 +33,8 @@ const News: NextPage<Props> = ({ postsData }) => {
 		<>
 			<NextSeo title="News" description="News" />
 			<Container>
-				<Breadcrumb list={breadcrumbList} />
-				<PageNews postsData={postsData} />
 				<Breadcrumb list={breadcrumbList} withJsonLd={false} />
+				<PageNews postsData={postsData} />
 			</Container>
 		</>
 	)

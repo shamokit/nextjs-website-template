@@ -1,15 +1,15 @@
 import type { BreadcrumbItemProps } from '@/components/layout/breadcrumb/Breadcrumb/BreadcrumbItem/type'
-type PageData = {
+type Page = {
 	title: string
 	slug: string
 }
-type PageDataWithParent = PageData & { parent: PageDataWithParent | null }
-export const generateBreadcrumbObjects = (pageData: PageDataWithParent) => {
-	const pageObjectsParentToChild: PageData[] = []
+type PageWithParent = Page & { parent: PageWithParent | null }
+export const generateBreadcrumbObjects = (pageData: PageWithParent) => {
+	const pageObjectsParentToChild: Page[] = []
 	/**
 	 * ページデータのオブジェクトを親から子に向けて再帰的にタイトルとスラッグを取得して配列を作成します。
 	 */
-	const getParentData = (data: PageDataWithParent) => {
+	const getParentData = (data: PageWithParent) => {
 		pageObjectsParentToChild.push({ title: data.title, slug: data.slug })
 		if (data.parent) {
 			getParentData(data.parent)

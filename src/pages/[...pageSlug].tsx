@@ -94,12 +94,12 @@ const StaticPage: NextPage<PageProps> = ({ pageData, breadcrumb }) => {
 						}
 						canonical={`${SITE_URL}/${pageSlug}`}
 					/>
+					{breadcrumb && <Breadcrumb {...breadcrumb} />}
 					<main>
 						<article>
 							<h1>{pageData.title}</h1>
 						</article>
 					</main>
-					{breadcrumb && <Breadcrumb {...breadcrumb} />}
 				</>
 			)}
 		</>

@@ -12,25 +12,23 @@
 @layer base {
 	/* Typograpy */
 	body {
-		font-size: var(--font-size--md);
-		line-height: var(--line-height--md);
-		color: rgb(var(--color--primary-500));
+		@apply text-md leading-md text-primary-500;
 	}
 
 	* {
-		letter-spacing: var(--letter-spacing--md);
+		@apply tracking-md;
 	}
 
 	/* Image */
 	img {
-		object-fit: cover;
+		@apply object-cover;
 	}
 
 	/* a11y */
 	input,
 	select,
 	textarea {
-		border: 1px solid rgb(var(--color--primary-500));
+		@apply border border-solid border-primary-500;
 	}
 
 	a,
@@ -46,11 +44,14 @@
 	}
 
 	[aria-current] {
-		font-weight: 700;
+		@apply font-bold;
 	}
 
+	summary {
+		@apply block;
+	}
 	summary, button {
-		cursor: pointer;
+		@apply cursor-pointer;
 	}
 }
 

@@ -16,7 +16,7 @@
 		"lint-fix": "npm run lint-fix:script && npm run lint-fix:style && npm run lint-fix:markup",
 		"img-resize": "node resize.mjs",
 		"img-convert": "node convert.mjs",
-		"lint-fix:markup": "markuplint ./src/**/*.{jsx,tsx}"
+		"lint:markup": "markuplint ./src/**/*.{jsx,tsx}"
 	},
 	"dependencies": {
 		"@aspida/axios": "^1.11.0",

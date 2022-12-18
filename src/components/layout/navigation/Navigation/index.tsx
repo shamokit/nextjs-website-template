@@ -44,7 +44,7 @@ export const Navigation: React.FC = () => {
 				aria-hidden={!open}
 			>
 				<nav
-					className="flex md:justify-end gap-xl md:gap-sm flex-col md:flex-row md:items-center py-8 px-5"
+					className="flex md:justify-end gap-4 flex-col md:flex-row md:items-center py-8 px-5"
 					aria-label="グローバルメニュー"
 				>
 					<NavigationMenu menu={menu} />

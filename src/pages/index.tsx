@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 import type { NextPage } from 'next'
 import { NextSeo } from '@/libs/next-seo'
 import { Container } from '@/components/layout/container/Container'
@@ -14,51 +14,13 @@ import { ArtDirection } from '@/components/ui/image/ArtDirection'
 import { SourceWithMedia } from '@/components/ui/image/Source'
 import { Accordion } from '@/components/ui/accordion/Accordion'
 import { FaqItems } from '@/components/ui/faq/FaqItems'
+import { Tab } from '@/components/ui/tab/Tab'
 import { TabList } from '@/components/ui/tab/TabList'
 import { useToggle } from '@/utils/useToggle'
 const Home: NextPage = () => {
 	const accordionRef = useRef<HTMLButtonElement>(null)
 	const accordionContentRef = useRef<HTMLDivElement>(null)
 	const [open, doAccordion] = useToggle({accordionRef, accordionContentRef, initialValue: true})
-	const [activeTab, toggleActiveTab] = useState('A')
-	useEffect(() => {
-		document.querySelectorAll('[aria-label="テストタブ"] details').forEach((item) => {
-			item.addEventListener('toggle', (e: Event) => {
-				const el = e.target
-				if (!(el instanceof HTMLDetailsElement)) return
-				const details = document.querySelector(`[id="${el.id}"]`)
-				if (!details) return
-				const id = details.getAttribute('id')
-				if (!id) return
-				if (details.getAttribute('open') === '') {
-					toggleActiveTab(id)
-				}
-			})
-		})
-	}, [])
-	useEffect(() => {
-		document.querySelectorAll('[aria-label="テストタブ"] details').forEach((item) => {
-			item.removeAttribute('open')
-			item.removeAttribute('style')
-			if (item.getAttribute('id') === activeTab) {
-				const details = document.getElementById(activeTab)
-				if (!details) return
-				details?.setAttribute('open', '')
-				const summaryHeight =
-					document
-						.querySelector(`[aria-label="テストタブ"] details[id="${activeTab}"] summary`)
-						?.getBoundingClientRect().height ?? 0
-				const contentHeight =
-					document
-						.querySelector(
-							`[aria-label="テストタブ"] details[id="${activeTab}"] summary + *`
-						)
-						?.getBoundingClientRect().height ?? 0
-				details.style.height = `${summaryHeight + contentHeight}px`
-			}
-		})
-	}, [activeTab])
-	const tags = ['A', 'B']
 	return (
 		<>
 			<NextSeo />
@@ -97,9 +59,13 @@ const Home: NextPage = () => {
 			</SimpleMainVisual>
 			<Container>
 				<main>
-					<TabList tabClassName="group-open:bg-primary-500 group-open:text-white" titles={["A_Title", "B_Title"]} activeIndex={0} ariaLabel='テストタブ1'>
-						<div className="p-4">contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA<br />contentA</div>
-						<div className="p-4">contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB</div>
+					<TabList tabClassName="group-open:bg-primary-500 group-open:text-white" ariaLabel='テストタブ1'>
+						<Tab title="A_Title" index={0}>
+							<div className="p-4">contentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentA<br />contentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentA<br />contentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentA<br />contentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentA<br />contentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentA<br />contentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentA<br />contentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentA<br />contentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentA<br />contentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentA<br />contentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentA<br />contentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentA<br />contentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentA<br />contentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentA<br />contentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentA<br />contentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentA<br />contentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentA<br />contentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentA<br />contentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentA<br />contentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentAcontentA</div>
+						</Tab>
+						<Tab title="B_Title" index={1} activeFirst={true}>
+							<div className="p-4">contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB<br />contentB</div>
+						</Tab>
 					</TabList>
 					<ImgixPicture>
 						<ImgixImage
@@ -141,23 +107,23 @@ const Home: NextPage = () => {
 						<Image src="/images/2560x2560.png" width={2560} height={2560} alt="" />
 					</Picture>
 					<section>
-						<h2 className="mb-md text-2xl font-bold">budouX</h2>
+						<h2 className="mb-6 text-2xl font-bold">budouX</h2>
 						<Text
 							text={`budouXによって改行位置が調整されます。<br />必須で改行させたい部分には<br />も使えます。`}
 						/>
 					</section>
-					<section className="mt-xl pt-xl border-t border-primary-500">
-						<h2 className="mb-md text-2xl font-bold">Accordion</h2>
+					<section className="mt-10 pt-10 border-t border-primary-500">
+						<h2 className="mb-6 text-2xl font-bold">Accordion</h2>
 						<section>
-							<h3 className="mb-sm text-xl font-bold">Details</h3>
+							<h3 className="mb-4 text-xl font-bold">Details</h3>
 							<Accordion title="Accordion">
-								<div className="p-md">
+								<div className="p-8">
 									<p>初期状態:Close</p>
 								</div>
 							</Accordion>
 						</section>
-						<section className="mt-md">
-							<h3 className="mb-sm text-xl font-bold">Other</h3>
+						<section className="mt-8">
+							<h3 className="mb-4 text-xl font-bold">Other</h3>
 							<button
 								ref={accordionRef}
 								onClick={(e) => doAccordion(e)}
@@ -167,7 +133,7 @@ const Home: NextPage = () => {
 								Accordion
 							</button>
 							<div ref={accordionContentRef} id="panel1" className="overflow-hidden">
-								<div className="p-md bg-surface-500">
+								<div className="p-8 bg-surface-500">
 									<p>初期状態:Open</p>
 								</div>
 							</div>

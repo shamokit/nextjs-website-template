@@ -9,11 +9,11 @@ export const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
 }) => {
 	return (
 		<>
-			<li className="flex mr-4xs">
+			<li className="flex mr-2">
 				{separator && (
 					<span
 						aria-hidden={true}
-						className="flex-grow-0 flex-shrink-0 mr-4xs font-normal"
+						className="flex-grow-0 flex-shrink-0 mr-2 font-normal"
 					>
 						{separator}
 					</span>

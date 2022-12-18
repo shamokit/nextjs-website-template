@@ -5,9 +5,11 @@ module.exports = {
 	],
 	theme: {
 		screens: {
+			'sm': '600px',
 			'md': '768px',
-			'lg': '1280px',
-			'xl': '1536px',
+			'lg': '1100px',
+			'xl': '1280px',
+			'xxl': '1536px',
 		},
 		container: {
 			center: true,
@@ -25,7 +27,7 @@ module.exports = {
 			'none': '1',
 			'xs': '1.1',
 			'sm': '1.6',
-			'DEFAULT': '1.8',
+			'md': '1.8',
 			'lg': '2',
 		},
 		colors: {
@@ -40,7 +42,7 @@ module.exports = {
 		},
 		letterSpacing: {
 			'sm': "var(--letter-spacing--sm)",
-			'DEFAULT': 'var(--letter-spacing--md)',
+			'md': 'var(--letter-spacing--md)',
 			'lg': 'var(--letter-spacing--lg)',
 		},
 		fontSize: {
@@ -98,55 +100,6 @@ module.exports = {
 			'15xl': ['var(--font-size--15xl)', {
 				lineHeight: 'var(--line-height--xs)'
 			}]
-		},
-		gap: {
-			'none': 0,
-			'6xs': 'var(--space--6xs)',
-			'5xs': 'var(--space--5xs)',
-			'4xs': 'var(--space--4xs)',
-			'3xs': 'var(--space--3xs)',
-			'2xs': 'var(--space--2xs)',
-			'xs': 'var(--space--xs)',
-			'sm': 'var(--space--sm)',
-			'md': 'var(--space--md)',
-			'lg': 'var(--space--lg)',
-			'xl': 'var(--space--xl)',
-			'2xl': 'var(--space--2xl)',
-			'3xl': 'var(--space--3xl)',
-			'4xl': 'var(--space--4xl)',
-			'5xl': 'var(--space--5xl)',
-		},
-		extend: {
-			padding: {
-				'none': 0,
-				'3xs': 'var(--padding--3xs)',
-				'2xs': 'var(--padding--2xs)',
-				'xs': 'var(--padding--xs)',
-				'sm': 'var(--padding--sm)',
-				'md': 'var(--padding--md)',
-				'lg': 'var(--padding--lg)',
-				'xl': 'var(--padding--xl)',
-				'2xl': 'var(--padding--2xl)',
-				'3xl': 'var(--padding--3xl)',
-			},
-			margin: {
-				'auto': "auto",
-				'none': 0,
-				'6xs': 'var(--space--6xs)',
-				'5xs': 'var(--space--5xs)',
-				'4xs': 'var(--space--4xs)',
-				'3xs': 'var(--space--3xs)',
-				'2xs': 'var(--space--2xs)',
-				'xs': 'var(--space--xs)',
-				'sm': 'var(--space--sm)',
-				'md': 'var(--space--md)',
-				'lg': 'var(--space--lg)',
-				'xl': 'var(--space--xl)',
-				'2xl': 'var(--space--2xl)',
-				'3xl': 'var(--space--3xl)',
-				'4xl': 'var(--space--4xl)',
-				'5xl': 'var(--space--5xl)',
-			},
-		},
+		}
 	}
 }
