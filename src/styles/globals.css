@@ -50,7 +50,9 @@
 	summary {
 		@apply block;
 	}
-	summary, button {
+
+	summary,
+	button {
 		@apply cursor-pointer;
 	}
 }

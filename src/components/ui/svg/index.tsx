@@ -6,10 +6,14 @@ export const SVG = () => {
 		<svg className="hidden">
 			<>
 				{iconNames.map((name) => {
-					const {viewBox, paths} = icons[name]
+					const { viewBox, paths } = icons[name]
 					return (
-						<symbol key={name} viewBox={viewBox} id={`ico${capitalize(name)}`} dangerouslySetInnerHTML={{__html: paths}}>
-						</symbol>
+						<symbol
+							key={name}
+							viewBox={viewBox}
+							id={`ico${capitalize(name)}`}
+							dangerouslySetInnerHTML={{ __html: paths }}
+						></symbol>
 					)
 				})}
 			</>

@@ -24,13 +24,15 @@ export const Tab = forwardRef<HTMLDetailsElement, TabProps>(
 		const [, resizeHeight] = useResizeObserver(detailsContent)
 		const isomorphicEffect = useIsomorphicEffect()
 		isomorphicEffect(() => {
-			if(detailsRef.current?.open && summary) {
+			if (detailsRef.current?.open && summary) {
 				const summaryHeight = summary.getBoundingClientRect().height ?? 0
 				setHeight(summaryHeight + resizeHeight)
 			}
 		}, [summary, resizeHeight])
 		isomorphicEffect(() => {
-			activeFirst ? detailsRef.current?.setAttribute('open', '') : detailsRef.current?.removeAttribute('open')
+			activeFirst
+				? detailsRef.current?.setAttribute('open', '')
+				: detailsRef.current?.removeAttribute('open')
 		}, [activeFirst])
 		const onToggleHandler = (
 			e: React.SyntheticEvent<HTMLDetailsElement, Event>,

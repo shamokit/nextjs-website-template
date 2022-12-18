@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { DefaultSeo } from '@/libs/next-seo'
 import SEO from '../../next-seo.config'
-import { GoogleAnalytics } from "@/libs/nextjs-google-analytics";
+import { GoogleAnalytics } from '@/libs/nextjs-google-analytics'
 import '@/styles/globals.css'
 
 import { WebPage, Organization } from '@/libs/schema-dts'

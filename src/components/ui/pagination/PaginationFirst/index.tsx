@@ -12,7 +12,7 @@ export const PaginationFirst: React.FC<PaginationFirstProps> = ({
 			isDisabled={current === 1 ? true : undefined}
 			tabIndex={current === 1 ? -1 : undefined}
 		>
-			<SvgIco name='arrowFirst' />
+			<SvgIco name="arrowFirst" />
 		</PaginationLink>
 	)
 }

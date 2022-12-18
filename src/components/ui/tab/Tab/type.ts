@@ -5,6 +5,9 @@ export type TabProps = {
 	activeFirst?: boolean
 	children: React.ReactNode
 	onClick?: (e: React.MouseEvent, index: number) => void
-	onToggle?: (e: React.SyntheticEvent<HTMLDetailsElement, Event>, index: number) => false | void
+	onToggle?: (
+		e: React.SyntheticEvent<HTMLDetailsElement, Event>,
+		index: number
+	) => false | void
 	onKeyUp?: (e: React.KeyboardEvent<HTMLElement>, index: number) => void
 }

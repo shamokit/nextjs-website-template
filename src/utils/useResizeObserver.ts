@@ -6,7 +6,7 @@ export const useResizeObserver = (el?: HTMLElement | null): [number, number] => 
 	const [size, setSize] = useState([0, 0])
 	isomorphicEffect(() => {
 		const updateSize = () => {
-			if(!el) return
+			if (!el) return
 			const rect = el.getBoundingClientRect()
 			setSize([rect.width, rect.height])
 		}

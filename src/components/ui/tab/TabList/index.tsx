@@ -49,16 +49,16 @@ export const TabList: React.FC<TabListProps> = ({
 			const summary = refs.current[index].current
 			const details = summary?.parentElement as HTMLDetailsElement | null
 			const detailsContent = summary?.nextElementSibling
-			if(!(summary && details && detailsContent)) return
+			if (!(summary && details && detailsContent)) return
 			details.removeAttribute('open')
 			if (index === activeTab) {
 				details.setAttribute('open', '')
 			}
 		})
-	},[activeTab, children])
+	}, [activeTab, children])
 	return (
 		<ul aria-label={ariaLabel} className={`relative flex gap-4 ${className}`}>
-			{children.map(({props: {activeFirst,title,children}}, index) => {
+			{children.map(({ props: { activeFirst, title, children } }, index) => {
 				return (
 					<li key={`${title?.toString()}${index}`}>
 						<Tab

@@ -11,10 +11,7 @@ export const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
 		<>
 			<li className="flex mr-2">
 				{separator && (
-					<span
-						aria-hidden={true}
-						className="flex-grow-0 flex-shrink-0 mr-2 font-normal"
-					>
+					<span aria-hidden={true} className="flex-grow-0 flex-shrink-0 mr-2 font-normal">
 						{separator}
 					</span>
 				)}
