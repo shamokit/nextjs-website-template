@@ -28,8 +28,8 @@ type UseToggle = (
 
 /**
  * トグル
- * 基本的にはトグルはdetailsタグで実装ください。Accordionコンポーネントで使用しています。
- * detailsタグを使用しない場合はこのフックを以下のように使用します。
+ * 基本的にはトグルはdetailsタグで実装ください。Accordionコンポーネントで主に使用します。
+ * detailsタグを使用しない場合のみこのフックを以下のように使用します。
  * <button ref={accordionRef} aria-controls="targetId" aria-expanded={open} onClick={(e) => doAccordion(e)}>text</button>
  * <div ref={accordionContentRef} id="targetId" className="overflow-hidden">
  * 	{children}
