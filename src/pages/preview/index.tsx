@@ -1,5 +1,7 @@
-/* import type { NextPage } from 'next'
-import { GetServerSideProps } from 'next'
+import type { NextPage } from 'next'
+import { useState } from 'react'
+// import { GetServerSideProps } from 'next'
+import { useRouter } from "next/router";
 import { NextSeo } from '@/libs/next-seo'
 import { SITE_URL } from '@/utils/meta'
 import type { PageContent } from '@/schemas/staticPage/type'
@@ -7,50 +9,68 @@ import { Breadcrumb } from '@/components/layout/breadcrumb/Breadcrumb'
 import type { BreadcrumbItemProps } from '@/components/layout/breadcrumb/Breadcrumb/BreadcrumbItem/type'
 import { generateBreadcrumbObjects } from '@/components/layout/breadcrumb/functions/generateBreadcrumbObjects'
 import { previewFetchConfig, previewFetchUrl } from '@/libs/newt-api-client'
+import { useEffect } from 'react'
 
-export const config = {
-	runtime: 'experimental-edge',
-}
 type PageProps = {
 	pageData?: PageContent
 	breadcrumb?: BreadcrumbItemProps[]
 	status?: string
 }
-export const getServerSideProps: GetServerSideProps = async ({ query }) => {
-	// クエリパラメータの取得
-	const { contentId, appUID, modelUID } = query
-	if (!contentId) return { props: { pageData: [] } }
-	const res = await fetch(
-		`${previewFetchUrl}/${appUID}/${modelUID}/${contentId.toString()}`,
-		previewFetchConfig
-	)
-	const data = await res.json()
-	if(!data) return { props: { pageData: [] } }
-	const { pageObjects: breadcrumbList } = generateBreadcrumbObjects(data)
-	return {
-		props: {
-			pageData: data,
-			breadcrumb: breadcrumbList,
-		},
-	}
-}
-const StaticPage: NextPage<PageProps> = ({ pageData, breadcrumb }) => {
-	const pageSlug = breadcrumb?.slice(-1)[0].path
-	const canonical = new URL(pageSlug ?? '', SITE_URL).toString()
+// export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+// 	// クエリパラメータの取得
+// 	const { contentId, appUID, modelUID } = query
+// 	if (!contentId) return { props: { pageData: [] } }
+// 	const res = await fetch(
+// 		`${previewFetchUrl}/${appUID}/${modelUID}/${contentId.toString()}`,
+// 		previewFetchConfig
+// 	)
+// 	const data = await res.json()
+// 	if(!data) return { props: { pageData: [] } }
+// 	const { pageObjects: breadcrumbList } = generateBreadcrumbObjects(data)
+// 	return {
+// 		props: {
+// 			pageData: data,
+// 			breadcrumb: breadcrumbList,
+// 		},
+// 	}
+// }
+const StaticPage: NextPage<PageProps> = () => {
+  const [data, setData] = useState<PageContent>()
+  const [breadcrumb, setBreadcrumb] = useState<BreadcrumbItemProps[]>([])
+  const router = useRouter();
+	useEffect(() => {
+		const getPageData = async () => {
+			if(!router.isReady) return
+			const { query: {contentId, appUID, modelUID} } = router
+			if (!contentId) return
+			const res = await fetch(
+				`/api/preview/?appUID=${appUID}&modelUID=${modelUID}&contentId=${contentId.toString()}`,
+				previewFetchConfig
+			)
+			const data = await res.json()
+			if(!data) return
+			const { pageObjects: breadcrumbList } = generateBreadcrumbObjects(data)
+			setData(data)
+			setBreadcrumb(breadcrumbList)
+		}
+		getPageData()
+	},[router])
+	// const pageSlug = breadcrumb?.slice(-1)[0].path
+	// const canonical = new URL(pageSlug ?? '', SITE_URL).toString()
 	return (
 		<>
-			{pageData && (
+			{data && (
 				<>
 					<NextSeo
-						titleTemplate={pageData.meta?.title}
-						title={pageData.meta?.title ?? pageData.title}
-						description={pageData.meta?.description ?? pageData.title}
-						canonical={canonical}
+						titleTemplate={data.meta?.title}
+						title={data.meta?.title ?? data.title}
+						description={data.meta?.description ?? data.title}
+						// canonical={canonical}
 						noindex
 					/>
 					<main>
 						<article>
-							<h1>{pageData.title}</h1>
+							<h1>{data.title}</h1>
 						</article>
 					</main>
 					{breadcrumb && <Breadcrumb list={breadcrumb} />}
@@ -61,7 +81,3 @@ const StaticPage: NextPage<PageProps> = ({ pageData, breadcrumb }) => {
 }
 
 export default StaticPage
- */
-export const Test = () => {
-	return {}
-}
