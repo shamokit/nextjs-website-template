@@ -8,9 +8,9 @@ import type { BreadcrumbItemProps } from '@/components/layout/breadcrumb/Breadcr
 import { generateBreadcrumbObjects } from '@/components/layout/breadcrumb/functions/generateBreadcrumbObjects'
 import { previewFetchConfig, previewFetchUrl } from '@/libs/newt-api-client'
 
-export const config = {
-	runtime: 'experimental-edge',
-}
+// export const config = {
+// 	runtime: 'experimental-edge',
+// }
 type PageProps = {
 	pageData?: PageContent
 	breadcrumb?: BreadcrumbItemProps[]
