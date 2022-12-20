@@ -17,7 +17,7 @@ type PageProps = {
 }
 const StaticPage: NextPage<PageProps> = () => {
   const [data, setData] = useState<PageContent>()
-  // const [breadcrumb, setBreadcrumb] = useState<BreadcrumbItemProps[]>([])
+  const [breadcrumb, setBreadcrumb] = useState<BreadcrumbItemProps[]>([])
   const router = useRouter();
 	useEffect(() => {
 		const getPageData = async () => {
@@ -30,15 +30,15 @@ const StaticPage: NextPage<PageProps> = () => {
 			)
 			const {data} = await res.json()
 			if(!data) return
-			// const { pageObjects: breadcrumbList } = generateBreadcrumbObjects(data)
+			const { pageObjects: breadcrumbList } = generateBreadcrumbObjects(data)
 			setData(data)
 			console.log(data)
-			// setBreadcrumb(breadcrumbList)
+			setBreadcrumb(breadcrumbList)
 		}
 		getPageData()
 	},[router])
-	// const pageSlug = breadcrumb?.slice(-1)[0].path
-	// const canonical = new URL(pageSlug ?? '', SITE_URL).toString()
+	const pageSlug = breadcrumb?.slice(-1)[0].path
+	const canonical = new URL(pageSlug ?? '', SITE_URL).toString()
 	return (
 		<>
 			{data && (
@@ -47,7 +47,7 @@ const StaticPage: NextPage<PageProps> = () => {
 						titleTemplate={data.meta?.title}
 						title={data.meta?.title ?? data.title}
 						description={data.meta?.description ?? data.title}
-						// canonical={canonical}
+						canonical={canonical}
 						noindex
 					/>
 					<main>
@@ -55,7 +55,7 @@ const StaticPage: NextPage<PageProps> = () => {
 							<h1>{data.title}</h1>
 						</article>
 					</main>
-					{/* {breadcrumb && <Breadcrumb list={breadcrumb} />} */}
+					{breadcrumb && <Breadcrumb list={breadcrumb} />}
 				</>
 			)}
 		</>
