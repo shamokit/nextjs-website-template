@@ -16,5 +16,5 @@ export const onRequestGet = async ({ params, env }) => {
 	// 	previewFetchConfig
 	// )
 	// const data = await res.json()
-  return new Response(JSON.stringify({ value: params.appUID }));
+  return new Response(JSON.stringify({ value: params.params }));
 };
