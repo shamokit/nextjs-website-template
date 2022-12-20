@@ -7,6 +7,7 @@ import type { PageContent } from '@/schemas/staticPage/type'
 import { Breadcrumb } from '@/components/layout/breadcrumb/Breadcrumb'
 import type { BreadcrumbProps } from '@/components/layout/breadcrumb/Breadcrumb/type'
 import { generateBreadcrumbObjects } from '@/components/layout/breadcrumb/functions/generateBreadcrumbObjects'
+
 const fetchPages = async () => {
 	const data = await apiClient.staticPage.pageData.$get()
 	return { data }

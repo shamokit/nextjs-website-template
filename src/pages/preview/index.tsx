@@ -25,7 +25,6 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 		previewFetchConfig
 	)
 	const data = await res.json()
-	console.log(data)
 	if(!data) return { props: { pageData: [] } }
 	const { pageObjects: breadcrumbList } = generateBreadcrumbObjects(data)
 	return {

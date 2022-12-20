@@ -10,16 +10,12 @@ const menu = [
 		name: 'Home',
 	},
 	{
-		href: '/company',
-		name: 'Company',
+		href: '/about',
+		name: 'About',
 		children: [
 			{
-				href: '/company/about',
-				name: 'About',
-			},
-			{
-				href: '/company/history',
-				name: 'History',
+				href: '/about/recruit',
+				name: 'Recruit',
 			},
 		],
 	},
