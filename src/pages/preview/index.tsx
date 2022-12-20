@@ -28,7 +28,7 @@ const StaticPage: NextPage<PageProps> = () => {
 				`/api/preview/?appUID=${appUID}&modelUID=${modelUID}&contentId=${contentId.toString()}`,
 				previewFetchConfig
 			)
-			const data = await res.json()
+			const {data} = await res.json()
 			if(!data) return
 			// const { pageObjects: breadcrumbList } = generateBreadcrumbObjects(data)
 			setData(data)
