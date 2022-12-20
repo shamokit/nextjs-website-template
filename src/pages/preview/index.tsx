@@ -8,9 +8,9 @@ import type { BreadcrumbItemProps } from '@/components/layout/breadcrumb/Breadcr
 import { generateBreadcrumbObjects } from '@/components/layout/breadcrumb/functions/generateBreadcrumbObjects'
 import { previewFetchConfig, previewFetchUrl } from '@/libs/newt-api-client'
 
-// export const config = {
-// 	runtime: 'experimental-edge',
-// }
+export const config = {
+	runtime: 'experimental-edge',
+}
 type PageProps = {
 	pageData?: PageContent
 	breadcrumb?: BreadcrumbItemProps[]
@@ -19,12 +19,14 @@ type PageProps = {
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 	// クエリパラメータの取得
 	const { contentId, appUID, modelUID } = query
-	if (!contentId) return { props: { data: [] } }
+	if (!contentId) return { props: { pageData: [] } }
 	const res = await fetch(
 		`${previewFetchUrl}/${appUID}/${modelUID}/${contentId.toString()}`,
 		previewFetchConfig
 	)
 	const data = await res.json()
+	console.log(data)
+	if(!data) return { props: { pageData: [] } }
 	const { pageObjects: breadcrumbList } = generateBreadcrumbObjects(data)
 	return {
 		props: {
