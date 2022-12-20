@@ -2,6 +2,7 @@
 const nextConfig = {
 	reactStrictMode: true,
 	swcMinify: true,
+	experimental: { runtime: 'experimental-edge'}
 	// images: {
 	// 	disableStaticImages: true,
 	// 	domains: ['placehold.jp'],
