@@ -47,7 +47,7 @@ const StaticPage: NextPage<PageProps> = () => {
 				`/api/preview/?appUID=${appUID}&modelUID=${modelUID}&contentId=${contentId.toString()}`,
 				previewFetchConfig
 			)
-			const data = await res.json()
+			const {data} = await res.json()
 			if(!data) return
 			const { pageObjects: breadcrumbList } = generateBreadcrumbObjects(data)
 			setData(data)
@@ -55,8 +55,8 @@ const StaticPage: NextPage<PageProps> = () => {
 		}
 		getPageData()
 	},[router])
-	// const pageSlug = breadcrumb?.slice(-1)[0].path
-	// const canonical = new URL(pageSlug ?? '', SITE_URL).toString()
+	const pageSlug = breadcrumb?.slice(-1)[0].path
+	const canonical = new URL(pageSlug ?? '', SITE_URL).toString()
 	return (
 		<>
 			{data && (
@@ -65,7 +65,7 @@ const StaticPage: NextPage<PageProps> = () => {
 						titleTemplate={data.meta?.title}
 						title={data.meta?.title ?? data.title}
 						description={data.meta?.description ?? data.title}
-						// canonical={canonical}
+						canonical={canonical}
 						noindex
 					/>
 					<main>
