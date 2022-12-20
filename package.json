@@ -5,6 +5,7 @@
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
+		"export": "next export",
 		"postbuild": "next-sitemap",
 		"start": "next start",
 		"lint": "next lint",
@@ -13,7 +14,7 @@
 		"storybook": "start-storybook -p 6006",
 		"build-storybook": "build-storybook",
 		"api:build": "aspida",
-		"lint-fix": "npm run lint-fix:script && npm run lint-fix:style && npm run lint-fix:markup",
+		"lint-fix": "npm run next lint && npm run lint-fix:script && npm run lint-fix:style && npm run lint:markup",
 		"img-resize": "node resize.mjs",
 		"img-convert": "node convert.mjs",
 		"lint:markup": "markuplint ./src/**/*.{jsx,tsx}"
