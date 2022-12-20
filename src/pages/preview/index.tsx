@@ -17,7 +17,7 @@ type PageProps = {
 }
 const StaticPage: NextPage<PageProps> = () => {
   const [data, setData] = useState<PageContent>()
-  const [breadcrumb, setBreadcrumb] = useState<BreadcrumbItemProps[]>([])
+  const [breadcrumb, setBreadcrumb] = useState<BreadcrumbItemProps[]>()
   const router = useRouter();
 	useEffect(() => {
 		const getPageData = async () => {
@@ -28,7 +28,7 @@ const StaticPage: NextPage<PageProps> = () => {
 				`/api/preview/?appUID=${appUID}&modelUID=${modelUID}&contentId=${contentId.toString()}`,
 				previewFetchConfig
 			)
-			const {data} = await res.json()
+			const { data } = await res.json()
 			if(!data) return
 			const { pageObjects: breadcrumbList } = generateBreadcrumbObjects(data)
 			setData(data)
