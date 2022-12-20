@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+/* import type { NextPage } from 'next'
 import { GetServerSideProps } from 'next'
 import { NextSeo } from '@/libs/next-seo'
 import { SITE_URL } from '@/utils/meta'
@@ -61,3 +61,7 @@ const StaticPage: NextPage<PageProps> = ({ pageData, breadcrumb }) => {
 }
 
 export default StaticPage
+ */
+export const Test = () => {
+	return {}
+}
