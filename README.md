@@ -60,3 +60,16 @@ See the files below.
 | @/pages | src/pages |
 | @/styles | src/styles |
 | @/utils | src/utils |
+
+## Cloudflare Pages functions
+
+wrangler.tomlを作成してください。
+
+```
+[vars]
+NEXT_NEWT_API_KEY = ""
+NEWT_SPACE_U_KU = ""
+NEXT_DOMAIN = ""
+PREVIEW_TOKEN = ""
+SECRET = ""
+```
