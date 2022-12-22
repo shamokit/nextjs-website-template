@@ -17,13 +17,7 @@ import { FaqItems } from '@/components/ui/faq/FaqItems'
 import { Tab } from '@/components/ui/tab/Tab'
 import { TabList } from '@/components/ui/tab/TabList'
 import { useToggle } from '@/utils/useToggle'
-export const getStaticProps = async () => {
-	return {
-		props: {CMS_API_URL: process.env.CMS_API_URL},
-	}
-}
-const Home: NextPage = ({CMS_API_URL}) => {
-	console.log({CMS_API_URL})
+const Home: NextPage = () => {
 	const accordionRef = useRef<HTMLButtonElement>(null)
 	const accordionContentRef = useRef<HTMLDivElement>(null)
 	const [open, doAccordion] = useToggle({
