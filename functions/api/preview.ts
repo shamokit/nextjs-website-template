@@ -31,8 +31,9 @@ export const onRequestGet = async ({ request, env }) => {
 			case 'microCMS': {
 				const endpoint = params.get('endpoint')
 				const contentId = params.get('contentId')
+				const draftKey = params.get('draftKey')
 				if (!(contentId)) return ''
-				path = `${endpoint}/${contentId}`
+				path = `${endpoint}/${contentId}?draftKey=${draftKey}`
 				break;
 			}
 			default:

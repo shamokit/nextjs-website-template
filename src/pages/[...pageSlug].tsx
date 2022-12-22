@@ -60,7 +60,6 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async ({ params
 		const { pageSlug } = params
 		const slug = pageSlug[pageSlug.length - 1]
 		const { data } = await fetchPage(slug)
-
 		if (!data) {
 			return { props: { status: 'nodata' } }
 		}

@@ -7,10 +7,8 @@ export type { Content, Contents, GetContentQuery, GetContentsQuery }
 // Fetch CDN
 const fetchConfig = {
 	headers: {
-		Authorization: `Bearer ${process.env.NEWT_API_KEY ? process.env.NEWT_API_KEY : ''}`,
+		Authorization: `Bearer ${process.env.CMS_CDN_API_KEY || ''}`,
 	},
-	baseURL: `https://${
-		process.env.NEWT_SPACE_U_KU ? process.env.NEWT_SPACE_U_KU : ''
-	}.cdn.newt.so/v1`,
+	baseURL: process.env.CMS_API_URL?.replace('api.newt', 'cdn.newt')
 }
 export const apiClient = api(aspida(axios, fetchConfig))
