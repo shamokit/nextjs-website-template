@@ -97,10 +97,12 @@ SECRET = "xxxx"
 
 aspidaを使用してエンドポイントのタイポを防ぎます。
 
-microCMSとNewtどちらを使用するか決めたら、src/apiディレクトリの使わないほうのCMS名のディレクトリを削除し、使うほうのディレクトリの中身をsrc/apiディレクトリに一階層おろしてください。
+microCMSとNewtどちらを使用するか決めたら、```src/api```ディレクトリの使わないほうのCMS名のディレクトリを削除し、```./aspida.config.ts```のパスを使うほうのCMSのディレクトリに向けてください。
 
-そうして空になったCMS名のディレクトリは使用しません。
+- microCMSの場合: ```input: "src/api/microcms"```
+- Newtの場合: ```input: "src/api/newt"```
 
+その後、
 ``` npm run api:build ``` コマンドで$api.tsファイルを生成してください。
 
 ### Functions
