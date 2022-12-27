@@ -1,5 +1,6 @@
 $breakpoint-min: 375px;
-$breakpoint-sm: 640px;
+$breakpoint-sm: 600px;
 $breakpoint-md: 768px;
 $breakpoint-lg: 1100px;
 $breakpoint-xl: 1280px;
+$breakpoint-xxl: 1536px;

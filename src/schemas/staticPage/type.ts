@@ -1,12 +1,18 @@
 import type { Meta } from '@/schemas/meta/type'
-import type { Content, Contents } from '@/libs/newt-api-client'
-// TODO:apiディレクトリに書いたほうが自然かも
 export type Page = {
 	title: string
 	slug: string
 	body: string
 	meta?: Meta
+	parent: Page | null
 }
-type PageWithParent = Page & { parent: PageWithParent | null }
-export type PageContent = PageWithParent & Content
-export type PageContents = Contents<PageContent>
+
+/* microCMS */
+import type { MicroCMSListResponse, MicroCMSListContent } from '@/libs/microcms-api-client'
+export type PageContent = MicroCMSListContent & Page
+export type PageContents = MicroCMSListResponse<Page>
+
+/* Newt */
+// import type { Content, Contents } from '@/libs/newt-api-client'
+// export type PageContent = Page & Content
+// export type PageContents = Contents<PageContent>
