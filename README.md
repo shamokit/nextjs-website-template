@@ -2,8 +2,6 @@
 
 microCMSもしくはNewtを使用し、Cloudflare PagesでWebサイトをデプロイするテンプレートです。
 
-microCMSは
-
 ## 注意
 
 現在ベータ版です。ディレクトリ構成やファイル構成は変わることがあります。
