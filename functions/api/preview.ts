@@ -47,13 +47,13 @@ export const onRequestGet = async ({ request, env }) => {
 		switch (cmsName) {
 			case 'newt': {
 				headers = {
-					Authorization: `Bearer ${env.CMS_API_KEY ? env.CMS_API_KEY : ''}`
+					Authorization: `Bearer ${env.CMS_PREVIEW_API_KEY ? env.CMS_PREVIEW_API_KEY : ''}`
 				}
 				break;
 			}
 			case 'microCMS': {
 				headers = {
-					"X-MICROCMS-API-KEY": `${env.CMS_API_KEY ? env.CMS_API_KEY : ''}`
+					"X-MICROCMS-API-KEY": `${env.CMS_PREVIEW_API_KEY ? env.CMS_PREVIEW_API_KEY : ''}`
 				}
 				break;
 			}
