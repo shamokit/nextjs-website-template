@@ -65,23 +65,24 @@ fontSizeをCSS変数で管理します。
 .envに
 ```
 CMS_API_URL=https://xxx.api.newt.so/v1 or https://xxx.microcms.io/api/v1/
-CMS_CDN_API_KEY=xxxxxxxxxxxxxxxxxxxxxx
+CMS_PREVIEW_API_KEY=xxxxxxxxxxxxxxxxxxxxxx
 CMS_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxx
 NEXT_PUBLIC_GA_MEASUREMENT_ID="G-XXXXXXXXXX"
 ```
-* CMS_CDN_API_KEYはNewtのみで使用
 
 wrangler.tomlに
 ```
 [vars]
 CMS_API_URL = "https://xxx.api.newt.so/v1"
+CMS_PREVIEW_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxx"
 CMS_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxx"
 SECRET = "xxxx"
 ```
-* CMS_CDN_API_KEYはNewtのみで使用
 
 を記載してください。  
 これらの環境変数は、Cloudflare Pagesの環境変数に登録する必要があります。
+
+SECRETについては下書き記事取得のAPIを叩くときにURLパラメータと一致するかどうかをチェックしています。
 
 ## API
 
@@ -110,20 +111,19 @@ Cloudflare PagesのFunctionsを使用します。./functionsにAPIを作成し�
 
 [http://127.0.0.1:8788/](http://127.0.0.1:8788/) で開発サーバーが立ち上がります。
 
-Newtの場合はhttp://127.0.0.1:8788/preview?appUID=xxx&modelUID=xxx&contentId=xxxxxxxxx&secret=test のようなURLを管理画面で設定してください。
-
-secretパラメータに関しては十分に長い文字列を生成しておいてください。  
-推測されにくければなんでもいいです。
-
-先ほど作成したenvやwrangler.tomlに登録したSECRETとこの値が同じならプレビューを取得することができます。
-
 ### プレビュー
 
 [preview.ts](./functions/api/preview.ts)で、変数cmsNameにnewtもしくはmicroCMSを入力してください。
 
-ドメイン/preview?appUID=xxx&modelUID=xxx&contentId=xxxxxxxxx&secret=test
-でプレビューページがCSRされます。  
-APIキーは公開されません。
+以下のURLでプレビューページがCSRされます。  
+ローカル環境では{domain}部分が`http://127.0.0.1:8788`、本番環境では本番ドメインでプレビュー画面を閲覧できます。
+
+| CMS | URL |
+| - | - |
+| Newt | {domain}/preview?appUID=xxx&modelUID=xxx&contentId=xxxxxxxxx&secret=xxxxxxxxxxxx |
+| microCMS | {domain}/preview?endpoint=xxx&contentId=xxx&draftKey=xxxxxxxxx&secret=xxxxxxxxxxxx |
+
+envやwrangler.tomlに登録したSECRETとsecretパラメータが同じならプレビューAPIをたたくことができます。
 
 ## リント
 
