@@ -4,12 +4,12 @@ import type { PageContent } from '@/schemas/staticPage/type'
 export type Methods = DefineMethods<{
   get: {
     query?: {
-			appUID: string;
-			modelUID: string;
-			contentId: string;
-			query?: GetContentQuery;
-			secret: string
-		}
+      appUID: string
+      modelUID: string
+      contentId: string
+      query?: GetContentQuery
+      secret: string
+    }
     resBody: PageContent
   }
 }>
