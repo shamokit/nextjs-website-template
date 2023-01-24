@@ -56,6 +56,7 @@ npm uninstall newt-client-js
 - src/utils/meta.tsを編集します。
 - next-seo.config.jsを編集します。
 - next-sitemap.config.jsを編集します。
+- _app.tsx、_document.tsxの構造化マークアップを編集します。不要であれば削除してください。
 
 ## CSS
 
