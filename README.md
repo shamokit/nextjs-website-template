@@ -6,12 +6,6 @@ microCMSもしくはNewtを使用し、Cloudflare PagesでWebサイトをデプ�
 
 現在ベータ版です。ディレクトリ構成やファイル構成は変わることがあります。
 
-## Todo
-
-- microCMS周りの調整
-- データの取得周りの整理
-- プレビュー用のAPIの整理
-
 ## npm scripts
 
 | コマンド | 内容 |
@@ -28,6 +22,40 @@ microCMSもしくはNewtを使用し、Cloudflare PagesでWebサイトをデプ�
 | 項目 | 内容 |
 | --- | --- |
 | node | 16.17.0 |
+
+## 最初にやること
+
+不要なファイルを削除していきます。  
+まずはCMSを決めてください。
+
+src/apiやsrc/schemasにデフォルトでよく使いそうな型を定義してあります。  
+不要であれば最初に削除ください。
+
+### Newtを使う場合
+
+```
+npm uninstall microcms-js-sdk
+```
+- src/libs/microcms-api-client.tsを削除
+- src/api/microcms/ディレクトリを削除
+- functions/api/preview.tsのcmsNameにnewtを入れる
+- aspida.config.tsをinput: "src/api/newt"に変更する
+
+### microCMSを使う場合
+
+```
+npm uninstall newt-client-js
+```
+- src/libs/newt-api-client.tsを削除
+- src/api/newt/ディレクトリを削除
+- functions/api/preview.tsのcmsNameにmicrocmsを入れる
+- aspida.config.tsをinput: "src/api/microcms"に変更する
+
+## meta
+
+- src/utils/meta.tsを編集します。
+- next-seo.config.jsを編集します。
+- next-sitemap.config.jsを編集します。
 
 ## CSS
 
@@ -73,7 +101,7 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID="G-XXXXXXXXXX"
 wrangler.tomlに
 ```
 [vars]
-CMS_API_URL = "https://xxx.api.newt.so/v1"
+CMS_API_URL = "https://xxx.api.newt.so/v1" or "https://xxx.microcms.io/api/v1/"
 CMS_PREVIEW_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxx"
 CMS_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxx"
 SECRET = "xxxx"
@@ -82,7 +110,8 @@ SECRET = "xxxx"
 を記載してください。  
 これらの環境変数は、Cloudflare Pagesの環境変数に登録する必要があります。
 
-SECRETについては下書き記事取得のAPIを叩くときにURLパラメータと一致するかどうかをチェックしています。
+SECRETについては下書き記事取得のAPIを叩くときにURLパラメータと一致するかどうかをチェックします。  
+なんでもいいですがAPIキーよりも長い文字列をおすすめします。
 
 ## API
 
@@ -94,15 +123,10 @@ SECRETについては下書き記事取得のAPIを叩くときにURLパラメ�
 
 ### aspida
 
-aspidaを使用してエンドポイントのタイポを防ぎます。
+aspidaを使用してエンドポイントのタイポを防ぎます。  
+このディレクトリのファイルを変更したら
 
-microCMSとNewtどちらを使用するか決めたら、```src/api```ディレクトリの使わないほうのCMS名のディレクトリを削除し、```./aspida.config.ts```のパスを使うほうのCMSのディレクトリに向けてください。
-
-- microCMSの場合: ```input: "src/api/microcms"```
-- Newtの場合: ```input: "src/api/newt"```
-
-その後、
-``` npm run api:build ``` コマンドで$api.tsファイルを生成してください。
+``` npm run api:build ``` コマンドで$api.tsファイルを再生成してください。
 
 ### Functions
 
@@ -112,8 +136,6 @@ Cloudflare PagesのFunctionsを使用します。./functionsにAPIを作成し�
 [http://127.0.0.1:8788/](http://127.0.0.1:8788/) で開発サーバーが立ち上がります。
 
 ### プレビュー
-
-[preview.ts](./functions/api/preview.ts)で、変数cmsNameにnewtもしくはmicroCMSを入力してください。
 
 以下のURLでプレビューページがCSRされます。  
 ローカル環境では{domain}部分が`http://127.0.0.1:8788`、本番環境では本番ドメインでプレビュー画面を閲覧できます。
@@ -161,6 +183,8 @@ envやwrangler.tomlに登録したSECRETとsecretパラメータが同じなら�
 
 基本的にCMSに登録してください。  
 public以下のファイルとCMSから取得する画像についてはimgixのパラメータを使って最適化しています。
+
+microCMSの場合は特に何もしなくてOKですが、Newtを使う場合は外部ストレージと画像最適化の設定を管理画面からする必要があります。
 
 | コマンド | 内容 |
 | --- | --- |
