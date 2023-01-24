@@ -34,7 +34,7 @@ export const onRequestGet = async ({ request, env }) => {
 				const contentId = params.get('contentId')
 				const draftKey = params.get('draftKey')
 				if (!contentId) return ''
-				return `${endpoint}/${contentId}?draftKey=${draftKey}`
+				return `${endpoint}/${contentId}${draftKey ? `?draftKey=${draftKey}` : ''}`
 			}
 		}
 	}
