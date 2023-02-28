@@ -1,13 +1,11 @@
-@import 'tailwindcss/base';
-
-@import '../styles/mixins/_mediaQuery.css';
-@import '../styles/vars/_font.css';
-@import '../styles/vars/_layout.css';
-@import '../styles/vars/_color.css';
-@import '../styles/vars/_space.css';
-
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import url('tailwindcss/base');
+@import url('../styles/mixins/_mediaQuery.css');
+@import url('../styles/vars/_font.css');
+@import url('../styles/vars/_layout.css');
+@import url('../styles/vars/_color.css');
+@import url('../styles/vars/_space.css');
+@import url('tailwindcss/components');
+@import url('tailwindcss/utilities');
 
 @layer base {
 	/* Typograpy */
@@ -38,9 +36,7 @@
 	button,
 	details,
 	[tabindex] {
-		&:focus-visible {
-			outline: 2px solid rgb(var(--color--focus));
-		}
+		@apply focus-visible:outline-2 outline-accent-500;
 	}
 
 	[aria-current] {

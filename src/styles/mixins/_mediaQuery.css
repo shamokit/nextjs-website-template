@@ -1,8 +1,9 @@
-@import '../vars_sass/_breakpoint.css';
+@import url('../vars_sass/_breakpoint.css');
 
 /* media query up */
 @define-mixin mq-up $breakpoint: md {
 	$viewportUp: --viewport-$(breakpoint)-up;
+
 	@media $viewportUp {
 		@mixin-content;
 	}
@@ -11,6 +12,7 @@
 /* media query down */
 @define-mixin mq-down $breakpoint: md {
 	$viewportDown: --viewport-$(breakpoint)-down;
+
 	@media $viewportDown {
 		@mixin-content;
 	}
@@ -20,6 +22,7 @@
 @define-mixin mq-range $breakpointUp, $breakpointDown {
 	$viewportUp: --viewport-$(breakpointup)-up;
 	$viewportDown: --viewport-$(breakpointdown)-down;
+
 	@media $viewportUp and $viewportDown {
 		@mixin-content;
 	}

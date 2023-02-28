@@ -1,4 +1,4 @@
-@import '../../styles/mixins/_mediaQuery.css';
+@import url('../../styles/mixins/_mediaQuery.css');
 
 :root {
 	/* letter-spacing */
@@ -11,9 +11,11 @@
 	--step--md: 1.08;
 	--step--lg: 1.125;
 	--step: var(--step--sm);
+
 	@mixin mq-up md {
 		--step: var(--step--md);
 	}
+
 	@mixin mq-up lg {
 		--step: var(--step--lg);
 	}
@@ -23,9 +25,11 @@
 	--base--font-size--md: calc(1.4rem / 1.6);
 	--base--font-size--lg: calc(1.6rem / 1.6);
 	--base--font-size: var(--base--font-size--sm);
+
 	@mixin mq-up md {
 		--base--font-size: var(--base--font-size--md);
 	}
+
 	@mixin mq-up lg {
 		--base--font-size: var(--base--font-size--lg);
 	}

@@ -8,7 +8,10 @@ export type Page = {
 }
 
 /* microCMS */
-import type { MicroCMSListResponse, MicroCMSListContent } from '@/libs/microcms-api-client'
+import type {
+	MicroCMSListResponse,
+	MicroCMSListContent,
+} from '@/libs/microcms-api-client'
 export type PageContent = MicroCMSListContent & Page
 export type PageContents = MicroCMSListResponse<Page>
 

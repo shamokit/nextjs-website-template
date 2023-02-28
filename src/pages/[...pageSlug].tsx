@@ -82,26 +82,23 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async ({ params
 
 const StaticPage: NextPage<PageProps> = ({ pageData, breadcrumb }) => {
 	const pageSlug = breadcrumb?.list.slice(-1)[0].path
+	if (!pageData) return null
 	return (
 		<>
-			{pageData && (
-				<>
-					<NextSeo
-						titleTemplate={pageData.meta?.title}
-						title={pageData.meta?.title ? pageData.meta?.title : pageData.title}
-						description={
-							pageData.meta?.description ? pageData.meta?.description : pageData.title
-						}
-						canonical={`${SITE_URL}/${pageSlug}`}
-					/>
-					{breadcrumb && <Breadcrumb {...breadcrumb} />}
-					<main>
-						<article>
-							<h1>{pageData.title}</h1>
-						</article>
-					</main>
-				</>
-			)}
+			<NextSeo
+				titleTemplate={pageData.meta?.title}
+				title={pageData.meta?.title ? pageData.meta?.title : pageData.title}
+				description={
+					pageData.meta?.description ? pageData.meta?.description : pageData.title
+				}
+				canonical={`${SITE_URL}/${pageSlug}`}
+			/>
+			{breadcrumb && <Breadcrumb {...breadcrumb} />}
+			<main>
+				<article>
+					<h1>{pageData.title}</h1>
+				</article>
+			</main>
 		</>
 	)
 }

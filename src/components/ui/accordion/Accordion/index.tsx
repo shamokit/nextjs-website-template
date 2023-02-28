@@ -10,7 +10,12 @@ export const Accordion: React.FC<AccordionProps> = ({
 }) => {
 	const accordionRef = useRef<HTMLDetailsElement>(null)
 	const accordionContentRef = useRef<HTMLDivElement>(null)
-	const [, doAccordion] = useToggle({ accordionRef, accordionContentRef, animation, initialValue: openDefault })
+	const [, doAccordion] = useToggle({
+		accordionRef,
+		accordionContentRef,
+		animation,
+		initialValue: openDefault,
+	})
 	return (
 		<details ref={accordionRef}>
 			<summary onClick={(e) => doAccordion(e)} className={className}>
