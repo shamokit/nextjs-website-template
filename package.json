@@ -1,6 +1,6 @@
 {
 	"name": "nextjs-website-template",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
@@ -11,7 +11,7 @@
 		"lint": "next lint",
 		"wrangler-dev": "wrangler pages dev -- npx next dev",
 		"lint-fix:script": "eslint --fix src/**/*.{ts,tsx} && prettier --write src/**/*.{ts,tsx,json,md}",
-		"lint-fix:style": "stylelint --fix src/**/*.css && prettier --write src/**/*.{scss,css}",
+		"lint-fix:style": "stylelint --fix src/**/*.css && prettier --write src/**/*.{css}",
 		"storybook": "start-storybook -p 6006",
 		"build-storybook": "build-storybook",
 		"api:build": "aspida",

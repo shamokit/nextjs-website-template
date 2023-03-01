@@ -15,7 +15,6 @@
 	@apply md:[--section--space--lg:120px];
 	@apply md:[--section--space--xl:135px];
 	@apply md:[--section--space--2xl:150px];
-
 	@apply lg:[--section--space--2xs:80px];
 	@apply lg:[--section--space--xs:100px];
 	@apply lg:[--section--space--sm:120px];

@@ -1,6 +1,7 @@
 :root {
 	/* Header */
 	--header--height: 44px;
+
 	@apply md:[--header--height:100px];
 
 	/* Sidebar */
