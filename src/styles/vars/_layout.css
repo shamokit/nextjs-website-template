@@ -1,12 +1,7 @@
-@import url('../../styles/mixins/_mediaQuery.css');
-
 :root {
 	/* Header */
 	--header--height: 44px;
-
-	@mixin mq-up md {
-		--header--height: 100px;
-	}
+	@apply md:[--header--height:100px];
 
 	/* Sidebar */
 	--sidebar--width: 240px;

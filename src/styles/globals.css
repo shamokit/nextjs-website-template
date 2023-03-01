@@ -1,5 +1,4 @@
 @import url('tailwindcss/base');
-@import url('../styles/mixins/_mediaQuery.css');
 @import url('../styles/vars/_font.css');
 @import url('../styles/vars/_layout.css');
 @import url('../styles/vars/_color.css');

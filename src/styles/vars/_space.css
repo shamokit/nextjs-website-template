@@ -1,5 +1,3 @@
-@import url('../mixins/_mediaQuery.css');
-
 :root {
 	/* Space Section */
 	--section--space--2xs: 40px;
@@ -10,23 +8,19 @@
 	--section--space--xl: 90px;
 	--section--space--2xl: 100px;
 
-	@mixin mq-up md {
-		--section--space--2xs: 60px;
-		--section--space--xs: 75px;
-		--section--space--sm: 90px;
-		--section--space--md: 105px;
-		--section--space--lg: 120px;
-		--section--space--xl: 135px;
-		--section--space--2xl: 150px;
-	}
+	@apply md:[--section--space--2xs:60px];
+	@apply md:[--section--space--xs:75px];
+	@apply md:[--section--space--sm:90px];
+	@apply md:[--section--space--md:105px];
+	@apply md:[--section--space--lg:120px];
+	@apply md:[--section--space--xl:135px];
+	@apply md:[--section--space--2xl:150px];
 
-	@mixin mq-up lg {
-		--section--space--2xs: 80px;
-		--section--space--xs: 100px;
-		--section--space--sm: 120px;
-		--section--space--md: 140px;
-		--section--space--lg: 160px;
-		--section--space--xl: 180px;
-		--section--space--2xl: 200px;
-	}
+	@apply lg:[--section--space--2xs:80px];
+	@apply lg:[--section--space--xs:100px];
+	@apply lg:[--section--space--sm:120px];
+	@apply lg:[--section--space--md:140px];
+	@apply lg:[--section--space--lg:160px];
+	@apply lg:[--section--space--xl:180px];
+	@apply lg:[--section--space--2xl:200px];
 }
