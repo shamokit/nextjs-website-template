@@ -17,7 +17,11 @@
 		"ineffective-attr": true,
 		"landmark-roles": true,
 		"no-refer-to-non-existent-id": true,
-		"permitted-contents": true,
+		"permitted-contents": {
+			"options": {
+				"ignoreHasMutableChildren": true
+			}
+		},
 		"required-attr": true,
 		"required-element": true,
 		"required-h1": true,

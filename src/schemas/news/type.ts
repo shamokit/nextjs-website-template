@@ -7,7 +7,10 @@ export type News = {
 }
 
 /* microCMS */
-import type { MicroCMSListResponse, MicroCMSListContent } from '@/libs/microcms-api-client'
+import type {
+	MicroCMSListResponse,
+	MicroCMSListContent,
+} from '@/libs/microcms-api-client'
 export type NewsContent = MicroCMSListContent & News
 export type NewsContents = MicroCMSListResponse<News>
 

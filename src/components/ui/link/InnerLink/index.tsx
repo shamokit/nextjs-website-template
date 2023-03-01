@@ -6,9 +6,7 @@ export const InnerLink: React.FC<InnerLinkProps> = ({
 	children,
 	...restProps
 }) => (
-	<NextLink href={href}>
-		<a className={className} {...restProps}>
-			{children}
-		</a>
+	<NextLink href={href} className={className} {...restProps}>
+		{children}
 	</NextLink>
 )

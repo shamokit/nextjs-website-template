@@ -23,10 +23,9 @@ export const PageHome = () => {
 		accordionContentRef,
 		initialValue: true,
 	})
-
 	return (
 		<>
-			{/* <SimpleMainVisual
+			<SimpleMainVisual
 				title={'TOP'}
 				copy={
 					'microCMSもしくはNewtを使用し、<br>Cloudflare PagesでWebサイトをデプロイするテンプレートです。'
@@ -58,14 +57,14 @@ export const PageHome = () => {
 						preload={true}
 					/>
 				</ImgixArtDirection>
-			</SimpleMainVisual> */}
+			</SimpleMainVisual>
 			<Container>
 				<main>
 					<p>
 						microCMSもしくはNewtを使用し、Cloudflare
 						PagesでWebサイトをデプロイするテンプレートです。
 					</p>
-					{/* <TabList
+					<TabList
 						tabClassName="group-open:bg-primary-500 group-open:text-white"
 						ariaLabel="テストタブ1"
 					>
@@ -203,7 +202,7 @@ export const PageHome = () => {
 								</div>
 							</div>
 						</section>
-					</section> */}
+					</section>
 				</main>
 			</Container>
 		</>

@@ -3,19 +3,31 @@ import { useRouter } from 'next/router'
 import axios from 'axios'
 import aspida from '@aspida/axios'
 import api from '@/api/microcms/$api'
-import type { MicroCMSQueries, GetListDetailRequest, GetListRequest, MicroCMSListResponse, MicroCMSListContent } from 'microcms-js-sdk'
-export type { MicroCMSQueries, GetListDetailRequest, GetListRequest, MicroCMSListResponse, MicroCMSListContent }
+import type {
+	MicroCMSQueries,
+	GetListDetailRequest,
+	GetListRequest,
+	MicroCMSListResponse,
+	MicroCMSListContent,
+} from 'microcms-js-sdk'
+export type {
+	MicroCMSQueries,
+	GetListDetailRequest,
+	GetListRequest,
+	MicroCMSListResponse,
+	MicroCMSListContent,
+}
 
 // Fetch CDN
 const fetchConfig = {
 	headers: {
-		"X-MICROCMS-API-KEY": `${process.env.CMS_API_KEY || ''}`,
+		'X-MICROCMS-API-KEY': `${process.env.CMS_API_KEY || ''}`,
 	},
-	baseURL: process.env.CMS_API_URL
+	baseURL: process.env.CMS_API_URL,
 }
 export const apiClient = api(aspida(axios, fetchConfig))
 const previewFetchConfig = {
-	baseURL: '/api'
+	baseURL: '/api',
 }
 export const previewApiClient = api(aspida(axios, previewFetchConfig))
 export const usePreview = <T>() => {
@@ -28,13 +40,14 @@ export const usePreview = <T>() => {
 				query: { endpoint, contentId, draftKey, secret },
 			} = router
 			if (!endpoint || !contentId || !draftKey || !secret) return
-			const pageResponse = await previewApiClient.preview.$get({
+			const pageResponse = (await previewApiClient.preview.$get({
 				query: {
 					endpoint: endpoint.toString(),
 					contentId: contentId.toString(),
 					draftKey: draftKey.toString(),
 					secret: secret.toString(),
-				}}) as T
+				},
+			})) as T
 			if (!pageResponse) return
 			setPageResponse(pageResponse)
 		}

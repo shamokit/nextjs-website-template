@@ -5,4 +5,4 @@ export type SvgList = {
 		paths: string
 	}
 }
-export type SvgNames = typeof iconNames[number]
+export type SvgNames = (typeof iconNames)[number]
