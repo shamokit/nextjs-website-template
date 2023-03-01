@@ -1,10 +1,10 @@
 @import url('tailwindcss/base');
+@import url('tailwindcss/components');
+@import url('tailwindcss/utilities');
 @import url('../styles/vars/_font.css');
 @import url('../styles/vars/_layout.css');
 @import url('../styles/vars/_color.css');
 @import url('../styles/vars/_space.css');
-@import url('tailwindcss/components');
-@import url('tailwindcss/utilities');
 
 @layer base {
 	/* Typograpy */
