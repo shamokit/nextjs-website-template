@@ -29,7 +29,7 @@
 		"classnames": "^2.3.1",
 		"date-fns": "^2.29.2",
 		"eslint-config-next": "^13.2.3",
-		"glob": "^9.1.0",
+		"glob": "^9.2.1",
 		"image-size": "^1.0.2",
 		"microcms-js-sdk": "^2.3.2",
 		"newt-client-js": "^3.1.1",
