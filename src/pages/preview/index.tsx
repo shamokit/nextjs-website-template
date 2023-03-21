@@ -38,7 +38,7 @@ const StaticPage: NextPage<PageProps> = () => {
 			<main>
 				<h1>{prevPageResponse.title}</h1>
 			</main>
-			{breadcrumb && <Breadcrumb list={breadcrumb} />}
+			{breadcrumb ? <Breadcrumb list={breadcrumb} /> : null}
 		</>
 	)
 }

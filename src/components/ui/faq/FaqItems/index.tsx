@@ -23,7 +23,7 @@ export const FaqItems: React.FC<FaqItemsProps> = ({ faqs, jsonLd = true, classNa
 	})
 	return (
 		<>
-			{jsonLd && (
+			{jsonLd ? (
 				<Head>
 					<script
 						{...jsonLdScriptProps<FAQPage>({
@@ -33,7 +33,7 @@ export const FaqItems: React.FC<FaqItemsProps> = ({ faqs, jsonLd = true, classNa
 						})}
 					/>
 				</Head>
-			)}
+			) : null}
 			<ul className={className}>
 				{faqs.map((faq) => {
 					return (
