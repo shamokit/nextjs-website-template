@@ -59,7 +59,7 @@ export const ImgixImage: React.FC<
 	})
 	return (
 		<>
-			{preload && (
+			{preload ? (
 				<Head>
 					<link
 						rel="preload"
@@ -68,8 +68,8 @@ export const ImgixImage: React.FC<
 						imageSizes="100vw"
 					/>
 				</Head>
-			)}
-			<>{el}</>
+			) : null}
+			{el}
 		</>
 	)
 }

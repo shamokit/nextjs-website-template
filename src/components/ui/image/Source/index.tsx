@@ -38,5 +38,5 @@ export const SourceWithMedia: React.FC<SourceWithMediaProps> = ({
 			/>
 		)
 	})
-	return <>{el}</>
+	return { el }
 }

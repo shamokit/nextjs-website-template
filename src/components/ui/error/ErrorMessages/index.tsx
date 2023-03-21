@@ -8,7 +8,7 @@ export const ErrorMessages: React.FC<ErrorMessagesProps> = ({ errors, classNames
 			<ul className={classNames ?? undefined}>
 				{errors.map((child) => (
 					<ErrorMessage key={child.toString()} tag="li">
-						<>{child}</>
+						{child}
 					</ErrorMessage>
 				))}
 			</ul>

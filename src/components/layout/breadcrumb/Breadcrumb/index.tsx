@@ -29,7 +29,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ list, withJsonLd = true 
 
 	return (
 		<>
-			{withJsonLd && (
+			{withJsonLd ? (
 				<Head>
 					<script
 						{...jsonLdScriptProps<BreadcrumbList>({
@@ -39,7 +39,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ list, withJsonLd = true 
 						})}
 					/>
 				</Head>
-			)}
+			) : null}
 			<div className="overflow-hidden">
 				<ol className="flex flex-wrap -mr-2">
 					{breadcrumbJson.map((item, index) => {

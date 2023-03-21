@@ -54,7 +54,7 @@ export const ImgixSourceWithMedia: React.FC<ImgixSourcePropsWithMedia> = ({
 	})
 	return (
 		<>
-			{preload && (
+			{preload ? (
 				<Head>
 					<link
 						rel="preload"
@@ -64,7 +64,7 @@ export const ImgixSourceWithMedia: React.FC<ImgixSourcePropsWithMedia> = ({
 						imageSizes="100vw"
 					/>
 				</Head>
-			)}
+			) : null}
 			{el}
 		</>
 	)

@@ -69,19 +69,19 @@ export const Pagination: React.FC<PaginationProps> = ({
 			<ul className="flex flex-wrap items-end gap-2">
 				<PaginationItems>
 					<PaginationFirst fullArchiveUrl={fullArchiveUrl} current={limitedCurrent} />
-					{previousUrl && (
+					{previousUrl ? (
 						<PaginationPrevious current={limitedCurrent} previousUrl={previousUrl} />
-					)}
+					) : null}
 					{itemsInView.at(0) !== 1 && <PaginationDot />}
 					{paginationItems}
 					{itemsInView.at(-1) !== totalPages && <PaginationDot />}
-					{nextUrl && (
+					{nextUrl ? (
 						<PaginationNext
 							nextUrl={nextUrl}
 							current={limitedCurrent}
 							totalPages={totalPages}
 						/>
-					)}
+					) : null}
 					<PaginationLast
 						fullArchiveUrl={fullArchiveUrl}
 						current={limitedCurrent}

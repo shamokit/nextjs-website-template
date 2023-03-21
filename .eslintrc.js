@@ -14,6 +14,8 @@ module.exports =
 	"rules": {
 		"@next/next/no-img-element": "off",
 		"react/react-in-jsx-scope": "off",
+		"react/jsx-no-useless-fragment": ['error'],
+		"react/jsx-no-leaked-render": ['error'],
 	},
 	"overrides": [
 		{
