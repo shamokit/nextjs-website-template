@@ -39,6 +39,3 @@ next-env.d.ts
 
 # wrangler
 wrangler.toml
-
-# aspida
-/src/api/$api.ts
