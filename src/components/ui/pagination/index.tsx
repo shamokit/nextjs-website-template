@@ -1,20 +1,24 @@
 import React from 'react'
+
 import { SITE_URL } from '@/utils/meta'
-import { PaginationProps } from './type'
-import { PaginationLink } from '@/components/ui/pagination/PaginationLink'
-import { PaginationFirst } from '@/components/ui/pagination/PaginationFirst'
-import { PaginationPrevious } from '@/components/ui/pagination/PaginationPrevious'
-import { PaginationNext } from '@/components/ui/pagination/PaginationNext'
-import { PaginationLast } from '@/components/ui/pagination/PaginationLast'
+
 import { PaginationDot } from '@/components/ui/pagination/PaginationDot'
+import { PaginationFirst } from '@/components/ui/pagination/PaginationFirst'
 import { PaginationItems } from '@/components/ui/pagination/PaginationItems'
+import { PaginationLast } from '@/components/ui/pagination/PaginationLast'
+import { PaginationLink } from '@/components/ui/pagination/PaginationLink'
+import { PaginationNext } from '@/components/ui/pagination/PaginationNext'
+import { PaginationPrevious } from '@/components/ui/pagination/PaginationPrevious'
+
 import {
-	getTotalPages,
 	getLimitedCurrent,
-	getPaginationLinks,
 	getNextUrl,
+	getPaginationLinks,
 	getPreviousUrl,
+	getTotalPages,
 } from './functions'
+import { PaginationProps } from './type'
+
 /**
  * ページネーションを表示します。
  *

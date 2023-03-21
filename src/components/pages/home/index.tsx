@@ -1,20 +1,23 @@
 import React, { useRef } from 'react'
+
+import { useToggle } from '@/utils/useToggle'
+
 import { Container } from '@/components/layout/container/Container'
 import { SimpleMainVisual } from '@/components/layout/mainVisual/SimpleMainVisual'
-import { Text } from '@/components/ui/text/Text'
-import { Image } from '@/components/ui/image/Image'
-import { Picture } from '@/components/ui/image/Picture'
-import { ImgixImage } from '@/components/ui/image/Imgix/ImgixImage'
-import { ImgixPicture } from '@/components/ui/image/Imgix/ImgixPicture'
-import { ImgixArtDirection } from '@/components/ui/image/Imgix/ImgixArtDirection'
-import { ImgixSourceWithMedia } from '@/components/ui/image/Imgix/ImgixSource'
-import { ArtDirection } from '@/components/ui/image/ArtDirection'
-import { SourceWithMedia } from '@/components/ui/image/Source'
 import { Accordion } from '@/components/ui/accordion/Accordion'
 import { FaqItems } from '@/components/ui/faq/FaqItems'
+import { ArtDirection } from '@/components/ui/image/ArtDirection'
+import { Image } from '@/components/ui/image/Image'
+import { ImgixArtDirection } from '@/components/ui/image/Imgix/ImgixArtDirection'
+import { ImgixImage } from '@/components/ui/image/Imgix/ImgixImage'
+import { ImgixPicture } from '@/components/ui/image/Imgix/ImgixPicture'
+import { ImgixSourceWithMedia } from '@/components/ui/image/Imgix/ImgixSource'
+import { Picture } from '@/components/ui/image/Picture'
+import { SourceWithMedia } from '@/components/ui/image/Source'
 import { Tab } from '@/components/ui/tab/Tab'
 import { TabList } from '@/components/ui/tab/TabList'
-import { useToggle } from '@/utils/useToggle'
+import { Text } from '@/components/ui/text/Text'
+
 export const PageHome = () => {
 	const accordionRef = useRef<HTMLButtonElement>(null)
 	const accordionContentRef = useRef<HTMLDivElement>(null)

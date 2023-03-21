@@ -1,6 +1,9 @@
-import React, { useState, useRef, useEffect, createRef } from 'react'
-import type { TabListProps } from './type'
+import React, { createRef, useEffect, useRef, useState } from 'react'
+
 import { Tab } from '@/components/ui/tab/Tab'
+
+import type { TabListProps } from './type'
+
 export const TabList: React.FC<TabListProps> = ({
 	className,
 	tabClassName,

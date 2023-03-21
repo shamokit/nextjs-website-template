@@ -1,5 +1,7 @@
 import { useBudouX } from '@/utils/useBudouX'
+
 import type { TextProps } from './type'
+
 export const Text = <E extends React.ElementType = 'span'>({
 	as,
 	text,

@@ -1,8 +1,11 @@
 import React, { ReactElement } from 'react'
-import type { ImgixArtDirectionProps } from './type'
+
 import type { ImgixImgPropsWithoutMedia } from '@/components/ui/image/Imgix/ImgixImage/type'
-import { ImgixSourcePropsWithMedia } from '@/components/ui/image/Imgix/ImgixSource/type'
 import { ImgixPicture } from '@/components/ui/image/Imgix/ImgixPicture'
+import { ImgixSourcePropsWithMedia } from '@/components/ui/image/Imgix/ImgixSource/type'
+
+import type { ImgixArtDirectionProps } from './type'
+
 /**
  * @param children - 各ブレイクポイントで読み込む画像をそれぞれのブレイクポイントごとにImgixSourceWithMediaコンポーネントで指定します。
  * 一番小さいサイズの画像はImgixStaticImageに指定します。

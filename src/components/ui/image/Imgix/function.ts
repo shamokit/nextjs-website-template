@@ -1,9 +1,10 @@
-import type {
-	GetImgixImageUrlParamProps,
-	GetAdjustedSize,
-	GenerateSrcsetByExtensionsProps,
-} from './type'
 import { BROWSER_SIZES } from '../const'
+import type {
+	GenerateSrcsetByExtensionsProps,
+	GetAdjustedSize,
+	GetImgixImageUrlParamProps,
+} from './type'
+
 /**
  * getAdjustedSizeで計算した実際返ってくる画像のwidth,heightを使って、
  * 調整後のwidthとheightに置きなおしたURLを返します。

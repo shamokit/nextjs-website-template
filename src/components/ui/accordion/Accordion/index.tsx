@@ -1,6 +1,9 @@
 import { useRef } from 'react'
-import type { AccordionProps } from './type'
+
 import { useToggle } from '@/utils/useToggle'
+
+import type { AccordionProps } from './type'
+
 export const Accordion: React.FC<AccordionProps> = ({
 	title,
 	children,

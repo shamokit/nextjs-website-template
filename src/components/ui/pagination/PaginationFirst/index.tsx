@@ -1,6 +1,8 @@
 import { PaginationLink } from '@/components/ui/pagination/PaginationLink'
 import { SvgIco } from '@/components/ui/svg/SvgIco'
+
 import type { PaginationFirstProps } from './type'
+
 export const PaginationFirst: React.FC<PaginationFirstProps> = ({
 	fullArchiveUrl,
 	current,

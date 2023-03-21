@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
+
 import { axios } from '@/libs/axios'
 import { useForm } from '@/libs/react-hook-form'
+
 import { ErrorMessages } from '@/components/ui/error/ErrorMessages'
+
 type FormDataProps = {
 	name: string
 	email: string

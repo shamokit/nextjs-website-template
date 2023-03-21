@@ -1,7 +1,10 @@
-import React, { useState, forwardRef, useRef } from 'react'
-import type { TabProps } from './type'
+import React, { forwardRef, useRef, useState } from 'react'
+
 import { useIsomorphicEffect } from '@/utils/useIsomorphicEffect'
 import { useResizeObserver } from '@/utils/useResizeObserver'
+
+import type { TabProps } from './type'
+
 export const Tab = forwardRef<HTMLDetailsElement, TabProps>(
 	(
 		{

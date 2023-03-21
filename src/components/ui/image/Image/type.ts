@@ -1,4 +1,5 @@
 import React from 'react'
+
 export type ImageProps = Omit<
 	React.ComponentPropsWithoutRef<'img'>,
 	'width' | 'height' | 'src'

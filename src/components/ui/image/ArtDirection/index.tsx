@@ -1,8 +1,10 @@
 import React, { ReactElement } from 'react'
-import type { ImageProps } from '@/components/ui/image/Image/type'
+
 import type { ArtDirectionProps } from '@/components/ui/image/ArtDirection/type'
-import type { SourceWithMediaProps } from '@/components/ui/image/Source/type'
+import type { ImageProps } from '@/components/ui/image/Image/type'
 import { Picture } from '@/components/ui/image/Picture'
+import type { SourceWithMediaProps } from '@/components/ui/image/Source/type'
+
 /**
  * @param children - 各ブレイクポイントで読み込む画像をそれぞれのブレイクポイントごとにSourceWithMediaコンポーネントで指定します。
  * 一番小さいサイズの画像はStaticImageに指定します。

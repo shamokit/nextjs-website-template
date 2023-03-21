@@ -1,5 +1,7 @@
 import { NavigationMenuItem } from '@/components/layout/navigation/Navigation/NavigationMenu/NavigationMenuItem'
+
 import type { NavigationMenuProps } from './type'
+
 export const NavigationMenu: React.FC<NavigationMenuProps> = ({ menu }) => {
 	if (!menu) return null
 	return (

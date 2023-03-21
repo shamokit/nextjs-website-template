@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
+
 import { useRouter } from 'next/router'
-import axios from 'axios'
+
 import aspida from '@aspida/axios'
-import api from '@/api/newt/$api'
+import axios from 'axios'
 import type {
 	Content,
 	Contents,
@@ -10,6 +11,9 @@ import type {
 	GetContentQuery,
 	GetContentsQuery,
 } from 'newt-client-js'
+
+import api from '@/api/newt/$api'
+
 export type { Content, Contents, GetContentParams, GetContentQuery, GetContentsQuery }
 
 // Fetch CDN

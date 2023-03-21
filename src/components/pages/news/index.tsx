@@ -1,4 +1,5 @@
 import type { NewsContents } from '@/schemas/news/type'
+
 type PageNewsProps = {
 	postsData: NewsContents
 }

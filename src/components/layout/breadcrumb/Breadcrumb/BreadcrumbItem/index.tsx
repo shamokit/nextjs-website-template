@@ -1,5 +1,6 @@
-import { InnerLink } from '@/components/ui/link/InnerLink'
 import type { BreadcrumbItemProps } from '@/components/layout/breadcrumb/Breadcrumb/BreadcrumbItem/type'
+import { InnerLink } from '@/components/ui/link/InnerLink'
+
 export const BreadcrumbItem: React.FC<BreadcrumbItemProps> = ({
 	title,
 	path,

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+
 import { useIsomorphicEffect } from '@/utils/useIsomorphicEffect'
 
 export const useWindowSize = (): number => {

@@ -1,6 +1,8 @@
-import { InnerLink } from '@/components/ui/link/InnerLink'
 import { Accordion } from '@/components/ui/accordion/Accordion'
+import { InnerLink } from '@/components/ui/link/InnerLink'
+
 import type { NavigationMenuChildProps } from './type'
+
 export const NavigationMenuChild: React.FC<NavigationMenuChildProps> = ({ menuItem }) => {
 	if (!menuItem.children) return null
 	return (

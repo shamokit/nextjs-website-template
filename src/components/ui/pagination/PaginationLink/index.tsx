@@ -1,5 +1,7 @@
 import { InnerLink } from '@/components/ui/link/InnerLink'
+
 import type { PaginationLinkProps } from './type'
+
 export const PaginationLink: React.FC<PaginationLinkProps> = ({
 	children,
 	current,

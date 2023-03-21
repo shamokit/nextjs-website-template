@@ -1,4 +1,5 @@
 import type { BreadcrumbItemProps } from '@/components/layout/breadcrumb/Breadcrumb/BreadcrumbItem/type'
+
 type Page = {
 	title: string
 	slug: string

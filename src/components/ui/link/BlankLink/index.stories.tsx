@@ -1,6 +1,5 @@
 // BlankLink.stories.ts|tsx
-
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import { BlankLink } from '@/components/ui/link/BlankLink/index'
 

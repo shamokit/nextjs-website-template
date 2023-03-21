@@ -1,9 +1,14 @@
-import type { NextPage, GetStaticProps, GetStaticPaths } from 'next'
+import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
+
 import { ParsedUrlQuery } from 'node:querystring'
-import { NextSeo } from '@/libs/next-seo'
-import { apiClient } from '@/libs/newt-api-client'
-import { SITE_URL } from '@/utils/meta'
+
 import type { PageContent } from '@/schemas/staticPage/type'
+
+import { apiClient } from '@/libs/newt-api-client'
+import { NextSeo } from '@/libs/next-seo'
+
+import { SITE_URL } from '@/utils/meta'
+
 import { Breadcrumb } from '@/components/layout/breadcrumb/Breadcrumb'
 import type { BreadcrumbProps } from '@/components/layout/breadcrumb/Breadcrumb/type'
 import { generateBreadcrumbObjects } from '@/components/layout/breadcrumb/functions/generateBreadcrumbObjects'

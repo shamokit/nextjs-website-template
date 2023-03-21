@@ -1,6 +1,9 @@
 import React from 'react'
-import { icons, iconNames } from './const'
+
 import { capitalize } from '@/utils/capitalize'
+
+import { iconNames, icons } from './const'
+
 export const SVG = () => {
 	return (
 		<svg className="hidden">

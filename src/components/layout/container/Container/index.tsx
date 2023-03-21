@@ -1,6 +1,9 @@
 import classnames from 'classnames'
+
 import { ExhaustiveError } from '@/utils/ExhaustiveError'
-import type { ContainerSizeList, ContainerProps } from './type'
+
+import type { ContainerProps, ContainerSizeList } from './type'
+
 export const Container: React.FC<ContainerProps> = ({
 	children,
 	className,

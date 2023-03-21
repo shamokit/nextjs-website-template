@@ -1,7 +1,10 @@
 import Head from 'next/head'
-import { SvgIco } from '@/components/ui/svg/SvgIco'
+
 import { PaginationLink } from '@/components/ui/pagination/PaginationLink'
+import { SvgIco } from '@/components/ui/svg/SvgIco'
+
 import { PaginationPreviousProps } from './type'
+
 export const PaginationPrevious: React.FC<PaginationPreviousProps> = ({
 	current,
 	previousUrl,

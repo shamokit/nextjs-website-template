@@ -1,6 +1,8 @@
 import { PaginationLink } from '@/components/ui/pagination/PaginationLink'
 import { SvgIco } from '@/components/ui/svg/SvgIco'
+
 import type { PaginationLastProps } from './type'
+
 export const PaginationLast: React.FC<PaginationLastProps> = ({
 	current,
 	fullArchiveUrl,

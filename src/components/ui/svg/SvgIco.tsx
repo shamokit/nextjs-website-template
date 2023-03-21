@@ -1,6 +1,8 @@
-import { icons } from './const'
 import { capitalize } from '@/utils/capitalize'
+
+import { icons } from './const'
 import type { SvgNames } from './type'
+
 type SvgIco = { name: SvgNames; className?: string }
 export const SvgIco: React.FC<SvgIco> = ({ name, className }) => {
 	const icon = icons[name]
