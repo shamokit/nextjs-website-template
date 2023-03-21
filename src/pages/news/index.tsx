@@ -1,12 +1,15 @@
 import type { NextPage } from 'next'
-import { NextSeo } from '@/libs/next-seo'
+
+import type { NewsContents } from '@/schemas/news/type'
+
 // import { apiClient } from '@/libs/newt-api-client'
 import { apiClient } from '@/libs/microcms-api-client'
-import type { NewsContents } from '@/schemas/news/type'
+import { NextSeo } from '@/libs/next-seo'
+
 import { Breadcrumb } from '@/components/layout/breadcrumb/Breadcrumb'
 import { generateBreadcrumbObjects } from '@/components/layout/breadcrumb/functions/generateBreadcrumbObjects'
-import { PageNews } from '@/components/pages/news'
 import { Container } from '@/components/layout/container/Container'
+import { PageNews } from '@/components/pages/news'
 
 const { pageObjects: breadcrumbList } = generateBreadcrumbObjects({
 	title: 'News',

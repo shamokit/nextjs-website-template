@@ -1,4 +1,11 @@
+/* microCMS */
 import type { Meta } from '@/schemas/meta/type'
+
+import type {
+	MicroCMSListContent,
+	MicroCMSListResponse,
+} from '@/libs/microcms-api-client'
+
 export type Page = {
 	title: string
 	slug: string
@@ -7,11 +14,6 @@ export type Page = {
 	parent: Page | null
 }
 
-/* microCMS */
-import type {
-	MicroCMSListResponse,
-	MicroCMSListContent,
-} from '@/libs/microcms-api-client'
 export type PageContent = MicroCMSListContent & Page
 export type PageContents = MicroCMSListResponse<Page>
 

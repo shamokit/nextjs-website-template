@@ -1,5 +1,7 @@
-import { Container } from '@/components/layout/container/Container'
 import { COMPANY_NAME } from '@/utils/meta'
+
+import { Container } from '@/components/layout/container/Container'
+
 export const Footer: React.FC = () => {
 	const SITE_RELEASE_YEAR = 2022
 	const currentTime = new Date()

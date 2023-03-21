@@ -1,13 +1,17 @@
 import React, { useContext } from 'react'
+
 import Head from 'next/head'
-import { TRANSPARENT_DUMMY_IMAGE } from '../../const'
+
 import { BREAK_POINTS } from '@/utils/const'
-import type { ImgixSourcePropsWithMedia } from './type'
-import { RefContext } from '@/components/ui/image/Imgix/ImgixPicture'
+
 import {
-	getAdjustedSize,
 	generateSrcsetByExtensions,
+	getAdjustedSize,
 } from '@/components/ui/image/Imgix/function'
+import { RefContext } from '@/components/ui/image/Imgix/ImgixPicture'
+
+import { TRANSPARENT_DUMMY_IMAGE } from '../../const'
+import type { ImgixSourcePropsWithMedia } from './type'
 
 export const ImgixSourceWithMedia: React.FC<ImgixSourcePropsWithMedia> = ({
 	srcSet,

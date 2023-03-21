@@ -1,11 +1,14 @@
 import Head from 'next/head'
+
 import { jsonLdScriptProps } from '@/libs/react-schemaorg'
 import type { BreadcrumbList } from '@/libs/schema-dts'
+
 import { SITE_URL } from '@/utils/meta'
+
 import { BreadcrumbItem } from '@/components/layout/breadcrumb/Breadcrumb/BreadcrumbItem'
 import {
-	BreadcrumbProps,
 	BreadcrumbJson,
+	BreadcrumbProps,
 } from '@/components/layout/breadcrumb/Breadcrumb/type'
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({ list, withJsonLd = true }) => {

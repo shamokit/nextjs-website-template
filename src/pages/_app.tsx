@@ -1,17 +1,20 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+
 import { DefaultSeo } from '@/libs/next-seo'
-import SEO from '../../next-seo.config'
 import { GoogleAnalytics } from '@/libs/nextjs-google-analytics'
+import { jsonLdScriptProps } from '@/libs/react-schemaorg'
+import { Organization, WebPage } from '@/libs/schema-dts'
+
+import { COMPANY_NAME, COMPANY_TEL, SITE_URL } from '@/utils/meta'
+
+import { Footer } from '@/components/layout/footer/Footer'
+import { Header } from '@/components/layout/header/Header'
+import { SVG } from '@/components/ui/svg'
+
 import '@/styles/globals.css'
 
-import { WebPage, Organization } from '@/libs/schema-dts'
-import { jsonLdScriptProps } from '@/libs/react-schemaorg'
-
-import { SITE_URL, COMPANY_NAME, COMPANY_TEL } from '@/utils/meta'
-import { Header } from '@/components/layout/header/Header'
-import { Footer } from '@/components/layout/footer/Footer'
-import { SVG } from '@/components/ui/svg'
+import SEO from '../../next-seo.config'
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 	return (

@@ -1,8 +1,11 @@
 import React, { useContext } from 'react'
-import type { ImageProps } from '@/components/ui/image/Image/type'
-import { TRANSPARENT_DUMMY_IMAGE } from '../const'
-import { RefContext } from '@/components/ui/image/Picture'
+
 import { generateSrcsetByExtensions } from '@/components/ui/image/function'
+import type { ImageProps } from '@/components/ui/image/Image/type'
+import { RefContext } from '@/components/ui/image/Picture'
+
+import { TRANSPARENT_DUMMY_IMAGE } from '../const'
+
 export const Image: React.FC<ImageProps> = ({
 	src,
 	width,

@@ -1,2 +1,3 @@
-import type { DefineMethods as DefineMethodsOriginal, AspidaMethods } from 'aspida'
+import type { AspidaMethods, DefineMethods as DefineMethodsOriginal } from 'aspida'
+
 export type DefineMethods<T extends AspidaMethods> = DefineMethodsOriginal<T>

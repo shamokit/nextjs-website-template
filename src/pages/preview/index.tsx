@@ -1,14 +1,18 @@
+import { useEffect, useState } from 'react'
+
 import type { NextPage } from 'next'
-import { useState } from 'react'
-import { NextSeo } from '@/libs/next-seo'
+
+import type { PageContent } from '@/schemas/staticPage/type'
+
 import { usePreview } from '@/libs/microcms-api-client'
+import { NextSeo } from '@/libs/next-seo'
+
 // import { usePreview } from '@/libs/newt-api-client'
 import { SITE_URL } from '@/utils/meta'
-import type { PageContent } from '@/schemas/staticPage/type'
+
 import { Breadcrumb } from '@/components/layout/breadcrumb/Breadcrumb'
 import type { BreadcrumbItemProps } from '@/components/layout/breadcrumb/Breadcrumb/BreadcrumbItem/type'
 import { generateBreadcrumbObjects } from '@/components/layout/breadcrumb/functions/generateBreadcrumbObjects'
-import { useEffect } from 'react'
 
 type PageProps = {
 	pageData?: PageContent

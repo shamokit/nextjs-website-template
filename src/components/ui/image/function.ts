@@ -1,5 +1,5 @@
-import type { GenerateSrcsetByExtensionsProps } from './type'
 import { BROWSER_SIZES } from './const'
+import type { GenerateSrcsetByExtensionsProps } from './type'
 
 // TODO:Optional Object Patternで書きなおす
 /**

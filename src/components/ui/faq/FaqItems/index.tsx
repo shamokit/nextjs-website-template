@@ -1,8 +1,12 @@
 import Head from 'next/head'
+
 import { jsonLdScriptProps } from '@/libs/react-schemaorg'
 import { FAQPage } from '@/libs/schema-dts'
+
 import { FaqItem } from '@/components/ui/faq/FaqItem'
+
 import type { FaqItemsProps } from './type'
+
 export const FaqItems: React.FC<FaqItemsProps> = ({ faqs, jsonLd = true, className }) => {
 	const faqJson: {
 		'@type': 'Question'

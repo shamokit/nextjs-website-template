@@ -8,5 +8,24 @@
 				"useTabs": false
 			}
 		}
-	]
+	],
+	"importOrder": [
+    "^(react/(.*)$)|^(react$)",
+    "^(next/(.*)$)|^(next$)",
+    "<THIRD_PARTY_MODULES>",
+    "^@/schemas/(.*)$",
+    "^@/api/(.*)$",
+    "^@/libs/(.*)$",
+    "^@/utils/(.*)$",
+    "^@/components/(.*)$",
+    "^@/pages/(.*)$",
+    "^@/public/(.*)$",
+    "^@/styles/(.*)$",
+    "^[./]"
+	],
+	"importOrderSeparation": true,
+	"importOrderSortSpecifiers": true,
+	"importOrderCaseInsensitive": true,
+	"importOrderGroupNamespaceSpecifiers": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"]
 }

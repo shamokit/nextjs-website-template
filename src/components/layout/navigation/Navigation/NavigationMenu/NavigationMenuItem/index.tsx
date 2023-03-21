@@ -1,6 +1,8 @@
-import { InnerLink } from '@/components/ui/link/InnerLink'
 import { NavigationMenuChild } from '@/components/layout/navigation/Navigation/NavigationMenu/NavigationMenuChild'
+import { InnerLink } from '@/components/ui/link/InnerLink'
+
 import type { NavigationMenuItemProps } from './type'
+
 export const NavigationMenuItem: React.FC<NavigationMenuItemProps> = ({ menuItem }) => {
 	return menuItem.children ? (
 		<NavigationMenuChild menuItem={menuItem} />

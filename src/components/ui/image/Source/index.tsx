@@ -1,9 +1,12 @@
 import React, { useContext } from 'react'
+
 import { BREAK_POINTS } from '@/utils/const'
-import { TRANSPARENT_DUMMY_IMAGE } from '../const'
-import type { SourceWithMediaProps } from './type'
+
 import { generateSrcsetByExtensions } from '@/components/ui/image/function'
 import { RefContext } from '@/components/ui/image/Picture'
+
+import { TRANSPARENT_DUMMY_IMAGE } from '../const'
+import type { SourceWithMediaProps } from './type'
 
 export const SourceWithMedia: React.FC<SourceWithMediaProps> = ({
 	srcSet,

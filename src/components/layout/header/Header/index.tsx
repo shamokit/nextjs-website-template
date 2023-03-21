@@ -1,6 +1,7 @@
-import { InnerLink } from '@/components/ui/link/InnerLink'
 import { Container } from '@/components/layout/container/Container'
 import { Navigation } from '@/components/layout/navigation/Navigation'
+import { InnerLink } from '@/components/ui/link/InnerLink'
+
 export const Header: React.FC = () => {
 	return (
 		<header

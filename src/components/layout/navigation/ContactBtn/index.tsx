@@ -1,5 +1,7 @@
 import { InnerLink } from '@/components/ui/link/InnerLink'
+
 import { ContactBtnProps } from './type'
+
 export const ContactBtn: React.FC<ContactBtnProps> = ({ className }) => {
 	return (
 		<p className={className}>

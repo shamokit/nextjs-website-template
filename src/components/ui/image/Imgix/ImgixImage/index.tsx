@@ -1,12 +1,15 @@
 import React, { useContext } from 'react'
+
 import Head from 'next/head'
-import { TRANSPARENT_DUMMY_IMAGE } from '../../const'
+
+import {
+	generateSrcsetByExtensions,
+	getAdjustedSize,
+} from '@/components/ui/image/Imgix/function'
 import type { ImgixImgPropsWithoutMedia } from '@/components/ui/image/Imgix/ImgixImage/type'
 import { RefContext } from '@/components/ui/image/Imgix/ImgixPicture'
-import {
-	getAdjustedSize,
-	generateSrcsetByExtensions,
-} from '@/components/ui/image/Imgix/function'
+
+import { TRANSPARENT_DUMMY_IMAGE } from '../../const'
 
 export const ImgixImage: React.FC<
 	ImgixImgPropsWithoutMedia & {

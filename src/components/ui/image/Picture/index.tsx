@@ -1,6 +1,9 @@
 import React from 'react'
-import type { PictureProps } from './type'
+
 import { useInView } from '@/libs/react-intersection-observer'
+
+import type { PictureProps } from './type'
+
 export const RefContext = React.createContext(false)
 export const Picture: React.FC<PictureProps> = ({ children, ...props }) => {
 	const { ref, inView } = useInView({

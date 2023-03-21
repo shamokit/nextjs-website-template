@@ -1,4 +1,5 @@
 import type { NavigationButtonProps } from './type'
+
 export const NavigationButton: React.FC<NavigationButtonProps> = ({
 	idForAria,
 	open,

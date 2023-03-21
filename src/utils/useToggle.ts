@@ -1,7 +1,8 @@
-import { useState } from 'react'
-import type { RefObject } from 'react'
-import { useIsomorphicEffect } from '@/utils/useIsomorphicEffect'
+import { type RefObject, useState } from 'react'
+
 import { animationTimingDefault } from '@/utils/animation'
+import { useIsomorphicEffect } from '@/utils/useIsomorphicEffect'
+
 type Timing = {
 	duration: number
 	easing: 'linear' | 'ease' | 'ease-in' | 'ease-out' | 'ease-in-out' | string

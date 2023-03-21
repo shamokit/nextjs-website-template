@@ -1,4 +1,5 @@
 import { iconNames } from './const'
+
 export type SvgList = {
 	[key: string]: {
 		viewBox: string

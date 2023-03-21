@@ -1,4 +1,5 @@
 import { Head, Html, Main, NextScript } from 'next/document'
+
 const Document: React.FC = () => {
 	return (
 		<Html prefix="og: http://ogp.me/ns#" lang="ja">

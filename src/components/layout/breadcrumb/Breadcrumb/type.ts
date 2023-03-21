@@ -1,4 +1,5 @@
 import { BreadcrumbItemProps } from '@/components/layout/breadcrumb/Breadcrumb/BreadcrumbItem/type'
+
 export type BreadcrumbProps = {
 	list: BreadcrumbItemProps[]
 	withJsonLd?: boolean

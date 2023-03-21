@@ -1,9 +1,12 @@
-import { useState, useEffect } from 'react'
-import { NavigationMenu } from '@/components/layout/navigation/Navigation/NavigationMenu'
-import { NavigationButton } from '@/components/layout/navigation/Navigation/NavigationButton'
-import { ContactBtn } from '@/components/layout/navigation/ContactBtn'
-import { useWindowSize } from '@/utils/useWindowSize'
+import { useEffect, useState } from 'react'
+
 import { BREAK_POINTS } from '@/utils/const'
+import { useWindowSize } from '@/utils/useWindowSize'
+
+import { ContactBtn } from '@/components/layout/navigation/ContactBtn'
+import { NavigationButton } from '@/components/layout/navigation/Navigation/NavigationButton'
+import { NavigationMenu } from '@/components/layout/navigation/Navigation/NavigationMenu'
+
 const menu = [
 	{
 		href: '/',

@@ -1,5 +1,7 @@
 import React from 'react'
+
 import type { PaginationItemsProps } from './type'
+
 export const PaginationItems: React.FC<PaginationItemsProps> = ({ children }) => {
 	const renderChildren = children.filter((v) => v)
 	return (

@@ -1,5 +1,7 @@
 import React from 'react'
+
 import { BREAK_POINTS } from '@/utils/const'
+
 type SourceProps = Omit<
 	React.ComponentPropsWithoutRef<'source'>,
 	'srcSet' | 'width' | 'height'

@@ -1,6 +1,5 @@
 // Link.stories.ts|tsx
-
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import { InnerLink } from '@/components/ui/link/InnerLink/index'
 
