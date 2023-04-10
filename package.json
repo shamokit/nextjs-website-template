@@ -49,7 +49,7 @@
 	},
 	"devDependencies": {
 		"@babel/core": "^7.18.13",
-		"@markuplint/jsx-parser": "^3.4.0",
+		"@markuplint/jsx-parser": "^3.6.1",
 		"@markuplint/react-spec": "^3.4.0",
 		"@squoosh/lib": "^0.5.3",
 		"@storybook/addon-actions": "^6.5.16",
