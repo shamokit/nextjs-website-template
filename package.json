@@ -68,6 +68,7 @@
 		"@types/react-dom": "^18.0.11",
 		"@typescript-eslint/eslint-plugin": "^5.58.0",
 		"@typescript-eslint/parser": "^5.56.0",
+		"autoprefixer": "^10.4.15",
 		"babel-loader": "^9.1.2",
 		"date-fns-tz": "^2.0.0",
 		"editorconfig-parser": "^0.0.2",
