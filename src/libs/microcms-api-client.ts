@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 
 import { useRouter } from 'next/router'
@@ -12,7 +14,7 @@ import type {
 	MicroCMSQueries,
 } from 'microcms-js-sdk'
 
-import api from '@/api/microcms/$api'
+import api from '@/api/$api'
 
 export type {
 	MicroCMSQueries,

@@ -16,7 +16,7 @@ module.exports = {
 			padding: 'var(--contents--padding--side)',
 		},
 		fontFamily: {
-			'noto': ["Noto Sans JP", "ヒラギノ角ゴ ProN W3", "Meiryo", "sans-serif"]
+			'noto': ["var(--font-noto-sans-jp)", "ヒラギノ角ゴ ProN W3", "Meiryo", "sans-serif"]
 		},
 		fontWeight: {
 			normal: 400,

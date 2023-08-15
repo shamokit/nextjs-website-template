@@ -1,3 +1,5 @@
+"use client";
+
 import { capitalize } from '@/utils/capitalize'
 
 import { icons } from './const'

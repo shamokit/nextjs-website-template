@@ -16,8 +16,3 @@ export type Page = {
 
 export type PageContent = MicroCMSListContent & Page
 export type PageContents = MicroCMSListResponse<Page>
-
-/* Newt */
-// import type { Content, Contents } from '@/libs/newt-api-client'
-// export type PageContent = Page & Content
-// export type PageContents = Contents<PageContent>

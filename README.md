@@ -1,6 +1,6 @@
 # Next.js Website Template
 
-microCMSもしくはNewtを使用し、Cloudflare PagesでWebサイトをデプロイするテンプレートです。
+microCMSを使用し、Cloudflare PagesでWebサイトをデプロイするテンプレートです。
 
 ## 注意
 
@@ -26,30 +26,8 @@ microCMSもしくはNewtを使用し、Cloudflare PagesでWebサイトをデプ�
 ## 最初にやること
 
 不要なファイルを削除していきます。  
-まずはCMSを決めてください。
-
 src/apiやsrc/schemasにデフォルトでよく使いそうな型を定義してあります。  
 不要であれば最初に削除ください。
-
-### Newtを使う場合
-
-```
-npm uninstall microcms-js-sdk
-```
-- src/libs/microcms-api-client.tsを削除
-- src/api/microcms/ディレクトリを削除
-- functions/api/preview.tsのcmsNameにnewtを入れる
-- aspida.config.tsをinput: "src/api/newt"に変更する
-
-### microCMSを使う場合
-
-```
-npm uninstall newt-client-js
-```
-- src/libs/newt-api-client.tsを削除
-- src/api/newt/ディレクトリを削除
-- functions/api/preview.tsのcmsNameにmicrocmsを入れる
-- aspida.config.tsをinput: "src/api/microcms"に変更する
 
 ## meta
 
@@ -93,7 +71,7 @@ fontSizeをCSS変数で管理します。
 
 .envに
 ```
-CMS_API_URL=https://xxx.api.newt.so/v1 or https://xxx.microcms.io/api/v1/
+CMS_API_URL=https://xxx.microcms.io/api/v1/
 CMS_PREVIEW_API_KEY=xxxxxxxxxxxxxxxxxxxxxx
 CMS_API_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxx
 NEXT_PUBLIC_GA_MEASUREMENT_ID="G-XXXXXXXXXX"
@@ -102,7 +80,7 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID="G-XXXXXXXXXX"
 wrangler.tomlに
 ```
 [vars]
-CMS_API_URL = "https://xxx.api.newt.so/v1" or "https://xxx.microcms.io/api/v1/"
+CMS_API_URL = "https://xxx.microcms.io/api/v1/"
 CMS_PREVIEW_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxx"
 CMS_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxx"
 SECRET = "xxxx"
@@ -143,7 +121,6 @@ Cloudflare PagesのFunctionsを使用します。./functionsにAPIを作成し�
 
 | CMS | URL |
 | - | - |
-| Newt | {domain}/preview?appUID=xxx&modelUID=xxx&contentId=xxxxxxxxx&secret=xxxxxxxxxxxx |
 | microCMS | {domain}/preview?endpoint=xxx&contentId=xxx&draftKey=xxxxxxxxx&secret=xxxxxxxxxxxx |
 
 envやwrangler.tomlに登録したSECRETとsecretパラメータが同じならプレビューAPIをたたくことができます。
@@ -184,8 +161,6 @@ envやwrangler.tomlに登録したSECRETとsecretパラメータが同じなら�
 
 基本的にCMSに登録してください。  
 public以下のファイルとCMSから取得する画像についてはimgixのパラメータを使って最適化しています。
-
-microCMSの場合は特に何もしなくてOKですが、Newtを使う場合は外部ストレージと画像最適化の設定を管理画面からする必要があります。
 
 | コマンド | 内容 |
 | --- | --- |

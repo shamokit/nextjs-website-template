@@ -1,3 +1,4 @@
+'use client';
 import React, { createRef, useEffect, useRef, useState } from 'react'
 
 import { Tab } from '@/components/ui/tab/Tab'
