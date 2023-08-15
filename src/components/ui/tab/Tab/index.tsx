@@ -1,3 +1,4 @@
+'use client';
 import React, { forwardRef, useRef, useState } from 'react'
 
 import { useIsomorphicEffect } from '@/utils/useIsomorphicEffect'

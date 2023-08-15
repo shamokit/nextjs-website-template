@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useState } from 'react'
 
 import { axios } from '@/libs/axios'
@@ -9,7 +11,7 @@ type FormDataProps = {
 	name: string
 	email: string
 }
-export const PageContact = () => {
+export const Form = () => {
 	const [errorResponse, setErrorResponse] = useState<{
 		errors: { [key in keyof FormDataProps]?: string[] }
 	}>()

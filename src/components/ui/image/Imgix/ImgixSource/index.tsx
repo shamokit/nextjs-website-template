@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useContext } from 'react'
 
 import Head from 'next/head'

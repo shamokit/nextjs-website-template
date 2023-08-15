@@ -1,3 +1,5 @@
+"use client";
+
 import React, { ReactElement } from 'react'
 
 import type { ImgixImgPropsWithoutMedia } from '@/components/ui/image/Imgix/ImgixImage/type'

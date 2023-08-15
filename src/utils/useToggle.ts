@@ -24,7 +24,7 @@ export type UseToggleProps = {
 	animation?: ToggleAnimation | false
 }
 type UseToggle = (
-	args: UseToggleProps
+	args: UseToggleProps,
 ) => [boolean, (e: React.MouseEvent<HTMLElement, MouseEvent>) => void]
 
 /**
@@ -81,7 +81,7 @@ export const useToggle: UseToggle = ({
 		}
 		accordionRef?.current?.addEventListener('toggle', () => correctAttributeOpen())
 		return accordionRef?.current?.removeEventListener('toggle', () =>
-			correctAttributeOpen()
+			correctAttributeOpen(),
 		)
 	}, [])
 	isomorphicEffect(() => {
@@ -135,7 +135,7 @@ export const useToggle: UseToggle = ({
 		if (!content.current) return
 		const anim = content.current.animate(
 			closingAnimKeyframes(content),
-			animation.timingClose
+			animation.timingClose,
 		)
 		anim.onfinish = () => {
 			accordionRef?.current?.tagName !== 'DETAILS' && setHeightZero()
@@ -160,7 +160,7 @@ export const useToggle: UseToggle = ({
 		setOpen(true)
 		const anim = content.current.animate(
 			openingAnimKeyframes(content),
-			animation.timingOpen
+			animation.timingOpen,
 		)
 		anim.onfinish = () => {
 			accordionRef.current?.tagName !== 'DETAILS' && removeHTMLAttributeStyle()

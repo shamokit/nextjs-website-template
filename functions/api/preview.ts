@@ -1,10 +1,5 @@
-const cmsNames = ['newt', 'microcms'] as const
-type CmsName = typeof cmsNames[number]
 export const onRequestGet = async ({ request, env }) => {
 	const ErrorResponse = new Response('401 Unauthorized', { status: 401 })
-
-	// CMS名を選んでください。
-	const cmsName: CmsName = 'microcms'
 
 	// REQUEST URL
 	const url = new URL(request.url)
@@ -19,56 +14,25 @@ export const onRequestGet = async ({ request, env }) => {
 	if (SECRET !== paramSECRET) return ErrorResponse
 
 	// pathを生成
-	const getCmsApiPathname = (cmsName: CmsName) => {
-		if (!cmsNames.includes(cmsName)) return ''
-		switch (cmsName) {
-			case 'newt': {
-				const appUID = params.get('appUID')
-				const modelUID = params.get('modelUID')
-				const contentId = params.get('contentId')
-				if (!(appUID && modelUID && contentId)) return ''
-				return `${appUID}/${modelUID}/${contentId}`
-			}
-			case 'microcms': {
-				const endpoint = params.get('endpoint')
-				const contentId = params.get('contentId')
-				const draftKey = params.get('draftKey')
-				if (!contentId) return ''
-				return `${endpoint}/${contentId}${draftKey ? `?draftKey=${draftKey}` : ''}`
-			}
-		}
+	const getCmsApiPathname = () => {
+		const endpoint = params.get('endpoint')
+		const contentId = params.get('contentId')
+		const draftKey = params.get('draftKey')
+		if (!contentId) return ''
+		return `${endpoint}/${contentId}${draftKey ? `?draftKey=${draftKey}` : ''}`
 	}
 	// headerを生成
-	type GetHeader =
-		| {
-				Authorization: string
-		  }
-		| {
-				'X-MICROCMS-API-KEY': string
-		  }
-		| undefined
-	const getHeaders = (cmsName: CmsName): GetHeader => {
-		if (!cmsNames.includes(cmsName)) return undefined
-		switch (cmsName) {
-			case 'newt': {
-				return {
-					Authorization: `Bearer ${
-						env.CMS_PREVIEW_API_KEY ? env.CMS_PREVIEW_API_KEY : ''
-					}`,
-				}
-			}
-			case 'microcms': {
-				return {
-					'X-MICROCMS-API-KEY': `${
-						env.CMS_PREVIEW_API_KEY ? env.CMS_PREVIEW_API_KEY : ''
-					}`,
-				}
-			}
+	type GetHeader = {
+		'X-MICROCMS-API-KEY': string
+	}
+	const getHeaders = (): GetHeader => {
+		return {
+			'X-MICROCMS-API-KEY': `${env.CMS_PREVIEW_API_KEY ? env.CMS_PREVIEW_API_KEY : ''}`,
 		}
 	}
 	const baseUrl = env.CMS_API_URL
-	const cmsApiPathname = getCmsApiPathname(cmsName)
-	const headers = getHeaders(cmsName)
+	const cmsApiPathname = getCmsApiPathname()
+	const headers = getHeaders()
 	const fetchUrl = `${baseUrl}/${cmsApiPathname}`
 	if (!headers) return ErrorResponse
 	const res = await fetch(fetchUrl, { headers })
