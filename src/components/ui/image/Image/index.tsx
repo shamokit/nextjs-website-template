@@ -41,5 +41,5 @@ export const Image: React.FC<ImageProps> = ({
 			/>
 		)
 	})
-	return { el }
+	return el
 }
