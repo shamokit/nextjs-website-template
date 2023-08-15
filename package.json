@@ -72,7 +72,7 @@
 		"date-fns-tz": "^2.0.0",
 		"editorconfig-parser": "^0.0.2",
 		"eslint": "^8.35.0",
-		"eslint-config-prettier": "^8.7.0",
+		"eslint-config-prettier": "^8.8.0",
 		"eslint-plugin-storybook": "^0.6.4",
 		"markuplint": "^3.8.0",
 		"postcss-flexbugs-fixes": "^5.0.2",
